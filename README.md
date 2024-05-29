@@ -30,6 +30,15 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- アプリケーションの実装に使用したgem/bootstrapのリファレンスなどの記載は不要です。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+1. **フォント**:
+    - [Roboto] https://fonts.google.com/specimen/Roboto
+2. **アイコン**:
+    - [FontAwesome] https://fontawesome.com/
+3. **テンプレート**:
+    - [デザインテンプレート] https://www.freepik.com/search?format=search&last_filter=query&last_value=&query=&type=vector
+4. **カレンダー**:
+    - [FullCalendar] https://fullcalendar.io/
+5. **地図表示**:
+    - [Google Maps JavaScript API] https://developers.google.com/maps/documentation/javascript/overview
+    - [Geocoding API] https://developers.google.com/maps/documentation/geocoding/overview
+    - 
