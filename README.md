@@ -41,4 +41,3 @@
 5. **地図表示**:
     - [Google Maps JavaScript API] https://developers.google.com/maps/documentation/javascript/overview
     - [Geocoding API] https://developers.google.com/maps/documentation/geocoding/overview
-    - 
