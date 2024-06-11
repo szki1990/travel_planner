@@ -5,3 +5,9 @@ ja:
       signed_out: 'ログアウトしました。'
       invalid: 'メールアドレスまたはパスワードが間違っています。'
       timeout: 'セッションがタイムアウトしました。再度ログインしてください。'
+      not_saved:
+        one: " %{resource}の保存中に１件のエラーが発生しました。:"
+        other: "%{resource} の保存中に %{count}件のエラーが発生しました。:"
+      email: 'メールアドレス'
+      password: 'パスワード'
+      password_confirmation: 'パスワード確認'
