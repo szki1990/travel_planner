@@ -1,0 +1,11 @@
+<% @book.each do |book| %>
+  <div>
+    <%= image_tag book.get_image %>
+    <p>投稿ユーザー画像：<%= image_tag '25145457.jpg' %></p>
+    <p>タイトル：<%= book.title %></p>
+    <p>開始日：<%= book.start_day %></p>
+    <p>終了日：<%= book.end_day %></p>
+    <p>ユーザーネーム：<%= book.user.name %></p>
+  </div>
+<% end %>
+
