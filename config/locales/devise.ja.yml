@@ -1,13 +1,13 @@
 ja:
   devise:
     failure:
-      already_authenticated: "既にログインしています。"
+      already_authenticated: "既にログインしています"
       invalid: 'メールアドレスまたはパスワードが間違っています'
       not_found_in_database: "無効な%{authentication_keys}またはパスワードです"
     sessions:
       signed_in: 'ログインしました'
-      signed_out: 'ログアウトしました。'
-      timeout: 'セッションがタイムアウトしました。再度ログインしてください'
+      signed_out: 'ログアウトしました'
+      timeout: 'セッションがタイムアウトしました 再度ログインしてください'
       email: 'メールアドレス'
       password: 'パスワード'
       password_confirmation: 'パスワード確認'
@@ -22,7 +22,9 @@ ja:
         other: "%{resource} の保存中に %{count}件のエラーが発生しました"
       blank: ""
     attributes:
+      name:
+        blank: "を入力してください"
       email:
-        blank: "メールアドレスを入力してください"
+        blank: "を入力してください"
       password:
-        blank: "パスワードを入力してください"
+        blank: "を入力してください"
