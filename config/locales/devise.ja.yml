@@ -28,3 +28,5 @@ ja:
         blank: "を入力してください"
       password:
         blank: "を入力してください"
+      current_password: 
+        blank: "現在のパスワードを入力して"

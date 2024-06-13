@@ -11,6 +11,8 @@ ja:
       email: 'メールアドレス'
       password: 'パスワード'
       password_confirmation: 'パスワード確認'
+    registrations:
+      updated: '更新しました'
   activerecord:
     models:
       user: ユーザー

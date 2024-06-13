@@ -1,8 +1,13 @@
 <h3>マイページ</h3>
 <div>
-  <%= image_tag @user.get_profile_image(150, 150), class: "rounded-circle" %>
-  <p>ユーザーネーム: <%= @user.name %></p>
-  
+  <div>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
+  <% if @user == current_user %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
+  </div>
+  <%= link_to 'メールアドレス または パスワード変更', edit_user_registration_path %>
   <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-primary' %>
   <%= link_to '退会', user_path(@user), method: :delete, data: { confirm: '本当に退会しますか？' }, class: 'btn btn-danger' %>
 </div>
