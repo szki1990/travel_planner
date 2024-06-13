@@ -1,6 +1,10 @@
+<h3>しおり一覧ページ</h3>
+
 <% @book.each do |book| %>
   <div>
-    <%= image_tag book.get_image %>
+    <%= link_to book_path(book.id) do %>
+      <%= image_tag book.get_image %>
+    <% end %>
     <p>投稿ユーザー画像：<%= image_tag '25145457.jpg' %></p>
     <p>タイトル：<%= book.title %></p>
     <p>開始日：<%= book.start_day %></p>
