@@ -1,11 +1,11 @@
 <h3>しおり一覧ページ</h3>
 
-<% @book.each do |book| %>
+<% @books.each do |book| %>
   <div>
     <%= link_to book_path(book.id) do %>
       <%= image_tag book.get_image %>
     <% end %>
-    <p>投稿ユーザー画像：<%= image_tag '25145457.jpg' %></p>
+    <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
     <p>タイトル：<%= book.title %></p>
     <p>開始日：<%= book.start_day %></p>
     <p>終了日：<%= book.end_day %></p>
