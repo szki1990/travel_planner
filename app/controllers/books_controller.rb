@@ -13,12 +13,8 @@ class BooksController < ApplicationController
   end 
 
   def index
-    @books = if current_user
-              Book.where(user_id: current_user.id).or(Book.where(public: true))
-             else 
-               Book.where(public: true)
-             end 
-                
+    @user = current_user
+    @books = @user.books
   end
 
   def show
@@ -28,7 +24,7 @@ class BooksController < ApplicationController
   def destroy
     book = Book.find(params[:id])
     book.destroy
-    redirect_to book_path
+    redirect_to books_path
   end 
   private
   
