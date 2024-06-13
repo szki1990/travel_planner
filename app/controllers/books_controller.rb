@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @book = Book.new
   end
@@ -11,7 +13,12 @@ class BooksController < ApplicationController
   end 
 
   def index
-    @books = Book.all
+    @books = if current_user
+              Book.where(user_id: current_user.id).or(Book.where(public: true))
+             else 
+               Book.where(public: true)
+             end 
+                
   end
 
   def show

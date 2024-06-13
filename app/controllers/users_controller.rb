@@ -17,6 +17,16 @@ class UsersController < ApplicationController
     redirect_to user_path
   end 
   
+  def my_page
+    @user = current_user
+  end 
+  
+  def destroy
+    @user = current_user
+    @user.destroy
+    redirect_to new_user_registration_path, notice: 'アカウントが削除されました'
+  end 
+  
   private
   
   def user_params
