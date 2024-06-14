@@ -3,7 +3,7 @@ class Book < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   
-  validates :public, inclusion: { in: [true, false] }
+  #validates :public, inclusion: { in: [true, false] }
   
   def get_image
     unless image.attached?
