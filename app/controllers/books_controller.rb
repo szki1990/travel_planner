@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_book, only: [:edit, :update, :destroy]
+  before_action :set_book, only: [:edit, :show, :destroy]
   
   def new
     @book = Book.new
@@ -10,7 +10,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     
-    respond do |format|
+    respond_to do |format|
       if @book.save
         format.html { redirect_to books_path, notice: 'しおりを作成しました' }
         format.json { render :show, status: :created, location: @book }
@@ -32,11 +32,11 @@ class BooksController < ApplicationController
   end 
 
   def show
-    @book = Book.find(params[:id])
+    @book
   end
   
   def edit
-    @book = Book.find(params[:id])
+    @book
   end 
   
   def update
@@ -49,8 +49,7 @@ class BooksController < ApplicationController
   end
   
   def destroy
-    book = Book.find(params[:id])
-    book.destroy
+    @book.destroy
     redirect_to books_path, notice: 'しおりを削除しました'
   end 
   
@@ -61,6 +60,6 @@ class BooksController < ApplicationController
   end 
   
   def book_params
-    params.require(:book).permit(:title, :image, :start_day, :end_day, :status)
+    params.require(:book).permit(:title, :image, :start_day, :end_day, :public_status)
   end
 end

@@ -6,9 +6,9 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :start_day, presence: true
   validates :end_day, presence: true
-
-  validates :public, inclusion: { in: [true, false] }
-  scope :public_books, -> { where(pablic: true) }
+  validates :public_status, inclusion: { in: [true, false] }
+  
+  scope :public_books, -> { where(pablic_status: true) }
 
 
   def get_image

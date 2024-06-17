@@ -9,7 +9,7 @@
   </ul>
 <% end %>
 
-<%= form_with(model: @book, local: true) do |f| %>
+<%= form_with model: @book do |f| %>
   <div>
     <h4>画像</h4>
     <%= f.file_field :image, accept: "image/*" %>
@@ -19,20 +19,18 @@
     <h4>タイトル</h4>
     <%= f.text_field :title %>
   </div>
-
-  <h4>開始日</h4>
-  <%= f.text_field :start_day %>
-  <h4>終了日</h4>
-  <%= f.text_field :end_day %>
   
   <div>
-    <%= f.label :public, '公開' %>
-    <%= f.radio_button :public, true %>公開
-    <%= f.radio_button :public, false %>非公開
+    <h4>開始日</h4>
+    <%= f.text_field :start_day %>
+  </div>
+  
+  <div>
+    <h4>終了日</h4>
+    <%= f.text_field :end_day %>
   </div>
   
   <div>
     <%= f.submit '作成' %>
   </div>
-  
 <% end %>

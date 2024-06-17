@@ -8,6 +8,9 @@ class User < ApplicationRecord
   
   has_many :books, dependent: :destroy
   
+  validates :email, presence: { message: "が入力されていません" }
+  validates :name, presence: { message: "が入力されていません" }
+  
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/25145460.jpg')
@@ -16,6 +19,4 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end 
   
-         
-  validates :email, :name, presence: { message: "が入力されていません" }
 end

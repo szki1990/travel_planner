@@ -1,15 +1,35 @@
-<%= form_with(model: @book, local: true) do |form| %>
+<h1>しおり編集</h1>
 
-
-
-  <%= form.label(:public, for: nil, class:'book-status__label') do %>
-      <%= form.radio_button :status, :public %>
-      <%= I18n.t('activerecord.attributes.book.statuses.public') %>
+<%= form_with(model: @book, local: true) do |f| %>
+  <% if @book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@book.errors.count, "件のエラーが発生しました。") %> しおりを保存できませんでした。</h2>
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %><%= 'を入力してください' unless message.include?('を入力してください') %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-  <%= form.label(:private, for: nil, class:'post-status__label') do %>
-      <%= form.radio_button :status, :private %>
-      <%= I18n.t('activerecord.attributes.book.statuses.private') %>
-  <% end %>
 
+  <div>
+    <h4>画像</h4>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
 
+  <div>
+    <h4>タイトル</h4>
+    <%= f.text_field :title %>
+  </div>
+
+  <h4>開始日</h4>
+  <%= f.text_field :start_day %>
+  <h4>終了日</h4>
+  <%= f.text_field :end_day %>
+  
+
+  <div>
+    <%= f.submit '更新' %>
+  </div>
 <% end %>
+

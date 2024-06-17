@@ -13,8 +13,11 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to my_page_path
+    if @user.update(user_params)
+      redirect_to my_page_path, notice: 'プロフィールを更新しました'
+    else 
+      render :edit
+    end 
   end 
   
   def my_page
