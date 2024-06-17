@@ -7,10 +7,10 @@
 </li>
 
 <% @books.each do |book| %>
-  <% if book.public || book.user == current_user %>
+  <% if book.user == current_user %>
     <div>
       <%= link_to book_path(book.id) do %>
-        <%= image_tag book.get_image %>
+        <%= image_tag book.get_image.variant(resize: "100x100") %>
       <% end %>
       <p>タイトル：<%= book.title %></p>
       <p>開始日：<%= book.start_day %></p>

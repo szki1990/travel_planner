@@ -1,7 +1,7 @@
 <h3>しおり詳細ページ</h3>
 
 <div>
-  <%= image_tag @book.get_image %>
+  <%= image_tag @book.get_image.variant(resize: "100x100") %>
   <p>タイトル:<%= @book.title %></p>
   <p>開始日:<%= @book.start_day %></p>
   <p>終了日:<%= @book.end_day %></p>
