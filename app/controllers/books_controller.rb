@@ -8,8 +8,11 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    @book.save
-    redirect_to books_path
+    if @book.save
+      redirect_to books_path, notice: 'しおりを作成しました'
+    else 
+      render :new
+    end 
   end 
 
   def index
@@ -26,6 +29,7 @@ class BooksController < ApplicationController
     book.destroy
     redirect_to books_path
   end 
+  
   private
   
   def book_params
