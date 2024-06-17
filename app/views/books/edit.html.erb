@@ -1,0 +1,15 @@
+<%= form_with(model: book, local: true) do |form| %>
+
+
+
+  <%= form.label(:public, for: nil, class:'book-status__label') do %>
+      <%= form.radio_button :status, :public %>
+      <%= I18n.t('activerecord.attributes.post.statuses.public') %>
+  <% end %>
+  <%= form.label(:private, for: nil, class:'post-status__label') do %>
+      <%= form.radio_button :status, :private %>
+      <%= I18n.t('activerecord.attributes.post.statuses.private') %>
+  <% end %>
+
+
+<% end %>

@@ -10,6 +10,8 @@ class Book < ApplicationRecord
   validates :public, inclusion: { in: [true, false] }
   scope :posts, -> { where(public: true) }
 
+  enum status: {public: 0, private: 1}, _prefix: true
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/25145457.jpg')
