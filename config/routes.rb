@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'posts/index'
   devise_for :users
   
-  resources :books, only: [:new, :create, :index, :show, :destroy]
+  resources :books, only: [:new, :create, :index, :show, :edit, :destroy]
   get 'homes/top', to: 'homes#top' 
   get 'mypage', to:'users#my_page', as:'my_page'
   root 'homes#top'

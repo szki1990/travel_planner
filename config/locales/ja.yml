@@ -24,4 +24,7 @@ ja:
         title: 'タイトル'
         start_day: '開始日'
         end_day: '終了日'
+        statuses: 
+          public: '公開'
+          private: '非公開'
       
