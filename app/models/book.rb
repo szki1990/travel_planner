@@ -8,9 +8,8 @@ class Book < ApplicationRecord
   validates :end_day, presence: true
 
   validates :public, inclusion: { in: [true, false] }
-  scope :posts, -> { where(public: true) }
+  scope :public_books, -> { where(pablic: true) }
 
-  enum status: {public: 0, private: 1}, _prefix: true
 
   def get_image
     unless image.attached?

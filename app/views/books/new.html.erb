@@ -1,7 +1,7 @@
 <h1>しおり作成</h1>
 
 <% if @book.errors.any? %>
-  以下の項目を入力してください
+  <p>以下の項目を入力してください</p>
   <ul>
     <% @book.errors.full_messages.each do |message| %>
       <li><%= message %></li>
@@ -9,15 +9,30 @@
   </ul>
 <% end %>
 
-<%= form_with model: @book do |f| %>
-  <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
+<%= form_with(model: @book, local: true) do |f| %>
+  <div>
+    <h4>画像</h4>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
+  
+  <div>
+    <h4>タイトル</h4>
+    <%= f.text_field :title %>
+  </div>
 
   <h4>開始日</h4>
   <%= f.text_field :start_day %>
   <h4>終了日</h4>
   <%= f.text_field :end_day %>
-  <%= f.submit '作成' %>
+  
+  <div>
+    <%= f.label :public, '公開' %>
+    <%= f.radio_button :public, true %>公開
+    <%= f.radio_button :public, false %>非公開
+  </div>
+  
+  <div>
+    <%= f.submit '作成' %>
+  </div>
+  
 <% end %>

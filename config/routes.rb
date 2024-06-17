@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :books do
+    collection do
+      get 'public_index', to: 'books#public_index'
+    end
+  end
  
   get 'posts/index'
   devise_for :users
