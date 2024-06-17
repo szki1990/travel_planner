@@ -7,7 +7,8 @@ class Book < ApplicationRecord
   validates :start_day, presence: true
   validates :end_day, presence: true
 
-  #validates :public, inclusion: { in: [true, false] }
+  validates :public, inclusion: { in: [true, false] }
+  scope :posts, -> { where(public: true) }
 
   def get_image
     unless image.attached?

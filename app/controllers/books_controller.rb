@@ -16,18 +16,32 @@ class BooksController < ApplicationController
   end 
 
   def index
-    @user = current_user
-    @books = @user.books
+    #@user = current_user
+    #@books = @user.books
+    @books = current_user.books
   end
 
   def show
     @book = Book.find(params[:id])
   end
   
+  def edit
+    @book = Book.find(params[:id])
+  end 
+  
+  def update
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to @book, notice: 'しおりを更新しました'
+    else
+      render :edit
+    end 
+  end
+  
   def destroy
     book = Book.find(params[:id])
     book.destroy
-    redirect_to books_path
+    redirect_to books_path, notice: 'しおりを削除しました'
   end 
   
   private

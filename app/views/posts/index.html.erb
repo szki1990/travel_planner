@@ -1,2 +1,12 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<h1>公開しおり一覧</h1>
+
+<%= @books.each do |book| %>
+  <%= link_to book_path(book.id) do %>
+    <%= image_tag book.get_image.variant(resize: "100x100") %>
+  <% end %>
+  <p>ユーザーネーム : <%= user.name %></p>
+  <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
+  <p>タイトル：<%= book.title %></p>
+  <p>開始日：<%= book.start_day %></p>
+  <p>終了日：<%= book.end_day %></p>
+<% end %>
