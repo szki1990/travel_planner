@@ -11,6 +11,7 @@ ja:
       email: 'メールアドレス'
       password: 'パスワード'
       password_confirmation: 'パスワード確認'
+      current_password: '現在のパスワード'
     registrations:
       signed_up: "新規登録が完了しました"
   errors:
@@ -29,4 +30,4 @@ ja:
       password:
         blank: "を入力してください"
       current_password: 
-        blank: "現在のパスワードを入力して"
+        blank: "を入力してください"

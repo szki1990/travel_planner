@@ -1,7 +1,7 @@
 <h3>マイページ</h3>
 <div>
   <div>
-  <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
+  <%= image_tag @user.get_profile_image(300,300), class: "rounded-circle" %>
   <% if @user == current_user %>
     <div><%= @user.name %></div>
     <div>
