@@ -1,27 +1,60 @@
-<h2>ログイン</h2>
+<!doctype html>
+<html lang="ja">
+  <head>
+    <title>ログイン</title>
+    <link rel="canonical" href="https://getbootstrap.jp/docs/5.3/examples/sign-in/">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="signin.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    <a id="skippy" class="sr-only sr-only-focusable" href="#content">
+      <div class="container">
+        <span class="skiplink-text">Skip to main content</span>
+      </div>
+    </a>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password, "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me, "ログイン状態を保持する" %>
+    <div class="container text-center">
+      <h2 class="pt-3">ログイン</h2>
     </div>
-  <% end %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-signin' }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="container">
+        <div class="card-container">
+          <div class="card-body">
+            <div class="form-group">
+              <%= f.label :email, "メールアドレス", class: "sr-only" %>
+              <%= f.email_field :email, class: "form-control", placeholder: "メールアドレス", required: true, autofocus: true, autocomplete: "email" %>
+            </div>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
+            <div class="form-group">
+              <% if @minimum_password_length %>
+                <%= f.label :password, "パスワード(#{@minimum_password_length} 文字以上)", class: "sr-only" %>
+              <% else %>
+                <%= f.label :password, "パスワード", class: "sr-only" %>
+              <% end %>
+              <%= f.password_field :password, class: "form-control", placeholder: "パスワード", required: true, autocomplete: "new-password" %>
+            </div>
+            
+            <div class="actions">
+              <%= f.submit "ログイン", class: "btn btn-lg btn-primary btn-block" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    
+    <%= render "devise/shared/links" %>
 
-<%= render "devise/shared/links" %>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+      window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="/docs/4.3/assets/js/vendor/anchor.min.js"></script>
+    <script src="/docs/4.3/assets/js/vendor/clipboard.min.js"></script>
+    <script src="/docs/4.3/assets/js/vendor/bs-custom-file-input.min.js"></script>
+    <script src="/docs/4.3/assets/js/src/application.js"></script>
+    <script src="/docs/4.3/assets/js/src/search.js"></script>
+    <script src="/docs/4.3/assets/js/src/ie-emulation-modes-warning.js"></script>
+  </body>
+</html>
