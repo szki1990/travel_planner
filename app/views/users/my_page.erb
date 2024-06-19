@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mt-5">
     <div class="col-lg-4 text-center">
       <div class="position-relative d-inline-block">
         <%= image_tag @user.get_profile_image(300,300), class:"bd-placeholder-img rounded-circle", width: 140, height: 140, preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false  %>
       </div>
       <% if @user == current_user %>
-      <h2 class="fw-normal"><%= @user.name %></h2>
+      <h2 class="fw-normal mt-3"><%= @user.name %></h2>
       <div><%= link_to edit_user_path(@user) do %></div>
         <i class="fa-solid fa-user-pen"></i>
         <% end %></p>
