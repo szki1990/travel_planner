@@ -6,7 +6,7 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :start_day, presence: true
   validates :end_day, presence: true
-  validates :public_status, inclusion: { in: [true, false] }
+  #validates :public_status, inclusion: { in: [true, false] }
   
   scope :public_books, -> { where(pablic_status: true) }
 
