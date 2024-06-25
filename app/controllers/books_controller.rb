@@ -24,7 +24,7 @@ class BooksController < ApplicationController
   def index
     #@user = current_user
     #@books = @user.books
-    @books = current_user.books
+    @books = current_user.books.order(start_day: :asc)
   end
   
   def public_index
