@@ -3,7 +3,7 @@
       <h1 class="display-4 font-italic">みんなのしおり一覧</h1>
       <p class="lead my-3">いろんなユーザーのしおりを観覧していいねしてみましょう！</p>
       <% unless user_signed_in? %>
-        <p class="lead mb-0"><a href="<%= new_user_session_path %>" class="text-white font-weight-bold">Continue reading...</a></p>
+        <p class="lead mb-0"><a href="<%= new_user_session_path %>" class="text-white font-weight-bold">しおりを作成する</a></p>
       <% end %>
     </div>
   </div>

@@ -28,7 +28,7 @@ class BooksController < ApplicationController
   end
   
   def public_index
-    @books = Book.public_books
+    @books = Book.all
   end 
 
   def show
