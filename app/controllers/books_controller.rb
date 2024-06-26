@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:public_index]
+  skip_before_action :authenticate_user!, only: [:public_index, :show]
   before_action :authenticate_user!, except: [:public_index]
   before_action :set_book, only: [:edit, :show, :destroy]
   
@@ -37,7 +37,10 @@ class BooksController < ApplicationController
   end
   
   def edit
-    @book
+    @book = Book.find(params[:id])
+    unless @book.user_id == current_user.id
+      redirect_to books_path
+    end
   end 
   
   def update
