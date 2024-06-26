@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:public_index]
+  before_action :authenticate_user!, except: [:public_index]
   before_action :set_book, only: [:edit, :show, :destroy]
   
   def new
