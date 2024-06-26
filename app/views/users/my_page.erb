@@ -6,7 +6,8 @@
       </div>
       <% if @user == current_user %>
       <h2 class="fw-normal mt-3"><%= @user.name %></h2>
-      <div><%= link_to edit_user_path(@user) do %></div>
+      <div>
+        <%= link_to edit_user_path(@user) do %></div>
         <i class="fa-solid fa-user-pen"></i>
         <% end %></p>
       </div>
