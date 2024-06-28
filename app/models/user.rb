@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   
   has_many :books, dependent: :destroy
+  has_many :schedules, dependent: :destroy
   
   validates :email, presence: { message: "が入力されていません" }
   validates :name, presence: { message: "が入力されていません" }
