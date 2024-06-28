@@ -2,6 +2,7 @@ class Book < ApplicationRecord
 
   has_one_attached :image
   belongs_to :user
+  has_many :schedule, dependent: :destroy
 
   validates :title, presence: true
   validates :start_day, presence: true
