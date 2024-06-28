@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'about', to: 'homes#about', as: 'about'
   resources :users, only: [:show, :edit, :update, :destroy]
   resources :books, only: [:new, :create, :index, :show, :edit, :destroy]
-  resources :schedules, only: [:new, :index, :show, :edit]
+  resources :schedules, only: [:new, :index, :show, :edit, :create, :update, :destroy]
   resources :costs, only: [:new, :index, :show, :edit]
   resources :check_list, only: [:new, :index, :show, :edit]
   #resources :posts, only: [:index]
