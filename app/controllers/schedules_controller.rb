@@ -4,7 +4,7 @@ class SchedulesController < ApplicationController
   end 
   
   def index
-    @schedule = Schedule.all
+    @schedules = Schedule.all
   end 
   
   def create
@@ -15,15 +15,10 @@ class SchedulesController < ApplicationController
     else
       render :new
     end 
-    #respond_to do |format|
-      #if @schedule.save
-        #format.html { redirect_to schedules_path, notice: 'スケジュールを作成しました' }
-        #format.json { render :show, status: :created, location: @schedule }
-      #else 
-        #format.html { render :new }
-        #format.json { render json: @schedule.errors, status: :unprocessable_entity }
-      #end 
-    #end 
+  end 
+  
+  def show
+    @schedule = Schedule.find(params[:id])
   end 
   
   def schedule_params

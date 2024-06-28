@@ -1,2 +1,3 @@
-<h1>Schedules#index</h1>
-<p>Find me in app/views/schedules/index.html.erb</p>
+<%= form_with(model: @schedule, local: true) do |f| %>
+  <%= f.text_field :title, class: "form-control", id: "schedule_title", disabled: true, required: true %>
+<% end %>

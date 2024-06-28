@@ -1,5 +1,15 @@
 <h1>スケジュール作成</h1>
-<%= form_with model: @schedule, local: true do |f| %>
+<% if @schedule.errors.any? %>
+  <div class="alert alert-danger">
+    <p>以下の項目を入力してください。</p>
+    <ul>
+      <% @schedule.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_with model: @schedule do |f| %>
   <div class="form-group">
     <%= f.label :title, "タイトル" %>
     <%= f.text_field :title, class: "form-control", id: "schedule_title", required: true %>
