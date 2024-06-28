@@ -5,7 +5,7 @@
     <div class="col-md-8">
       <% if @book.errors.any? %>
         <div class="alert alert-danger">
-          <p>以下の項目を入力してください</p>
+          <p>以下の項目を入力してください。</p>
           <ul>
             <% @book.errors.full_messages.each do |message| %>
               <li><%= message %></li>
