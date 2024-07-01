@@ -158,6 +158,7 @@
                           <div class="btn-group">
                             <%= link_to 'View', book_path(book.id), class: "btn btn-sm btn-outline-secondary" %>
                             <%= link_to 'Edit', edit_book_path(book.id), class: "btn btn-sm btn-outline-secondary" %>
+                            <%= link_to 'Plan', book_schedules_path(book.id), class: "btn btn-sm btn-outline-secondary" %>
                           </div>
                           <small class="text-body-secondary"><%= time_ago_in_words(book.created_at) %>前</small>
                         </div>

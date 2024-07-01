@@ -1,3 +1,12 @@
 <%= form_with(model: @schedule, local: true) do |f| %>
+  <%= f.text_field :title, class: "form-control", id: "schedule_title", required: true %>
+  <%= f.number_field :budget, class: "form-control", id: "schedule_budget", required: true %>
+  <%= f.text_field :place, class: "form-control", id: "schedule_place", required: true %>
+  <%= f.date_field :start_date, class: "form-control", id: "schedule_start_date", required: true %>
+  <%= f.date_field :end_date, class: "form-control", id: "schedule_end_date", required: true %>
+  <%= f.time_field :start_time, class: "form-control", id: "schedule_start_time" %>
+  <%= f.time_field :end_time, class: "form-control", id: "schedule_end_time" %>
+  <%= f.text_area :schedule_memo, class: "form-control", id: "schedule_memo", rows: 3 %>
+  <%= f.submit 'Create Schedule', class: "btn btn-primary" %>
   <%= f.text_field :title, class: "form-control", id: "schedule_title", disabled: true, required: true %>
 <% end %>
