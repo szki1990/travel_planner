@@ -1,17 +1,18 @@
 class MemosController < ApplicationController
+  before_action :set_book, only: [:new, :create, :index]
   before_action :set_memo, only: [:show, :edit, :update]
   def new 
-    @memo = Memo.new
+    @memo = @book.memos.build
   end 
   
   def index
-    @memos = Memo.all
+    @memos = @book.memos
   end
   
   def create
-    @memo = Memo.new(memo_params)
+    @memo = @book.memos.build(memo_params)
     if @memo.save
-      redirect_to memos_path, notice: 'メモが作成されました'
+      redirect_to book_memos_path, notice: 'メモが作成されました'
     else 
       render :new
     end 
@@ -25,7 +26,7 @@ class MemosController < ApplicationController
   
   def update
     if @memo.update(memo_params)
-      redirect_to memos_path, notice: 'メモが更新されました'
+      redirect_to book_memos_path, notice: 'メモが更新されました'
     else 
       render :edit
     end
@@ -35,6 +36,10 @@ class MemosController < ApplicationController
   
   def set_memo
     @memo = Memo.find(params[:id])
+  end 
+  
+  def set_book
+    @book = Book.find(params[:book_id])
   end 
   
   def memo_params

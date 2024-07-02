@@ -1,0 +1,14 @@
+<h1>作成</h1>
+<%= form_with model: [@book, @memo], url: book_memos_path(@book) do |f| %>
+    <div>
+        <%= f.label :title, 'タイトル' %><br>
+        <%= f.text_field :title %>
+    </div>
+     
+    <div>
+        <%= f.label :body, '本文' %><br>
+        <%= f.text_area :body %>
+    </div>
+     
+     <%= f.submit '作成' %>
+<% end %>

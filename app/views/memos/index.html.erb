@@ -1,4 +1,10 @@
-<%= @memos.each do |memo| %>
-  <p>タイトル</p>
-  <span><%= memo.title %></span>
-<% end %>
+<div>
+  <h3>新しくメモを作成</h3>
+  <%= link_to '作成', new_book_memo_path, class: 'btn btn-outline-secondary' %>
+</div>
+<div>
+  <%= @memos.each do |memo| %>
+    <p>タイトル</p>
+    <span><%= memo.title %></span>
+  <% end %>
+</div>

@@ -3,6 +3,9 @@ class Book < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   has_many :schedules, dependent: :destroy
+  has_many :cost, dependent: :destroy
+  has_many :check_list, dependent: :destroy
+  has_many :memos, dependent: :destroy
 
   validates :title, presence: true
   validates :start_day, presence: true
