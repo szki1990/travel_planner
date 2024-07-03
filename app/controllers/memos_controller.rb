@@ -1,6 +1,6 @@
 class MemosController < ApplicationController
   before_action :set_book, only: [:new, :create, :index]
-  before_action :set_memo, only: [:show, :edit, :update]
+  before_action :set_memo, only: [:edit, :update, :destroy]
   def new
     @memo = @book.memos.build
   end
@@ -31,6 +31,11 @@ class MemosController < ApplicationController
       render :edit
     end
   end
+  
+  def destroy
+    @memo.destroy
+    redirect_to book_memos_path(@book), notice: 'メモが削除されました'
+  end 
 
   private
 

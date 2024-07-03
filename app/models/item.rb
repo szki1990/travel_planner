@@ -1,3 +1,3 @@
 class Item < ApplicationRecord
-  belongs_to :schedule
+  belongs_to :book
 end

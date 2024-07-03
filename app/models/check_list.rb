@@ -1,3 +1,3 @@
 class CheckList < ApplicationRecord
-  belongs_to :schedule
+  belongs_to :book
 end

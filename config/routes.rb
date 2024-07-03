@@ -16,13 +16,11 @@ Rails.application.routes.draw do
     resources :check_lists, only: [:new, :create, :index]
     resources :memos, only: [:new, :create, :index]
   end
- #get 'posts/index'
+ 
   resources :schedules, only: [:edit, :update, :destroy, :show]
   resources :users, only: [:show, :edit, :update, :destroy]
   resources :costs, only: [:new, :index, :show, :edit]
   resources :check_list, only: [:new, :index, :show, :edit]
-  resources :memos, only:[:new, :create, :index, :show, :edit]
-  #resources :posts, only: [:index]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :memos, only:[:new, :create, :index, :destroy, :edit]
 end
 
