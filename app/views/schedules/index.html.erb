@@ -1,4 +1,46 @@
-<%= render 'schedules/plan' %>
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <%= link_to book_schedules_path(book_id: @book.id), class: 'nav-link' do %>
+            スケジュール <span class="sr-only">(current)</span>
+          <% end %>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            日付ごとのスケジュール
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdown10">
+            <% @schedules.each do |schedule| %>
+              <% if schedule.user == current_user %>
+                <%= link_to "#{schedule.start_time.strftime('%Y-%m-%d')}", schedule_path(schedule.id), class: 'dropdown-item' %>
+              <% end %>
+            <% end %>
+          </div>
+        </li>
+        <li class="nav-item active">
+          <%= link_to book_costs_path, class: 'nav-link' do %>
+            お金管理<span class="sr-only">(current)</span>
+          <% end %>
+        </li>
+        <li class="nav-item active">
+          <%= link_to book_check_lists_path, class: 'nav-link' do %>
+            チェックリスト<span class="sr-only">(current)</span>
+          <% end %>
+          <li class="nav-item active">
+          <%= link_to book_memos_path, class: 'nav-link' do %>
+            メモ<span class="sr-only">(current)</span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
 <body>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <symbol id="check2" viewBox="0 0 16 16">

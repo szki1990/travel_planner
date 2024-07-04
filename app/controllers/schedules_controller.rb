@@ -12,6 +12,11 @@ class SchedulesController < ApplicationController
 
   def index
     @schedules_by_date = @book.schedules.order(start_time: :asc).group_by { |schedule| schedule.start_time.to_date }
+    #start_date = params[:start_date].present? ? Date.parse(params[:start_date]) : Date.today
+    #end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : Date.today
+    #@dates = (start_date..end_date).to_a
+    #@schedules_by_date = @book.schedules.where(start_time: start_date.beginning_of_day..end_date.end_of_day).group_by { |schedule| schedule.start_time.to_date }
+    @schedules = @book.schedules.order(start_time: :asc)
   end
 
   def create

@@ -12,13 +12,11 @@ Rails.application.routes.draw do
       get 'public_index', to: 'books#public_index'
     end
     resources :schedules, only: [:new, :create, :index, :edit, :destroy, :update, :show]
-    resources :costs, only: [:new, :create, :index]
-    resources :check_lists, only: [:new, :create, :index]
+    resources :costs, only: [:new, :create, :index, :show, :edit]
+    resources :check_lists, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :memos, only: [:new, :create, :index, :destroy, :edit, :show, :update]
   end
  
   resources :schedules, only: [:edit, :update, :destroy, :show]
   resources :users, only: [:show, :edit, :update, :destroy]
-  resources :costs, only: [:new, :index, :show, :edit]
-  resources :check_list, only: [:new, :index, :show, :edit]
 end
