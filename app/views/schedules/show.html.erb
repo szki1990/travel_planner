@@ -1,4 +1,5 @@
-<%= form_with(model: @schedule, local: true) do |f| %>
+<%#= render 'schedules/plan' %>
+<%= form_with(model: @schedule) do |f| %>
   <%= f.text_field :title, class: "form-control", id: "schedule_title", required: true %>
   <%= f.number_field :budget, class: "form-control", id: "schedule_budget", required: true %>
   <%= f.text_field :place, class: "form-control", id: "schedule_place", required: true %>

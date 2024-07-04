@@ -1,6 +1,6 @@
 class MemosController < ApplicationController
-  before_action :set_book, only: [:new, :create, :index]
-  before_action :set_memo, only: [:edit, :update, :destroy]
+  before_action :set_book, only: [:new, :create, :index,:destroy, :edit, :update]
+  before_action :set_memo, only: [:edit, :show, :update, :destroy]
   def new
     @memo = @book.memos.build
   end
@@ -11,14 +11,15 @@ class MemosController < ApplicationController
 
   def create
     @memo = @book.memos.build(memo_params)
-    if @memo.save!
-      redirect_to book_memos_path(@book.id), notice: 'メモが作成されました'
+    if @memo.save
+      redirect_to book_memos_path(@book), notice: 'メモが作成されました'
     else
       render :new
     end
   end
 
   def show
+    
   end
 
   def edit

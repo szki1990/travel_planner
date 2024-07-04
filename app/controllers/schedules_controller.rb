@@ -11,7 +11,7 @@ class SchedulesController < ApplicationController
   end
 
   def index
-    @schedules = @book.schedules
+    @schedules_by_date = @book.schedules.order(start_time: :asc).group_by { |schedule| schedule.start_time.to_date }
   end
 
   def create
@@ -30,7 +30,7 @@ class SchedulesController < ApplicationController
   end
 
   def show
-    #@schedule
+    @book = @schedule.book
   end
 
   private

@@ -16,12 +16,7 @@
       </symbol>
     </svg>
 
-    
-    
-
-
     <main>
-      
       <div class="container py-4">
         <div class="jumbotron p-3 p-md-5 text-white rounded bg-info">
           <div class="col-md-6 mx-auto">
@@ -36,30 +31,29 @@
     
       <div class="album py-5 bg-body-tertiary">
         <div class="container">
-          
+          <% @schedules_by_date.each do |date, schedules| %>
+            <h2 class="text-center"><%= date.strftime('%Y年%m月%d日') %></h2>
             <div class="row">
-              <% @schedules.each do |schedule| %>
-                <% if schedule.user == current_user %>
-                  <div class="col-md-4">
-                    <div class="card shadow-sm">
-                      <div class="card-body">
-                        <p class="card-text">タイトル：<%= schedule.title %></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <%= link_to 'View', schedule_path(schedule.id), class: "btn btn-sm btn-outline-secondary" %>
-                            <%= link_to 'Edit', edit_schedule_path(schedule.id), class: "btn btn-sm btn-outline-secondary" %>
-                          </div>
-                        </div>
-                      </div>
+              <% schedules.each do |schedule| %>
+                <div class="col-md-4">
+                  <div class="card shadow-sm">
+                    <div class="card-body" onclick="location.href='<%= schedule_path(schedule.id) %>';" >
+                      <p class="card-text">
+                        <strong><%= schedule.start_time.strftime('%H:%M') %> - <%= schedule.end_time.present? ? schedule.end_time.strftime('%H:%M') : '' %></strong>
+                      </p>
+                      <p class="card-text">
+                        <%= schedule.title %>
+                      </p>
                     </div>
                   </div>
-                <% end %>
+                </div>
               <% end %>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
     </main>
+
       
     <footer class="text-body-secondary py-5">
       <div class="container">

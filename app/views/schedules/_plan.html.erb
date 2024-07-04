@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <%= link_to book_schedules_path, class: 'nav-link' do %>
+          <%= link_to book_schedules_path(book_id: @book.id), class: 'nav-link' do %>
             スケジュール <span class="sr-only">(current)</span>
           <% end %>
         </li>
@@ -17,7 +17,7 @@
           <% end %>
         </li>
         <li class="nav-item active">
-          <%= link_to check_list_index_path, class: 'nav-link' do %>
+          <%= link_to book_check_lists_path, class: 'nav-link' do %>
             チェックリスト<span class="sr-only">(current)</span>
           <% end %>
           <li class="nav-item active">
