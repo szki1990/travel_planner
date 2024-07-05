@@ -1,6 +1,6 @@
 class Schedule < ApplicationRecord
   belongs_to :user
-  belongs_to :book, optional: true
+  belongs_to :book
 
   validates :title, presence: true
   validates :start_date, presence: true

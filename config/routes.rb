@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :memos, only: [:new, :create, :index, :destroy, :edit, :show, :update]
   end
  
-  resources :schedules, only: [:edit, :update, :destroy, :show]
+  #resources :schedules, only: [:edit, :update, :destroy, :show]
   resources :users, only: [:show, :edit, :update, :destroy]
+  
 end

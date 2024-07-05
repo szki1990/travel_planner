@@ -3,6 +3,19 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    
+    <div class="container mt-4">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          日付ごとのスケジュール
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <% @dates.each do |date| %>
+            <a class="dropdown-item" href="#date_<%= date.strftime('%Y%m%d') %>"><%= date.strftime('%Y年%m月%d日') %></a>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
     <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
       <ul class="navbar-nav">
@@ -10,19 +23,6 @@
           <%= link_to book_schedules_path(book_id: @book.id), class: 'nav-link' do %>
             スケジュール <span class="sr-only">(current)</span>
           <% end %>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            日付ごとのスケジュール
-          </a>
-          <div class="dropdown-menu" aria-labelledby="dropdown10">
-            <% @schedules.each do |schedule| %>
-              <% if schedule.user == current_user %>
-                <%= link_to "#{schedule.start_time.strftime('%Y-%m-%d')}", schedule_path(schedule.id), class: 'dropdown-item' %>
-              <% end %>
-            <% end %>
-          </div>
-        </li>
         <li class="nav-item active">
           <%= link_to book_costs_path, class: 'nav-link' do %>
             お金管理<span class="sr-only">(current)</span>
@@ -41,7 +41,7 @@
     </div>
   </nav>
 </div>
-<body>
+  <body>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <symbol id="check2" viewBox="0 0 16 16">
         <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -70,33 +70,39 @@
           </div>
         </div>
       </div>
-    
+      
       <div class="album py-5 bg-body-tertiary">
         <div class="container">
-          <% @schedules_by_date.each do |date, schedules| %>
-            <h2 class="text-center"><%= date.strftime('%Y年%m月%d日') %></h2>
-            <div class="row">
-              <% schedules.each do |schedule| %>
-                <div class="col-md-4">
-                  <div class="card shadow-sm">
-                    <div class="card-body" onclick="location.href='<%= schedule_path(schedule.id) %>';" >
-                      <p class="card-text">
-                        <strong><%= schedule.start_time.strftime('%H:%M') %> - <%= schedule.end_time.present? ? schedule.end_time.strftime('%H:%M') : '' %></strong>
-                      </p>
-                      <p class="card-text">
-                        <%= schedule.title %>
-                      </p>
+          <% if @schedules_by_date.present? %>
+            <% @dates.each do |date| %>
+              <% if @schedules_by_date[date].present? %>
+                <h2 id="schedule-<%= date.strftime('%m%d') %>" class="text-center"><%= date.strftime('%m月%d日') %></h2>
+                <div class="row">
+                  <% @schedules_by_date[date].each do |schedule| %>
+                    <div class="col-md-4">
+                      <div class="card shadow-sm">
+                        <p class="card-text">
+                          <strong><%= schedule.start_time.strftime('%H:%M') %> - <%= schedule.end_time.present? ? schedule.end_time.strftime('%H:%M') : '' %></strong>
+                        </p>
+                        <p class="card-text">
+                          <%= schedule.title %>
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  <% end %>
                 </div>
+              <% else %>
+                <h2 id="schedule-<%= date.strftime('%m%d') %>" class="text-center"><%= date.strftime('%m月%d日') %> - スケジュールがありません</h2>
               <% end %>
-            </div>
+            <% end %>
+          <% else %>
+            <p class="text-center">スケジュールがありません</p>
           <% end %>
         </div>
       </div>
-    </main>
 
-      
+
+    </main>
     <footer class="text-body-secondary py-5">
       <div class="container">
         <p class="float-end mb-1">
