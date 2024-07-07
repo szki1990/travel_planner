@@ -73,33 +73,28 @@
       
       <div class="album py-5 bg-body-tertiary">
         <div class="container">
-          <% if @schedules_by_date.present? %>
-            <% @dates.each do |date| %>
-              <% if @schedules_by_date[date].present? %>
-                <h2 id="schedule-<%= date.strftime('%m%d') %>" class="text-center"><%= date.strftime('%m月%d日') %></h2>
-                <div class="row">
-                  <% @schedules_by_date[date].each do |schedule| %>
-                    <div class="col-md-4">
-                      <div class="card shadow-sm">
-                        <p class="card-text">
-                          <strong><%= schedule.start_time.strftime('%H:%M') %> - <%= schedule.end_time.present? ? schedule.end_time.strftime('%H:%M') : '' %></strong>
-                        </p>
-                        <p class="card-text">
-                          <%= schedule.title %>
-                        </p>
-                      </div>
-                    </div>
-                  <% end %>
+          <% if @schedules.present? %>
+            <h2 class="text-center">全てのスケジュール</h2>
+            <div class="row">
+              <% @schedules.each do |schedule| %>
+                <div class="col-md-4">
+                  <div class="card shadow-sm">
+                    <p class="card-text">
+                      <strong><%= schedule.start_time.strftime('%m月%d日 %H:%M') %> - <%= schedule.end_time.present? ? schedule.end_time.strftime('%H:%M') : '' %></strong>
+                    </p>
+                    <p class="card-text">
+                      <%= schedule.title %>
+                    </p>
+                  </div>
                 </div>
-              <% else %>
-                <h2 id="schedule-<%= date.strftime('%m%d') %>" class="text-center"><%= date.strftime('%m月%d日') %> - スケジュールがありません</h2>
               <% end %>
-            <% end %>
+            </div>
           <% else %>
             <p class="text-center">スケジュールがありません</p>
           <% end %>
         </div>
       </div>
+
 
 
     </main>

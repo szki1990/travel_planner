@@ -1,1 +1,18 @@
 <%#= render 'schedules/plan' %>
+<h1>コスト一覧</h1>
+
+<%= @costs.each do |cost| %>
+
+  <p>価格</p>
+  <span><%= cost.price %></span>
+  
+  <p>日にち</p>
+  <span><%= cost.date %></span>
+
+  <p>人物</p>
+  <span><%= cost.consumer %></span>
+  
+  <p>支払い方法</p>
+  <span><%= cost.payment_method %></span>
+  
+<% end %>

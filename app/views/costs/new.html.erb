@@ -1,2 +1,21 @@
-<h1>Costs#new</h1>
-<p>Find me in app/views/costs/new.html.erb</p>
+<h1>新規作成</h1>
+
+<%= form_with model: Cost.new, url: book_costs_path do |f| %>
+  <h4>価格</h4>
+  <%= f.text_field :price %>
+  
+  <h4>日にち</h4>
+  <%= f.text_field :date %>
+  
+  <h4>メモ</h4>
+  <%= f.text_field :remarks %>
+  
+  <h4>人物</h4>
+  <%= f.text_field :consumer %>
+  
+  <h4>支払い方法</h4>
+  <%= f.select :payment_method, Cost::PAYMENT_METHODS %>
+  
+  
+  <%= f.submit '完了' %>
+<% end %>

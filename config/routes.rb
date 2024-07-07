@@ -19,5 +19,4 @@ Rails.application.routes.draw do
  
   #resources :schedules, only: [:edit, :update, :destroy, :show]
   resources :users, only: [:show, :edit, :update, :destroy]
-  
 end
