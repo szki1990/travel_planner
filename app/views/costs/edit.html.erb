@@ -26,9 +26,9 @@
             </h5>
           </div>
           <div class="card-header">
-            <h5 class="card-title">
+             <h5 class="card-title">
               <%= f.label :date, '日にち' %><br>
-              <%= f.text_field :date %>
+              <%= f.select :date, options_for_select(@date_range, selected: @cost.date.strftime('%Y-%m-%d')), class: "form-control" %>
             </h5>
           </div>
           <div class="card-header">

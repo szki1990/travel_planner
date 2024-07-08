@@ -4,6 +4,9 @@ class CostsController < ApplicationController
   
   def new
     @cost = @book.costs.build
+    @start_day = @book.start_day.to_date
+    @end_day = @book.end_day.to_date
+    @date_range = (@start_day..@end_day).map { |date| [date.strftime('%m-%d'), date] }
   end
   
   def create
@@ -16,13 +19,16 @@ class CostsController < ApplicationController
   end 
 
   def index
-    @costs = @book.costs
+    @costs = @book.costs.order(:date)
   end
 
   def show
   end
 
   def edit
+    @start_day = @book.start_day.to_date
+    @end_day = @book.end_day.to_date
+    @date_range = (@start_day..@end_day).map { |date| [date.strftime('%m-%d'), date] }
   end
   
   def update

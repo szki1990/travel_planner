@@ -28,7 +28,7 @@
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :date, '日にち' %><br>
-              <%= f.text_field :date %>
+              <%= f.select :date, options_for_select(@date_range) %>
             </h5>
           </div>
           <div class="card-header">
