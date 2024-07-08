@@ -1,33 +1,60 @@
-<h1>新規作成</h1>
+<%= render 'schedules/plan' %>
 
-<% if @cost.errors.any? %>
-  <%= @cost.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @cost.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= form_with model: Cost.new, url: book_costs_path do |f| %>
-  <h4>購入品</h4>
-  <%= f.text_field :purchase_item %>
-
-  <h4>価格</h4>
-  <%= f.text_field :price %>
-  
-  <h4>日にち</h4>
-  <%= f.text_field :date %>
-  
-  <h4>メモ</h4>
-  <%= f.text_field :remarks %>
-  
-  <h4>人物</h4>
-  <%= f.text_field :consumer %>
-  
-  <h4>支払い方法</h4>
-  <%= f.select :payment_method, Cost::PAYMENT_METHODS %>
-  
-  
-  <%= f.submit '完了' %>
-<% end %>
+<div class="container mt-5">
+  <% if @cost.errors.any? %>
+    <%= @cost.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @cost.errors.full_messages.each do |message| %>
+        <li><%= message %>を入力してください</li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= form_with model: Cost.new, url: book_costs_path do |f| %>
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :purchase_item, '購入品' %><br>
+              <%= f.text_field :purchase_item %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :price, '価格' %><br>
+              <%= f.text_field :price %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :date, '日にち' %><br>
+              <%= f.text_field :date %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :consumer, '購入者' %><br>
+              <%= f.text_field :consumer %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :payment_method, '支払い方法' %><br>
+              <%= f.select :payment_method, Cost::PAYMENT_METHODS %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :remarks, 'メモ' %><br>
+              <%= f.text_area :remarks %>
+            </h5>
+          </div>
+          <div class="card-footer d-flex justify-content-end">
+            <div class="btn-group">
+              <%= f.submit '作成' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>

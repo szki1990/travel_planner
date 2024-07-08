@@ -27,4 +27,23 @@ ja:
         statuses: 
           public: '公開'
           private: '非公開'
-      
+      cost:
+        price: '価格'
+        date: '日にち'
+        remarks: '備考'
+        consumer: '支払い人物'
+        payment_method: '支払い方法'
+        total_price: '合計金額'
+        purchase_item: '購入品'
+      memo:
+        title: 'タイトル'
+        body: '本文'
+      schedule:
+        title: 'タイトル'
+        budget: '予算'
+        place: '場所'
+        start_date: '開始日'
+        end_date: '終了日'
+        start_time: '開始時間'
+        end_time: '終了時間'
+        schedule_memo: 'メモ'
