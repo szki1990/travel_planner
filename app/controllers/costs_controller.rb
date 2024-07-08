@@ -21,7 +21,8 @@ class CostsController < ApplicationController
   def index
     @costs = @book.costs.order(:date)
     @total_price = @book.costs.sum(:price)
-  end
+    @grouped_costs = @costs.group_by { |cost| cost.date.strftime('%Y-%m-%d') }
+  end 
 
   def show
   end
@@ -42,7 +43,7 @@ class CostsController < ApplicationController
   
   def destroy
     @cost.destroy
-    redirect_to book_costs_path(@book),notice: 'お金管理表が削除されました'
+    redirect_to book_costs_path(@book),notice: '購入品が削除されました'
   end 
   
   private
