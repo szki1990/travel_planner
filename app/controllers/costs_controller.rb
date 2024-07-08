@@ -1,9 +1,9 @@
 class CostsController < ApplicationController
   before_action :set_book, only: [:new, :create, :index, :edit, :show, :update, :destroy]
-  before_action :set_cost, only: [:show, :edit, :destroy, :edit , :update]
+  before_action :set_cost, only: [:show, :edit, :destroy, :update]
   
   def new
-    @cost = @book.costs.build
+    @cost = @book.costs.build(date: Date.today)
     @start_day = @book.start_day.to_date
     @end_day = @book.end_day.to_date
     @date_range = (@start_day..@end_day).map { |date| [date.strftime('%m-%d'), date] }
@@ -12,8 +12,9 @@ class CostsController < ApplicationController
   def create
     @cost = @book.costs.build(cost_params)
     if @cost.save
-      redirect_to book_costs_path, notice: 'お金管理を作成しました'
-    else 
+      redirect_to book_costs_path, notice: 'お金管理を作成しました。'
+    else
+      flash.now[:alert] = 'エラーが発生しました。入力内容を確認してください。'
       render :new
     end
   end 
@@ -22,6 +23,12 @@ class CostsController < ApplicationController
     @costs = @book.costs.order(:date)
     @total_price = @book.costs.sum(:price)
     @grouped_costs = @costs.group_by { |cost| cost.date.strftime('%Y-%m-%d') }
+  end 
+  
+  def payment_method_index
+    @costs = @book.costs.order(:date)
+    @total_price = @book.costs.sum(:price)
+    @grouped_costs = @costs.group_by { |cost| cost.datepayment_method.strftime('%Y-%m-%d') }
   end 
 
   def show
@@ -37,13 +44,16 @@ class CostsController < ApplicationController
     if @cost.update(cost_params)
       redirect_to book_costs_path(@book), notice: 'メモが更新されました'
     else
+      @start_day = @book.start_day.to_date
+      @end_day = @book.end_day.to_date
+      @date_range = (@start_day..@end_day).map { |date| [date.strftime('%m-%d'), date] }
       render :edit
     end
   end
   
   def destroy
     @cost.destroy
-    redirect_to book_costs_path(@book),notice: '購入品が削除されました'
+    redirect_to book_costs_path(@book), notice: '削除されました'
   end 
   
   private
@@ -57,7 +67,7 @@ class CostsController < ApplicationController
   end
   
   def cost_params
-    params.require(:cost).permit(:price, :date, :remarks, :consumer, :payment_method, :purchase_item, :total_price)
+    params.require(:cost).permit(:price, :date, :remarks, :consumer, :payment_method, :purchase_item)
   end 
   
 end

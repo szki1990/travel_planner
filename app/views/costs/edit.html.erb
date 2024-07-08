@@ -40,7 +40,7 @@
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :payment_method, '支払い方法' %><br>
-              <%= f.select :payment_method, Cost::PAYMENT_METHODS %>
+              <%= f.select :payment_method, options_for_select(Cost::PAYMENT_METHODS.map.with_index { |method, index| [method, index] }), {}, class: "form-control" %>
             </h5>
           </div>
           <div class="card-header">

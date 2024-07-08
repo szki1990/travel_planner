@@ -28,7 +28,7 @@
                       <%= number_to_currency(cost.price, unit: '￥', format: '%u%n') %>
                     </span>
                   </p>
-                  <p class="mb-1">支払い方法 : <span><%= PAYMENT_METHODS[cost.payment_method] %></span></p>
+                  <p class="mb-1">支払い方法 : <span><%= Cost::PAYMENT_METHODS[cost.payment_method.to_i] %></span></p>
                   <p class="mb-1">支払い者 : <span><%= cost.consumer %></span></p>
                 </div>
                 <div>

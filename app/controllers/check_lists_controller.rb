@@ -1,4 +1,4 @@
-class CheckListController < ApplicationController
+class CheckListsController < ApplicationController
   def new
   end
 

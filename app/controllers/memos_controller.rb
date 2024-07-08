@@ -1,5 +1,5 @@
 class MemosController < ApplicationController
-  before_action :set_book, only: [:new, :create, :index,:destroy, :edit, :update]
+  before_action :set_book, only: [:new, :create, :index, :destroy, :edit, :update]
   before_action :set_memo, only: [:edit, :show, :update, :destroy]
   def new
     @memo = @book.memos.build

@@ -28,13 +28,13 @@ ja:
           public: '公開'
           private: '非公開'
       cost:
+        purchase_item: '購入品'
         price: '価格'
         date: '日にち'
         remarks: '備考'
         consumer: '支払い人物'
         payment_method: '支払い方法'
         total_price: '合計金額'
-        purchase_item: '購入品'
       memo:
         title: 'タイトル'
         body: '本文'
