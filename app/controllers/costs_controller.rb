@@ -1,6 +1,6 @@
 class CostsController < ApplicationController
-  before_action :set_book, only: [:new, :create, :index, :edit, :show, :destroy]
-  before_action :set_cost, only: [:show, :edit, :destroy, :edit]
+  before_action :set_book, only: [:new, :create, :index, :edit, :show, :update, :destroy]
+  before_action :set_cost, only: [:show, :edit, :destroy, :edit , :update]
   
   def new
     @cost = @book.costs.build
@@ -23,6 +23,14 @@ class CostsController < ApplicationController
   end
 
   def edit
+  end
+  
+  def update
+    if @cost.update(cost_params)
+      redirect_to book_costs_path(@book), notice: 'メモが更新されました'
+    else
+      render :edit
+    end
   end
   
   def destroy

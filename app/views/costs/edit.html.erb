@@ -1,2 +1,60 @@
-<h1>Costs#edit</h1>
-<p>Find me in app/views/costs/edit.html.erb</p>
+<%= render 'schedules/plan' %>
+
+<div class="container mt-5">
+  <% if @cost.errors.any? %>
+    <%= @cost.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @cost.errors.full_messages.each do |message| %>
+        <li><%= message %>を入力してください</li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= form_with model: [@book, @cost] do |f| %>
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :purchase_item, '購入品' %><br>
+              <%= f.text_field :purchase_item %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :price, '価格' %><br>
+              <%= f.text_field :price %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :date, '日にち' %><br>
+              <%= f.text_field :date %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :consumer, '購入者' %><br>
+              <%= f.text_field :consumer %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :payment_method, '支払い方法' %><br>
+              <%= f.select :payment_method, Cost::PAYMENT_METHODS %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :remarks, 'メモ' %><br>
+              <%= f.text_area :remarks %>
+            </h5>
+          </div>
+          <div class="card-footer d-flex justify-content-end">
+            <div class="btn-group">
+              <%= f.submit '保存' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
