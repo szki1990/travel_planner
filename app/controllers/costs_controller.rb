@@ -20,6 +20,7 @@ class CostsController < ApplicationController
 
   def index
     @costs = @book.costs.order(:date)
+    @total_price = @book.costs.sum(:price)
   end
 
   def show

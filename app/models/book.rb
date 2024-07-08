@@ -27,6 +27,7 @@ class Book < ApplicationRecord
     image
   end
   
+  
   validate :validate_date_range_order
   
   private

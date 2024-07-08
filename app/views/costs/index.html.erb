@@ -8,7 +8,7 @@
   <div class=mb-4>
     <%= link_to '作成', new_book_cost_path(@book), class: 'btn btn-outline-secondary' %>
   </div>
-
+  <h1>合計金額: <%= number_to_currency(@total_price) %></h1>
   <% @costs.group_by { |cost| cost.date.strftime('%m月%d日') }.each do |date, costs| %>
     <div class="card mb-3">
       <div class="card-header">
