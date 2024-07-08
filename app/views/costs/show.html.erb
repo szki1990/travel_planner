@@ -1,2 +1,24 @@
-<h1>Costs#show</h1>
-<p>Find me in app/views/costs/show.html.erb</p>
+<h1>お金管理詳細</h1>
+
+<h5>購入品</h3>
+<p><%= @cost.purchase_item %></p>
+
+<h5>日にち</h3>
+<p><%= @cost.date.strftime('%m月%d日') %></p>
+
+<h5>価格</h3>
+<p><%= @cost.price %></p>
+
+<h5>購入者</h3>
+<p><%= @cost.consumer %></p>
+
+<h5>支払い方法</h3>
+<p><%= PAYMENT_METHODS[@cost.payment_method] %></p>
+
+<h5>メモ</h3>
+<p><%= @cost.remarks %></p>
+
+<div class="btn-group">
+  <%= link_to '編集', edit_book_cost_path(@book, @cost), class: "btn btn-sm btn-outline-secondary" %>
+  <%= link_to 'お金管理一覧', book_costs_path(@book, @cost), class: "btn btn-sm btn-outline-secondary" %>
+</div>

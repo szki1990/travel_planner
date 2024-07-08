@@ -12,7 +12,7 @@ class MemosController < ApplicationController
   def create
     @memo = @book.memos.build(memo_params)
     if @memo.save
-      redirect_to book_memos_path(@book), notice: 'メモが作成されました'
+      redirect_to book_memos_path, notice: 'メモが作成されました'
     else
       render :new
     end

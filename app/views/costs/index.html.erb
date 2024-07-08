@@ -1,18 +1,37 @@
-<%#= render 'schedules/plan' %>
-<h1>コスト一覧</h1>
+<%= render 'schedules/plan' %>
+<div class=mb-4>
+  <%= link_to 'お金管理', new_book_cost_path(@book), class: 'btn btn-outline-secondary' %>
+</div>
 
-<%= @costs.each do |cost| %>
+<h1>コスト一覧</h1>
+  <% if flash[:notice] %>
+    <div class="alert alert-info text-center" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+<% @costs.each do |cost| %>
+  <p>購入品</p>
+  <span>
+    <%= link_to cost.purchase_item, book_cost_path(@book, cost), class: "btn btn-sm btn-outline-secondary" %>
+  </span>
 
   <p>価格</p>
   <span><%= cost.price %></span>
   
   <p>日にち</p>
-  <span><%= cost.date %></span>
+  <span><%= cost.date.strftime('%m月%d日') %></span>
 
   <p>人物</p>
   <span><%= cost.consumer %></span>
   
   <p>支払い方法</p>
-  <span><%= cost.payment_method %></span>
+  <span><%= PAYMENT_METHODS[cost.payment_method] %></span>
+  
+  <li class="nav-item">
+    <%= link_to book_cost_path(@book, cost),method: :delete, data: { confirm: '本当に削除しますか？' }, class: "nav-link" do %>
+    <i class="fa-solid fa-trash-can"></i><span class="sr-only">(current)</span>
+    <% end %>
+  </li>
   
 <% end %>

@@ -128,6 +128,11 @@
     <main>
       
       <div class="container py-4">
+        <% if flash[:notice] %>
+          <div class="alert alert-info text-center" role="alert">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
         <div class="jumbotron p-3 p-md-5 text-white rounded bg-info">
           <div class="col-md-6 mx-auto">
             <h1 class="display-4 font-italic text-center">Myしおり一覧</h1>
@@ -141,7 +146,6 @@
     
       <div class="album py-5 bg-body-tertiary">
         <div class="container">
-          
             <div class="row">
               <% @books.each do |book| %>
                 <% if book.user == current_user %>
