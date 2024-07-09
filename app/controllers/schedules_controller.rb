@@ -13,9 +13,7 @@ class SchedulesController < ApplicationController
     @start_date = params[:start_date].present? ? Date.parse(params[:start_date]) : @book.start_day.to_date
     @end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : @book.end_day.to_date
     @dates = (@start_date..@end_date).to_a
-    #@schedules_by_date = @book.schedules.where(start_time: @start_date.beginning_of_day..@end_date.end_of_day).order(start_time: :asc).group_by { |schedule| schedule.start_time.to_date }
     @schedules = @book.schedules.where(start_date: @book.start_day..@book.end_day).order(start_time: :asc)
-    #@schedules = @book.schedules.order(start_time: :asc)
   end
 
   def create
@@ -38,6 +36,23 @@ class SchedulesController < ApplicationController
 
   def show
     @book = @schedule.book
+  end
+  
+  def edit
+    @start_day = @book.start_day.to_date
+    @end_day = @book.end_day.to_date
+    @date_range = (@start_day..@end_day).map { |date| [date.strftime('%m-%d'), date] }
+  end 
+  
+  def update
+    if @schedule.update(schedule_params)
+      redirect_to book_schedules_path(@book), notice: 'メモが更新されました'
+    else
+      @start_day = @book.start_day.to_date
+      @end_day = @book.end_day.to_date
+      @date_range = (@start_day..@end_day).map { |date| [date.strftime('%m-%d'), date] }
+      render :edit
+    end
   end
 
   private

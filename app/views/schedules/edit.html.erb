@@ -1,2 +1,65 @@
-<h1>Schedules#edit</h1>
-<p>Find me in app/views/schedules/edit.html.erb</p>
+<%= render 'schedules/plan' %>
+<div class="container mt-5">
+  <% if @schedule.errors.any? %>
+    <%= @schedule.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @schedule.errors.full_messages.each do |message| %>
+        <li><%= message %>を入力してください</li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= form_with model: [@book, @schedule] do |f| %>
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :title, "タイトル" %>
+              <%= f.text_field :title, class: "form-control", id: "schedule_title", required: true %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :start_date, "日にち" %>
+              <%= f.select :start_date, options_for_select(@date_range), {}, class: "form-control", id: "schedule_start_date", required: true %>
+            </h5>
+          </div>
+          <div class="card-header">
+             <h5 class="card-title">
+              <%= f.label :start_time, "開始時間" %>
+              <%= f.time_field :start_time, class: "form-control", id: "schedule_start_time" %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :end_time, "終了時間" %>
+              <%= f.time_field :end_time, class: "form-control", id: "schedule_end_time" %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :schedule_memo, "メモ" %>
+              <%= f.text_area :schedule_memo, class: "form-control", id: "schedule_memo" %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :place, "場所" %>
+              <%= f.text_field :place, class: "form-control", id: "schedule_place" %>
+            </h5>
+          </div>
+          <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :budget, "予算" %>
+              <%= f.number_field :budget, class: "form-control", id: "schedule_budget" %>
+            </h5>
+          </div>
+          <div class="card-footer d-flex justify-content-end">
+            <div class="btn-group">
+              <%= f.submit '保存' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
