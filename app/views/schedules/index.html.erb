@@ -11,7 +11,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <% @dates.each do |date| %>
-            <a class="dropdown-item" href="#date_<%= date.strftime('%Y%m%d') %>"><%= date.strftime('%Y年%m月%d日') %></a>
+            <a class="dropdown-item" href="#date_<%= date.strftime('%m%d') %>"><%= date.strftime('%m月%d日') %></a>
           <% end %>
         </div>
       </div>
@@ -65,7 +65,7 @@
             <h1 class="display-4 font-italic text-center">スケジュール</h1>
             <p class="lead my-3 text-center"></p>
             <p class="text-center">
-              <%= link_to 'スケジュール作成', new_book_schedule_path, class: 'btn btn-primary my-2' %>
+              <%= link_to 'スケジュール作成', new_book_schedule_path(@book), class: 'btn btn-primary my-2' %>
             </p>
           </div>
         </div>
@@ -74,30 +74,41 @@
       <div class="album py-5 bg-body-tertiary">
         <div class="container">
           <% if @schedules.present? %>
-            <h2 class="text-center">全てのスケジュール</h2>
-            <div class="row">
-              <% @schedules.each do |schedule| %>
-                <div class="col-md-4">
-                  <div class="card shadow-sm">
-                    <p class="card-text">
-                      <strong><%= schedule.start_time.strftime('%m月%d日 %H:%M') %> - <%= schedule.end_time.present? ? schedule.end_time.strftime('%H:%M') : '' %></strong>
-                    </p>
-                    <p class="card-text">
-                      <%= schedule.title %>
-                    </p>
-                  </div>
+            <h2 class="text-center">スケジュール</h2>
+            <% @schedules.sort_by { |schedule| schedule.start_date || Date.new(9999, 12, 31) }.group_by { |schedule| schedule.start_date }.each do |date, schedules| %>
+              <div id="date_<%= date.strftime('%m%d') %>" class="mb-4">
+                <h3 class="text-center"><%= date.present? ? date.strftime('%m-%d') : '日付未設定' %></h3>
+                <div class="row">
+                  <% schedules.sort_by { |schedule| schedule.start_time || Time.new(0) }.each do |schedule| %>
+                    <div class="col-12 mb-3">
+                      <div class="card h-100">
+                        <%= link_to book_schedule_path(book_id: @book.id, id: schedule.id), class: 'text-decoration-none text-dark' do %>
+                          <div class="card-body">
+                            <% if schedule.start_date.present? %>
+                              <h5 class="card-title"><%= schedule.start_date.strftime('%m-%d') %> - <%= schedule.title %></h5>
+                            <% else %>
+                              <h5 class="card-title">日付未設定 - <%= schedule.title %></h5>
+                            <% end %>
+                            <% if schedule.start_time.present? && schedule.end_time.present? %>
+                              <p class="card-text"><%= schedule.start_time.strftime('%H:%M') %> - <%= schedule.end_time.strftime('%H:%M') %></p>
+                            <% else %>
+                              <!-- 時間未設定の場合は何も表示しないため空欄 -->
+                            <% end %>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
           <% else %>
-            <p class="text-center">スケジュールがありません</p>
+            <p class="text-center">現在、表示するスケジュールはありません。</p>
           <% end %>
         </div>
       </div>
-
-
-
     </main>
+    
     <footer class="text-body-secondary py-5">
       <div class="container">
         <p class="float-end mb-1">

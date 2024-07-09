@@ -156,8 +156,8 @@
                       <% end %>
                       <div class="card-body">
                         <p class="card-text">タイトル：<%= book.title %></p>
-                        <p class="card-text">開始日：<%= book.start_day.strftime('%Y-%m-%d') %></p>
-                        <p class="card-text">終了日：<%= book.end_day.strftime('%Y-%m-%d') %></p>
+                        <p class="card-text">開始日：<%= book.start_day.strftime('%Y年%m月%d日') %></p>
+                        <p class="card-text">終了日：<%= book.end_day.strftime('%Y年%m月%d日') %></p>
                         <div class="d-flex justify-content-between align-items-center">
                           <div class="btn-group">
                             <%= link_to '詳細', book_path(book.id), class: "btn btn-sm btn-outline-secondary" %>

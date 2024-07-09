@@ -1,12 +1,12 @@
 class SchedulesController < ApplicationController
-  before_action :set_book, only: [:new, :create, :index]
+  before_action :set_book, only: [:new, :create, :index, :edit, :show, :update, :destroy]
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
   def new
+    @schedule = @book.schedules.build
     @start_day = @book.start_day.to_date
     @end_day = @book.end_day.to_date
-    @date_range = (@start_day..@end_day).map { |date| [date.strftime('%Y-%m-%d'), date] }
-    @schedule = @book.schedules.build
+    @date_range = (@start_day..@end_day).map { |date| [date.strftime('%m-%d'), date] }
   end
 
   def index
@@ -14,8 +14,8 @@ class SchedulesController < ApplicationController
     @end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : @book.end_day.to_date
     @dates = (@start_date..@end_date).to_a
     #@schedules_by_date = @book.schedules.where(start_time: @start_date.beginning_of_day..@end_date.end_of_day).order(start_time: :asc).group_by { |schedule| schedule.start_time.to_date }
-    #@schedules = @book.schedules.where(start_date: @book.start_day..@book.end_day)
-    @schedules = @book.schedules.order(start_time: :asc)
+    @schedules = @book.schedules.where(start_date: @book.start_day..@book.end_day).order(start_time: :asc)
+    #@schedules = @book.schedules.order(start_time: :asc)
   end
 
   def create
