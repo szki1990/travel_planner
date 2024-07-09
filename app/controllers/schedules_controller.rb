@@ -54,6 +54,12 @@ class SchedulesController < ApplicationController
       render :edit
     end
   end
+  
+  def destroy
+    @schedule.destroy
+    redirect_to book_schedules_path(@book), notice: '削除されました'
+  end
+
 
   private
 
