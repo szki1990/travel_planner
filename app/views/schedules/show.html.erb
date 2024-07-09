@@ -1,13 +1,55 @@
-<%#= render 'schedules/plan' %>
-<%= form_with(model: @schedule) do |f| %>
-  <%= f.text_field :title, class: "form-control", id: "schedule_title", required: true %>
-  <%= f.number_field :budget, class: "form-control", id: "schedule_budget", required: true %>
-  <%= f.text_field :place, class: "form-control", id: "schedule_place", required: true %>
-  <%= f.date_field :start_date, class: "form-control", id: "schedule_start_date", required: true %>
-  <%= f.date_field :end_date, class: "form-control", id: "schedule_end_date", required: true %>
-  <%= f.time_field :start_time, class: "form-control", id: "schedule_start_time" %>
-  <%= f.time_field :end_time, class: "form-control", id: "schedule_end_time" %>
-  <%= f.text_area :schedule_memo, class: "form-control", id: "schedule_memo", rows: 3 %>
-  <%= f.submit 'Create Schedule', class: "btn btn-primary" %>
-  <%= f.text_field :title, class: "form-control", id: "schedule_title", disabled: true, required: true %>
-<% end %>
+<%= render 'schedules/plan' %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h7 class="card-title">
+            タイトル
+            <p><%= @schedule.title %></p>
+          </h7>
+        </div>
+        <div class="card-header">
+          <h7 class="card-title">
+            日にち
+            <p><%= @schedule.start_date.strftime('%m月%d日') %></p>
+          </h7>
+        </div>
+        <div class="card-header">
+          <h7 class="card-title">
+            開始時間
+            <p><%= @schedule.start_time %></p>
+          </h7>
+        </div>
+        <div class="card-header">
+          <h7 class="card-title">
+            終了時間
+            <p><%= @schedule.end_time %></p>
+          </h7>
+        </div>
+        <div class="card-header">
+          <h7 class="card-title">
+            メモ
+            <p><%= @schedule.schedule_memo %></p>
+          </h7>
+        </div>
+        <div class="card-header">
+          <h7 class="card-title">
+            場所
+            <p><%= @schedule.place %></p>
+          </h7>
+        </div>
+        <div class="card-header">
+          <h7 class="card-title">
+            予算
+            <p><%= @schedule.budget %></p>
+          </h7>
+        </div>
+        <div class="btn-group">
+          <%= link_to '編集する', edit_book_schedule_path(@book, @schedule), class: "btn btn-sm btn-outline-secondary" %>
+          <%= link_to 'お金管理一覧へ', book_schedules_path(@book, @schedule), class: "btn btn-sm btn-outline-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

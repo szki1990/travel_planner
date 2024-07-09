@@ -76,8 +76,8 @@
           <% if @schedules.present? %>
             <h2 class="text-center">スケジュール</h2>
             <% @schedules.sort_by { |schedule| schedule.start_date || Date.new(9999, 12, 31) }.group_by { |schedule| schedule.start_date }.each do |date, schedules| %>
-              <div id="date_<%= date.strftime('%m%d') %>" class="mb-4">
-                <h3 class="text-center"><%= date.present? ? date.strftime('%m-%d') : '日付未設定' %></h3>
+              <div id="date_<%= date.strftime('%_m%_d') %>" class="mb-4">
+                <h3 class="text-center"><%= date.present? ? date.strftime('%_Y年%_m月%_d日') : '日付未設定' %></h3>
                 <div class="row">
                   <% schedules.sort_by { |schedule| schedule.start_time || Time.new(0) }.each do |schedule| %>
                     <div class="col-12 mb-3">
@@ -85,7 +85,7 @@
                         <%= link_to book_schedule_path(book_id: @book.id, id: schedule.id), class: 'text-decoration-none text-dark' do %>
                           <div class="card-body">
                             <% if schedule.start_date.present? %>
-                              <h5 class="card-title"><%= schedule.start_date.strftime('%m-%d') %> - <%= schedule.title %></h5>
+                              <h5 class="card-title"><%= schedule.start_date.strftime('%_m月%_d日') %> - <%= schedule.title %></h5>
                             <% else %>
                               <h5 class="card-title">日付未設定 - <%= schedule.title %></h5>
                             <% end %>
