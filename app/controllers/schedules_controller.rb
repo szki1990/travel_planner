@@ -6,7 +6,7 @@ class SchedulesController < ApplicationController
     @schedule = @book.schedules.build
     @start_day = @book.start_day.to_date
     @end_day = @book.end_day.to_date
-    @date_range = (@start_day..@end_day).map { |date| [date.strftime('%m-%d'), date] }
+    @date_range = (@start_day..@end_day).map { |date| [date.strftime('%m月%d日'), date] }
   end
 
   def index

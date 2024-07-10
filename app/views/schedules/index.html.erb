@@ -1,121 +1,85 @@
-<div class="container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="container mt-4">
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          日付ごとのスケジュール
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <% @dates.each do |date| %>
-            <a class="dropdown-item" href="#date_<%= date.strftime('%m%d') %>"><%= date.strftime('%m月%d日') %></a>
-          <% end %>
+<%= render 'schedules/plan' %>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スケジュール</title>
+  <style>
+    [id^="date_"] {
+      scroll-margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        日付ごとのスケジュール
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <% @dates.each do |date| %>
+          <a class="dropdown-item" href="#date_<%= date.strftime('%m%d') %>"><%= date.strftime('%m月%d日') %></a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="container py-4">
+      <div class="jumbotron p-3 p-md-5 text-white rounded bg-info">
+        <div class="col-md-6 mx-auto">
+          <h2 class="display-4 font-italic text-center">スケジュール</h1>
+          <p class="lead my-3 text-center"></p>
+          <p class="text-center">
+            <%= link_to 'スケジュール作成', new_book_schedule_path(@book), class: 'btn btn-primary my-2' %>
+          </p>
         </div>
       </div>
     </div>
 
-    <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <%= link_to book_schedules_path(book_id: @book.id), class: 'nav-link' do %>
-            スケジュール <span class="sr-only">(current)</span>
-          <% end %>
-        <li class="nav-item active">
-          <%= link_to book_costs_path, class: 'nav-link' do %>
-            お金管理<span class="sr-only">(current)</span>
-          <% end %>
-        </li>
-        <li class="nav-item active">
-          <%= link_to book_check_lists_path, class: 'nav-link' do %>
-            チェックリスト<span class="sr-only">(current)</span>
-          <% end %>
-          <li class="nav-item active">
-          <%= link_to book_memos_path, class: 'nav-link' do %>
-            メモ<span class="sr-only">(current)</span>
-          <% end %>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</div>
-  <body>
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-      <symbol id="check2" viewBox="0 0 16 16">
-        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-      </symbol>
-      <symbol id="circle-half" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
-      </symbol>
-      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
-        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
-      </symbol>
-      <symbol id="sun-fill" viewBox="0 0 16 16">
-        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-      </symbol>
-    </svg>
-
-    <main>
-      <div class="container py-4">
-        <div class="jumbotron p-3 p-md-5 text-white rounded bg-info">
-          <div class="col-md-6 mx-auto">
-            <h1 class="display-4 font-italic text-center">スケジュール</h1>
-            <p class="lead my-3 text-center"></p>
-            <p class="text-center">
-              <%= link_to 'スケジュール作成', new_book_schedule_path(@book), class: 'btn btn-primary my-2' %>
-            </p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-          <% if @schedules.present? %>
-            <h2 class="text-center">スケジュール</h2>
-            <% @schedules.sort_by { |schedule| schedule.start_date || Date.new(9999, 12, 31) }.group_by { |schedule| schedule.start_date }.each do |date, schedules| %>
-              <div id="date_<%= date.strftime('%_m%_d') %>" class="mb-4">
-                <h3 class="text-center"><%= date.present? ? date.strftime('%Y年%_m月%_d日') : '日付未設定' %></h3>
-                <div class="row">
-                  <% schedules.sort_by { |schedule| schedule.start_time || Time.new(0) }.each do |schedule| %>
-                    <div class="col-12 mb-3">
-                      <div class="card h-100">
-                        <%= link_to book_schedule_path(book_id: @book.id, id: schedule.id), class: 'text-decoration-none text-dark' do %>
-                          <div class="card-body">
-                            <% if schedule.start_time.present? %>
-                              <% if schedule.end_time.present? %>
-                                <p class="card-text"><%= schedule.start_time.strftime('%H:%M') %> - <%= schedule.end_time.strftime('%H:%M') %></p>
-                              <% else %>
-                                <p class="card-text"><%= schedule.start_time.strftime('%H:%M') %> -
-                              <% end %>
-                            <% else %>
-                              <!-- 時間未設定の場合は何も表示しないため空欄 -->
-                            <% end %>
-                            <h5 class="card-title"><%= schedule.title %></h5>
-                          </div>
-                        <% end %>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-          <% else %>
-            <p class="text-center">現在、表示するスケジュールはありません。</p>
-          <% end %>
-        </div>
-      </div>
-    </main>
-    
-    <footer class="text-body-secondary py-5">
+    <div class="album py-5 bg-body-tertiary">
       <div class="container">
-        <p class="float-end mb-1">
-          <a href="#">Back to top</a>
+        <% if @schedules.present? %>
+          <% @schedules.sort_by { |schedule| schedule.start_date || Date.new(9999, 12, 31) }.group_by { |schedule| schedule.start_date }.each do |date, schedules| %>
+            <div id="date_<%= date.strftime('%m%d') %>" class="mb-4">
+              <h3 class="text-center"><%= date.present? ? date.strftime('%Y年%m月%d日') : '日付未設定' %></h3>
+              <div class="row">
+                <% schedules.sort_by { |schedule| schedule.start_time || Time.new(0) }.each do |schedule| %>
+                  <div class="col-12 mb-3">
+                    <div class="card h-100">
+                      <%= link_to book_schedule_path(book_id: @book.id, id: schedule.id), class: 'text-decoration-none text-dark' do %>
+                        <div class="card-body">
+                          <% if schedule.start_time.present? %>
+                            <% if schedule.end_time.present? %>
+                              <p class="card-text"><%= schedule.start_time.strftime('%H:%M') %> - <%= schedule.end_time.strftime('%H:%M') %></p>
+                            <% else %>
+                              <p class="card-text"><%= schedule.start_time.strftime('%H:%M') %> -
+                            <% end %>
+                          <% else %>
+                            <!-- 時間未設定の場合は何も表示しないため空欄 -->
+                          <% end %>
+                          <h5 class="card-title"><%= schedule.title %></h5>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="text-center">現在、表示するスケジュールはありません。</p>
+        <% end %>
+      </div>
+    </div>
+  </main>
+  <footer class="text-body-secondary py-5 bg-light text-center">
+      <div class="container">
+        <p class="mb-1">
+          <a href="#" class="text-dark">Back to top</a>
         </p>
       </div>
     </footer>
-    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
-  </body>
+</body>
+</html>
