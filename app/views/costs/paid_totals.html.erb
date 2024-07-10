@@ -8,13 +8,13 @@
   
   <div class="m-4">
     <%= link_to '作成', new_book_cost_path(@book), class: 'btn btn-outline-secondary' %>
-    <%= link_to '支払者別合計', paid_totals_book_costs_path(@book), class: 'btn btn-outline-secondary' %>
+    <%= link_to '日にち別合計', book_costs_path(@book), class: 'btn btn-outline-secondary' %>
   </div>
   <h1>合計金額: <%= number_to_currency(@total_price, unit: '￥', format: '%u%n') %></h1>
-  <% @costs.group_by { |cost| cost.date.strftime('%m月%d日') }.each do |date, costs| %>
+  <% @costs.group_by { |cost| cost.consumer }.each do |consumer, costs| %>
     <div class="card mb-3">
       <div class="card-header">
-        <h3 class="card-title"><%= date %></h3>
+        <h3 class="card-title"><%= consumer %></h3>
       </div>
       <div class="card-body">
         <% costs.each do |cost| %>
@@ -22,6 +22,7 @@
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
+                  <p class="mb-1">日にち : <span><%= cost.date.strftime('%m月%d日') %></span></p>
                   <p class="mb-1">
                     購入品 :
                     <span>
@@ -30,7 +31,6 @@
                     </span>
                   </p>
                   <p class="mb-1">支払い方法 : <span><%= Cost::PAYMENT_METHODS[cost.payment_method.to_i] %></span></p>
-                  <p class="mb-1">支払い者 : <span><%= cost.consumer %></span></p>
                 </div>
                 <div>
                   <%= link_to book_cost_path(@book, cost), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "nav-link text-muted" do %>

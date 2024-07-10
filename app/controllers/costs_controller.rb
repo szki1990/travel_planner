@@ -1,5 +1,5 @@
 class CostsController < ApplicationController
-  before_action :set_book, only: [:new, :create, :index, :edit, :show, :update, :destroy]
+  before_action :set_book, only: [:new, :create, :index, :paid_totals, :edit, :show, :update, :destroy]
   before_action :set_cost, only: [:show, :edit, :destroy, :update]
   
   def new
@@ -32,6 +32,12 @@ class CostsController < ApplicationController
   end 
 
   def show
+  end
+  
+  def paid_totals
+    @costs = @book.costs
+    @total_price = @book.costs.sum(:price)
+    @grouped_costs = @costs.group_by { |cost| cost.consumer }
   end
 
   def edit
