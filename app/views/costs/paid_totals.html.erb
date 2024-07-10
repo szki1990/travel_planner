@@ -26,14 +26,14 @@
                   <p class="mb-1">
                     購入品 :
                     <span>
-                      <%= link_to cost.purchase_item, book_cost_path(@book, cost), class: "btn btn-sm btn-outline-secondary" %> 
+                      <%= link_to cost.purchase_item, book_cost_path(book_id: @book, id: cost.id), class: "btn btn-sm btn-outline-secondary" %> 
                       <%= number_to_currency(cost.price, unit: '￥', format: '%u%n') %>
                     </span>
                   </p>
                   <p class="mb-1">支払い方法 : <span><%= Cost::PAYMENT_METHODS[cost.payment_method.to_i] %></span></p>
                 </div>
                 <div>
-                  <%= link_to book_cost_path(@book, cost), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "nav-link text-muted" do %>
+                  <%= link_to book_cost_path(book_id: @book, id: cost.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "nav-link text-muted" do %>
                     <i class="fa-solid fa-trash-can"></i><span class="sr-only">(current)</span>
                   <% end %>
                 </div>

@@ -22,5 +22,5 @@ Rails.application.routes.draw do
     resources :memos, only: [:new, :create, :index, :destroy, :edit, :show, :update]
   end
  
-  resources :users, only: [:show, :edit, :update, :destroy]
+  resources :users, only: [:index, :show, :edit, :update, :destroy]
 end

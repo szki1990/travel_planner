@@ -57,7 +57,7 @@ class SchedulesController < ApplicationController
   
   def destroy
     @schedule.destroy
-    redirect_to book_schedules_path(@book), notice: '削除されました'
+    redirect_to book_schedules_path(@book), notice: 'スケジュールが削除されました'
   end
 
 

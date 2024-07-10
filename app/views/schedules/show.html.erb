@@ -46,10 +46,10 @@
           </h7>
         </div>
         <div class="btn-group">
-          <%= link_to '編集する', edit_book_schedule_path(@book, @schedule), class: "btn btn-sm btn-outline-secondary" %>
-          <%= link_to 'スケジュール一覧へ', book_schedules_path(@book, @schedule), class: "btn btn-sm btn-outline-secondary" %>
+          <%= link_to '編集する', edit_book_schedule_path(book_id: @book, id: @schedule.id), class: "btn btn-sm btn-outline-secondary" %>
+          <%= link_to 'スケジュール一覧へ', book_schedules_path(book_id: @book, id: @schedule.id), class: "btn btn-sm btn-outline-secondary" %>
           <div>
-            <%= link_to book_schedule_path(@book, @schedule), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-outline-secondary" do %>
+            <%= link_to book_schedule_path(book_id: @book, id: @schedule.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-outline-secondary" do %>
               <i class="fa-solid fa-trash-can"></i><span class="sr-only">(current)</span>
             <% end %>
           </div>

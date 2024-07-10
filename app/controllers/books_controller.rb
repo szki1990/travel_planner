@@ -30,6 +30,9 @@ class BooksController < ApplicationController
   
   def public_index
     @books = Book.all
+    if params[:title].present?
+      @books = Book.where('title LIKE ?', "%#{params[:title]}%")
+    end 
   end 
 
   def show
@@ -47,11 +50,12 @@ class BooksController < ApplicationController
   
   def update
     @book = Book.find(params[:id])
-    if @book.update(book_params)
-      redirect_to @book, notice: 'しおりを更新しました'
-    else
-      render :edit
-    end 
+    unless @book.user_id == current_user.id
+      redirect_to books_path
+    end
+    @book = Book.find(params[:id])
+    @book.update(book_params)
+    redirect_to book_path(@book.id), notice: 'しおりを更新しました'
   end
   
   def destroy
