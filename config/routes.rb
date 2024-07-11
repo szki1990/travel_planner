@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
     resources :check_lists, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :memos, only: [:new, :create, :index, :destroy, :edit, :show, :update]
+    resources :book_comments, only: [:create]
   end
  
   resources :users, only: [:index, :show, :edit, :update, :destroy]

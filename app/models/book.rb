@@ -6,6 +6,7 @@ class Book < ApplicationRecord
   has_many :costs, dependent: :destroy
   has_many :check_list, dependent: :destroy
   has_many :memos, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
 
   validates :title, presence: true
   validates :start_day, presence: true

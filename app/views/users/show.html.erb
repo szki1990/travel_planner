@@ -1,9 +1,17 @@
-<h3>ユーザー詳細ページ</h3>
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
-  <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
-</div>
-
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-4 text-center">
+      <div class="position-relative d-inline-block">
+        <%= image_tag @user.get_profile_image(300,300), class:"bd-placeholder-img rounded-circle", width: 140, height: 140, preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false  %>
+      </div>
+      <h2 class="fw-normal mt-3"><%= @user.name %></h2>
+      <% if @user == current_user %>
+      <div>
+        <%= link_to edit_user_path(@user) do %>
+      </div>
+      <i class="fa-solid fa-user-pen"></i>
+        <% end %></p>
+      </div>
+      <% end %>
+    </div>
+  </div>

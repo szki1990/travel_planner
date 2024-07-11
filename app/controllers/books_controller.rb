@@ -37,6 +37,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @book_comment = BookComment.new
     @schedules = @book.schedules
     @total_budget = @schedules.sum(:budget)
   end
