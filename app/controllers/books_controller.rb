@@ -23,8 +23,6 @@ class BooksController < ApplicationController
   end 
 
   def index
-    #@user = current_user
-    #@books = @user.books
     @books = current_user.books.order(start_day: :asc)
   end
   
@@ -36,7 +34,6 @@ class BooksController < ApplicationController
   end 
 
   def show
-    @book = Book.find(params[:id])
     @book_comment = BookComment.new
     @schedules = @book.schedules
     @total_budget = @schedules.sum(:budget)
