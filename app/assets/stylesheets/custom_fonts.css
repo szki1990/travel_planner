@@ -1,14 +1,10 @@
 @font-face {
-  font-family: 'MyFont';
-  src: url(asset-path('myfont.eot'));
-  src: url(asset-path('myfont.eot?#iefix')) format('embedded-opentype'),
-       url(asset-path('myfont.woff2')) format('woff2'),
-       url(asset-path('myfont.woff')) format('woff'),
-       url(asset-path('myfont.ttf')) format('truetype');
+  font-family: 'HimeMinchoTomoeGozen';
+  src: url(asset-path('姫明朝ともえごぜんmini.otf')) format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 
 body {
-  font-family: 'MyFont', sans-serif;
+  font-family: 'HimeMinchoTomoeGozen', sans-serif;
 }
