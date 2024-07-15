@@ -1,10 +1,10 @@
 <%= render 'schedules/plan' %>
 
 <div class="container mt-5">
-  <%if @check_list.errors.any? %>
-    <%= @check_list.errors.count %>件のエラーが発生しました
+  <%if @category.errors.any? %>
+    <%= @category.errors.count %>件のエラーが発生しました
     <ul>
-      <% @check_list.errors.full_messages.each do |message| %>
+      <% @category.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
@@ -12,12 +12,12 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <h1>タイトル作成</h1>
-      <%= form_with model: [@book, @check_list], local: true do |f| %>
+      <%= form_with model: [@book, @check_list, @category], local: true do |f| %>
         <div class="card">
           <div class="card-header">
             <h5 class="card-title">
-              <%= f.label :title, 'タイトル' %><br>
-              <%= f.text_field :title %>
+              <%= f.label :name, 'カテゴリー' %><br>
+              <%= f.text_field :name %>
             </h5>
           </div>
         </div>

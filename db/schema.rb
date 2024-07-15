@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_11_064842) do
+ActiveRecord::Schema.define(version: 2024_07_15_142349) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -77,7 +77,9 @@ ActiveRecord::Schema.define(version: 2024_07_11_064842) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "book_id", null: false
+    t.integer "check_list_id", null: false
     t.index ["book_id"], name: "index_categories_on_book_id"
+    t.index ["check_list_id"], name: "index_categories_on_check_list_id"
   end
 
   create_table "check_lists", force: :cascade do |t|
@@ -107,7 +109,10 @@ ActiveRecord::Schema.define(version: 2024_07_11_064842) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "book_id", null: false
+    t.integer "category_id", null: false
+    t.boolean "completed", default: false
     t.index ["book_id"], name: "index_items_on_book_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
   end
 
   create_table "memos", force: :cascade do |t|
@@ -150,8 +155,10 @@ ActiveRecord::Schema.define(version: 2024_07_11_064842) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "categories", "books"
+  add_foreign_key "categories", "check_lists"
   add_foreign_key "check_lists", "books"
   add_foreign_key "costs", "books"
   add_foreign_key "items", "books"
+  add_foreign_key "items", "categories"
   add_foreign_key "memos", "books"
 end

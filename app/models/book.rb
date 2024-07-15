@@ -4,7 +4,7 @@ class Book < ApplicationRecord
   belongs_to :user
   has_many :schedules, dependent: :destroy
   has_many :costs, dependent: :destroy
-  has_many :check_list, dependent: :destroy
+  has_many :check_lists, dependent: :destroy
   has_many :memos, dependent: :destroy
   has_many :book_comments, dependent: :destroy
 

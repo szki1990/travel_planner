@@ -28,7 +28,11 @@ Rails.application.routes.draw do
         get 'paid_totals', to: 'costs#paid_totals'
       end
     end
-    resources :check_lists, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :check_lists, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      resources :categories, only: [:new, :create, :destroy] do
+        resources :items, only: [:new, :create, :destroy]
+      end
+    end 
     resources :memos, only: [:new, :create, :index, :destroy, :edit, :show, :update]
     resources :book_comments, only: [:create, :destroy]
   end
