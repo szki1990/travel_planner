@@ -12,7 +12,7 @@ class MemosController < ApplicationController
   def create
     @memo = @book.memos.build(memo_params)
     if @memo.save
-      redirect_to book_memos_path, notice: 'メモが作成されました'
+      redirect_to book_memos_path, notice: 'メモが作成されました。'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class MemosController < ApplicationController
 
   def update
     if @memo.update(memo_params)
-      redirect_to book_memos_path(@book), notice: 'メモが更新されました'
+      redirect_to book_memos_path(@book), notice: 'メモが更新されました。'
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class MemosController < ApplicationController
   
   def destroy
     @memo.destroy
-    redirect_to book_memos_path(@book), notice: 'メモが削除されました'
+    redirect_to book_memos_path(@book), notice: 'メモが削除されました。'
   end 
 
   private

@@ -24,7 +24,13 @@
         <div class="card-header">
           <h7 class="card-title">
             終了時間
-            <p><%= @schedule.end_time %></p>
+            <p>
+              <% if @schedule.end_time.present? %>
+                <%= @schedule.end_time.strftime("%H:%M") %>
+              <% else %>
+                <%= "" %>
+              <% end %>
+            </p>
           </h7>
         </div>
         <div class="card-header">
