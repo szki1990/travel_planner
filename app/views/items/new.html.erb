@@ -17,12 +17,12 @@
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :content, 'アイテム' %><br>
-              <%= f.text_field :content %>
+              <%= f.text_field :content, required: true %>
             </h5>
           </div>
         </div>
         <div class="actions">
-        <%= f.submit %>
+        <%= f.submit '作成', class: "btn btn-sm btn-outline-secondary" %>
         </div>
       <% end %>
     </div>

@@ -18,7 +18,7 @@
         <div class="card-header">
           <h7 class="card-title">
             開始時間
-            <p><%= @schedule.start_time %></p>
+            <p><%= @schedule.start_time.strftime("%H:%M") %></p>
           </h7>
         </div>
         <div class="card-header">

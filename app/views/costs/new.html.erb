@@ -16,13 +16,13 @@
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :purchase_item, '購入品' %><br>
-              <%= f.text_field :purchase_item %>
+              <%= f.text_field :purchase_item, required: true %>
             </h5>
           </div>
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :price, '価格' %><br>
-              <%= f.text_field :price %>
+              <%= f.text_field :price, required: true%>
             </h5>
           </div>
           <div class="card-header">
@@ -35,7 +35,7 @@
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :consumer, '購入者' %><br>
-              <%= f.text_field :consumer %>
+              <%= f.text_field :consumer, required: true %>
             </h5>
           </div>
           <div class="card-header">
