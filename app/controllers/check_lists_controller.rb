@@ -35,7 +35,7 @@ class CheckListsController < ApplicationController
   
   def destroy
     @check_list.destroy
-    redirect_to book_check_lists_path(@book), notice: 'リストが削除されました。'
+    redirect_to book_check_lists_path(@book), notice: 'リスト削除されました。'
   end 
   
   private

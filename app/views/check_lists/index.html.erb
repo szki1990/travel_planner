@@ -14,13 +14,19 @@
   <% @check_lists.each do |check_list| %>
     <div class="card mb-4">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="card-title"><%= check_list.title %></h3>
+        <h3 class="card-title">
+          <span>
+            <%= link_to check_list.title, edit_book_check_list_path(book_id: @book, id: check_list.id), class: "text-muted" %> 
+          </span> 
+         </h3>
         <div class="text-right">
           <%= link_to book_check_list_path(book_id: @book, id: check_list.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "nav-link text-muted" do %>
             <i class="fa-solid fa-trash-can"></i><span class="sr-only">(current)</span>
           <% end %>
         </div>
       </div>
+      
+      
 
       <div class="card-body">
         <div class="mb-3 text-right">
@@ -30,7 +36,11 @@
           <div class="card mb-3">
             <div class="card-header">
               <div class="d-flex justify-content-between align-items-center">
-                <h5 class="card-title"><%= category.name %></h5>
+                <h5 class="card-title">
+                  <span>
+                    <%= link_to category.name, edit_book_check_list_category_path(book_id: @book, check_list_id: check_list.id, id: category.id), class: "text-muted" %> 
+                  </span> 
+                </h5>
                 <div>
                   <%= link_to book_check_list_category_path(book_id: @book.id, check_list_id: check_list.id, id: category.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "nav-link text-muted" do %>
                     <i class="fa-solid fa-trash-can"></i><span class="sr-only">(current)</span>
@@ -47,6 +57,11 @@
                 <div class="d-flex justify-content-between align-items-center border-bottom p-3">
                   <%= check_box_tag 'item_ids[]', item.id, item.completed, class: "mr-2" %>
                   <%= label_tag "item_#{item.id}", item.content, class: "flex-grow-1 mb-0" %>
+                  <span>
+                    <%= link_to edit_book_check_list_category_item_path(book_id: @book.id, check_list_id: check_list.id, category_id: category.id, id: item.id), class: "text-muted" do %> 
+                      <i class="fa-regular fa-pen-to-square"></i>
+                    <% end %>
+                  </span> 
                   <div class="text-right">
                     <%= link_to book_check_list_category_item_path(book_id: @book.id, check_list_id: check_list.id, category_id: category.id, id: item.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "nav-link text-muted" do %>
                       <i class="fa-solid fa-trash-can"></i><span class="sr-only">(current)</span>

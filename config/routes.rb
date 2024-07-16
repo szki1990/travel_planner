@@ -29,8 +29,8 @@ Rails.application.routes.draw do
       end
     end
     resources :check_lists, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
-      resources :categories, only: [:new, :create, :destroy] do
-        resources :items, only: [:new, :create, :destroy]
+      resources :categories, only: [:new, :create, :edit, :update, :destroy] do
+        resources :items, only: [:new, :create, :edit, :update, :destroy]
       end
     end 
     resources :memos, only: [:new, :create, :index, :destroy, :edit, :show, :update]

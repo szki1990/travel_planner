@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
-  before_action :set_check_list, only: [:new, :create, :destroy]
-  before_action :set_book, only: [:new, :create, :destroy]
-  before_action :set_category, only: [:destroy]
+  before_action :set_check_list, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_book, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_category, only: [:edit, :update, :destroy]
   
   def new
     @category = @check_list.categories.build
@@ -13,6 +13,17 @@ class CategoriesController < ApplicationController
       redirect_to book_check_lists_path(@check_list.book, @check_list), notice: 'カテゴリーを作成しました。'
     else 
       render :new
+    end 
+  end 
+  
+  def edit
+  end 
+  
+  def update
+    if @category.update(category_params)
+      redirect_to book_check_lists_path(@book), notice: '更新されました。'
+    else 
+      render :edit
     end 
   end 
   
@@ -28,7 +39,7 @@ class CategoriesController < ApplicationController
   end
   
   def set_book
-    @book = @check_list.book
+    @book = Book.find(params[:book_id])
   end 
   
   def set_category
