@@ -61,7 +61,6 @@ gem 'devise'
 gem 'rails-i18n', '~>7.0'
 
 gem 'dotenv-rails'
-
 group :production do
   gem 'mysql2'
 end
