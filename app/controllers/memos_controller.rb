@@ -1,6 +1,8 @@
 class MemosController < ApplicationController
-  before_action :set_book, only: [:new, :create, :index, :destroy, :edit, :update]
+  before_action :set_book
   before_action :set_memo, only: [:edit, :show, :update, :destroy]
+  before_action :is_matching_login_user, only: [:new, :index, :show, :edit, :update, :dastroy]
+  
   def new
     @memo = @book.memos.build
   end
@@ -17,10 +19,9 @@ class MemosController < ApplicationController
       render :new
     end
   end
-
+  
   def show
-    
-  end
+  end 
 
   def edit
   end
@@ -51,4 +52,11 @@ class MemosController < ApplicationController
   def memo_params
     params.require(:memo).permit(:title, :body)
   end
+  
+   def is_matching_login_user
+    unless @book.user_id == current_user.id
+      redirect_to book_schedules_path
+    end 
+  end 
+  
 end

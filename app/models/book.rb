@@ -12,8 +12,8 @@ class Book < ApplicationRecord
   validates :start_day, presence: true
   validates :end_day, presence: true
   
-  
-  #scope :public_books, -> { where(public_status: true) }
+  scope :publicly_visible, -> { where(public_status: true) }
+  scope :privately_visible, -> { where(public_status: false) }
   
   def date_range
     (start_day.to_date..end_day.to_date).to_a

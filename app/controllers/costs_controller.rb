@@ -1,6 +1,7 @@
 class CostsController < ApplicationController
   before_action :set_book, only: [:new, :create, :index, :paid_totals, :edit, :show, :update, :destroy]
   before_action :set_cost, only: [:show, :edit, :destroy, :update]
+  before_action :is_matching_login_user, only: [:new, :index, :show, :edit, :update, :dastroy]
   
   def new
     @cost = @book.costs.build(date: Date.today)
@@ -74,6 +75,12 @@ class CostsController < ApplicationController
   
   def cost_params
     params.require(:cost).permit(:price, :date, :remarks, :consumer, :payment_method, :purchase_item)
+  end 
+  
+  def is_matching_login_user
+    unless @book.user_id == current_user.id
+      redirect_to public_index_books_path
+    end 
   end 
   
 end

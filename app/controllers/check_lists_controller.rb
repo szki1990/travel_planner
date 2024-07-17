@@ -1,6 +1,7 @@
 class CheckListsController < ApplicationController
   before_action :set_book
   before_action :set_check_list, only: [:show, :edit, :update, :destroy]
+  before_action :is_matching_login_user, only: [:new, :index, :show, :edit, :update, :dastroy]
   
   def new
     @check_list = @book.check_lists.build
@@ -50,6 +51,12 @@ class CheckListsController < ApplicationController
   
   def check_list_params
     params.require(:check_list).permit(:title)
+  end 
+  
+   def is_matching_login_user
+    unless @book.user_id == current_user.id
+      redirect_to book_schedules_path
+    end 
   end 
   
 end

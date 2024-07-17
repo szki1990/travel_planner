@@ -39,16 +39,13 @@
         </div>
 
         <div class="form-group">
-          <label for="post_visibility">公開設定</label>
-          <select class="custom-select d-block w-100" id="post_visibility" required>
-            <option value="public">公開</option>
-            <option value="private">非公開</option>
-          </select>
+          <%= f.label :public_status, '公開設定' %>
+          <%= f.select :public_status, [['公開', true], ['非公開', false]], { include_blank: '選択してください' }, { class: 'custom-select d-block w-100', required: true } %>
           <div class="invalid-feedback">
             オプションを選択してください。
           </div>
         </div>
-
+        
         <div class="form-group">
           <h4>画像</h4>
           <%= f.file_field :image, accept: "image/*", class: "form-control-file" %>

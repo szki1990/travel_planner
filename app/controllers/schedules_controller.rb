@@ -1,6 +1,7 @@
 class SchedulesController < ApplicationController
   before_action :set_book, only: [:new, :create, :index, :edit, :show, :update, :destroy]
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
+  before_action :is_matching_login_user, only: [:new, :show, :edit, :update, :dastroy]
 
   def new
     @schedule = @book.schedules.build
@@ -10,6 +11,7 @@ class SchedulesController < ApplicationController
   end
 
   def index
+    @user = current_user
     @start_date = params[:start_date].present? ? Date.parse(params[:start_date]) : @book.start_day.to_date
     @end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : @book.end_day.to_date
     @dates = (@start_date..@end_date).to_a
@@ -74,4 +76,11 @@ class SchedulesController < ApplicationController
   def schedule_params
     params.require(:schedule).permit(:title, :budget, :place, :start_date, :end_date, :start_time, :end_time, :schedule_memo)
   end
+  
+  def is_matching_login_user
+    unless @book.user_id == current_user.id
+      redirect_to book_schedules_path
+    end 
+  end 
+  
 end
