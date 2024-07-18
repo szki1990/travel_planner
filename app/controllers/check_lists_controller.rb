@@ -53,7 +53,7 @@ class CheckListsController < ApplicationController
     params.require(:check_list).permit(:title)
   end 
   
-   def is_matching_login_user
+  def is_matching_login_user
     unless @book.user_id == current_user.id
       redirect_to book_schedules_path
     end 

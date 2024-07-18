@@ -41,6 +41,11 @@ class ItemsController < ApplicationController
     redirect_to book_check_lists_path(@book, @check_list), notice: 'アイテムを更新しました。'
   end
   
+  def toggle_completed
+    @item = Item.find(params[:id])
+    @item.update(completed: !@item.completed)
+  end
+  
   private
   
   def set_category

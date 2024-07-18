@@ -12,4 +12,8 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.find_by(book_id: @book.id)
     favorite.destroy
   end 
+  
+  def index
+    @favorites = current_user.favorites.includes(:book)
+  end 
 end

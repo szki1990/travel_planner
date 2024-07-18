@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   get 'about', to: 'homes#about', as: 'about'
   get 'mypage', to:'users#my_page', as:'my_page'
   
+  patch 'toggle_completed/:id', to: 'items#toggle_completed', as: 'toggle_completed_item'
+
+  
   resources :books do
     collection do
       get 'public_index', to: 'books#public_index'
