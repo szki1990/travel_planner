@@ -1,6 +1,53 @@
-<h1>いいねしたしおり一覧</h1>
-
-<%# @favorites.each do |favorite| %>
-  <h3><%#= link_to favorite.book.title, book_path(favorite.book) %></h3>
-  <p><%#= favorite.book.description %></p>
-<%# end %>
+<div class="container py-4">
+  <div class="jumbotron p-3 p-md-5 text-white rounded bg-info">
+    <div class="col-md-6 mx-auto">
+      <h1 class="display-4 font-italic text-center">いいねしたしおり一覧</h1>
+    </div>
+  </div>
+  <div class="container py-4">
+    <div class="row">
+      <% @favorites.each do |favorite| %>
+        <div class="col-md-6 mb-4">
+          <div class="border rounded p-3 mb-3">
+            <h3 class="mb-0 d-flex justify-content-between align-items-center">
+              <a href="<%= book_path(favorite.book) %>" class="text-dark text-decoration-none">
+                <span style="color: grey;"><%= favorite.book.title %></span>
+              </a>
+              <div class="text-right">
+                <div id="favorite_buttons_<%#= book.id %>">
+                  <%#= render "books/favorite_button", book: book %>
+                </div>
+              </div>
+            </h3>
+            <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+              <%= link_to book_path(favorite.book) do %>
+                <%= image_tag favorite.book.get_image.variant(resize_to_fill: [300, 200]), class: "card-img-right flex-auto d-none d-lg-block", alt: "Card image cap" %>
+              <% end %>
+              <div class="card-body d-flex flex-column align-items-start">
+                <div class="mb-1 text-muted"><%= favorite.book.start_day.strftime('%Y-%m-%d') %></div>
+                <div class="mb-1 text-muted ml-5">〜</div>
+                <div class="mb-1 text-muted"><%= favorite.book.end_day.strftime('%Y-%m-%d') %></div>
+              </div>
+            </div>
+            <div class="mt-3 d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-end align-items-center">
+                <%= link_to '詳細', book_path(favorite.book), class: "btn btn-sm btn-outline-secondary" %>
+                <%= link_to 'プラン', book_schedules_path(favorite.book), class: "btn btn-sm btn-outline-secondary" %>
+                <% if favorite.book.user == current_user %>
+                  <%= link_to '編集', edit_book_path(favorite.book), class: "btn btn-sm btn-outline-secondary" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<footer class="text-body-secondary py-5 bg-light text-center">
+  <div class="container">
+    <p class="mb-1">
+      <a href="#" class="text-dark">Back to top</a>
+    </p>
+  </div>
+</footer>

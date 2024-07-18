@@ -44,4 +44,5 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update, :destroy] do 
     resources :books, only: [:show]
   end 
+  resources :favorites, only: [:index]
 end
