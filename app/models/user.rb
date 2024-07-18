@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :schedules, dependent: :destroy
   has_many :book_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
   validates :email, presence: { message: "が入力されていません" }
   validates :name, presence: { message: "が入力されていません" }

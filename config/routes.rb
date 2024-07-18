@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       end
     end 
     resources :memos, only: [:new, :create, :index, :destroy, :edit, :show, :update]
+    resource :favorite, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]
   end
  

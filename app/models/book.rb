@@ -7,6 +7,7 @@ class Book < ApplicationRecord
   has_many :check_lists, dependent: :destroy
   has_many :memos, dependent: :destroy
   has_many :book_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :title, presence: true
   validates :start_day, presence: true
@@ -30,6 +31,10 @@ class Book < ApplicationRecord
   
   def publicly_visible?
     public_status == true
+  end 
+  
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
   end 
   
   validate :validate_date_range_order
