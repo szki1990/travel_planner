@@ -35,8 +35,6 @@ class BooksController < ApplicationController
     end 
   end 
   
-  
-
   def show
     @book_comment = BookComment.new
     @schedules = @book.schedules

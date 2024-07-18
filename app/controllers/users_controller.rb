@@ -9,7 +9,11 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @books = @user.books
+    if @user == current_user
+      @public_books = @user.books
+    else 
+      @public_books = @user.books.publicly_visible
+    end 
   end
 
   def edit

@@ -6,8 +6,9 @@
   <% end %>
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <div><%= link_to '一覧へ', public_index_books_path, class: 'btn btn-outline-secondary' %></div>
+      <div><%= link_to '戻る', '#', onclick: 'history.back(); return false;', class: 'btn btn-outline-secondary' %></div>
       </div>
+    
       
       <%= form_with(model: @book, local: true) do |f| %>
         <% if @book.errors.any? %>
