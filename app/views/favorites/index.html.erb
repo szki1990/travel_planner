@@ -14,8 +14,11 @@
                 <span style="color: grey;"><%= favorite.book.title %></span>
               </a>
               <div class="text-right">
-                <div id="favorite_buttons_<%#= book.id %>">
-                  <%#= render "books/favorite_button", book: book %>
+                <div id="favorite_buttons_<%= favorite.book %>">
+                  <h5>
+                    <i class="fa-solid fa-heart-circle-check"></i>
+                    <%= favorite.book.favorites.count %>
+                  </h5>
                 </div>
               </div>
             </h3>
