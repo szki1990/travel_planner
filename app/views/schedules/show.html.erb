@@ -35,8 +35,14 @@
         </div>
         <div class="card-header">
           <h7 class="card-title">
-            メモ
-            <p><%= @schedule.schedule_memo %></p>
+            所要時間
+            <% if @schedule.end_time.present? %>
+              <p>
+                <%= @duration_hours %> 時間 <%= @duration_minutes %> 分　
+              </p>
+            <% else %>
+              
+            <% end %>
           </h7>
         </div>
         <div class="card-header">
@@ -48,8 +54,19 @@
         <div class="card-header">
           <h7 class="card-title">
             予算
-            <p><%= @schedule.budget %></p>
+            <p><%= @schedule.budget %>円</p>
           </h7>
+        </div>
+        <div class="card-header">
+          <h7 class="card-title">
+            メモ
+            <p><%= @schedule.schedule_memo %></p>
+          </h7>
+        </div>
+        <div class="card-header">
+          <p class="card-title">
+            <span><i class="fa-solid fa-location-dot"></i><%= @schedule.address %></span>
+          </p>
         </div>
         <div class="btn-group">
           <%= link_to '編集する', edit_book_schedule_path(book_id: @book, id: @schedule.id), class: "btn btn-sm btn-outline-secondary" %>

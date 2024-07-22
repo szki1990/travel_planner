@@ -1,59 +1,75 @@
 <%= render 'schedules/plan' %>
 
-<div class="row justify-content-center">
-  <div class="col-md-8">
-    <h3 class="mt-3 mb-3"></h3>
-    <%= form_with(model: [@book, @schedule], local: true) do |f| %>
-      <% if @schedule.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@schedule.errors.count, "error") %></h2>
-        <div class="alert alert-danger">
-          <p>以下の項目を入力してください。</p>
-          <ul>
-            <% @schedule.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h3 class="mt-3 mb-3"></h3>
+      <%= form_with(model: [@book, @schedule], local: true) do |f| %>
+        <% if @schedule.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@schedule.errors.count, "error") %></h2>
+          <div class="alert alert-danger">
+            <p>以下の項目を入力してください。</p>
+            <ul>
+              <% @schedule.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-      </div>
-      <% end %>
-
-      <div class="form-group">
-        <%= f.label :title, "タイトル" %>
-        <%= f.text_field :title, class: "form-control", id: "schedule_title", required: true %>
-      </div>
-    
-      <div class="form-group">
-        <%= f.label :start_date, "日にち" %>
-        <%= f.select :start_date, options_for_select(@date_range), {}, class: "form-control", id: "schedule_start_date", required: true %>
-      </div>
-    
-      <div class="form-group">
-        <%= f.label :start_time, "開始時間" %>
-        <%= f.time_field :start_time, class: "form-control", id: "schedule_start_time", required: true %>
-      </div>
-    
-      <div class="form-group">
-        <%= f.label :end_time, "終了時間" %>
-        <%= f.time_field :end_time, class: "form-control", id: "schedule_end_time" %>
-      </div>
-    
-      <div class="form-group">
-        <%= f.label :schedule_memo, "メモ" %>
-        <%= f.text_area :schedule_memo, class: "form-control", id: "schedule_memo" %>
-      </div>
-    
-      <div class="form-group">
-        <%= f.label :place, "場所" %>
-        <%= f.text_field :place, class: "form-control", id: "schedule_place" %>
-      </div>
-    
-      <div class="form-group">
-        <%= f.label :budget, "予算" %>
-        <%= f.number_field :budget, class: "form-control", id: "schedule_budget" %>
-      </div>
+        <% end %>
   
-    <%= f.submit "スケジュール作成", class: 'btn btn-outline-secondary' %>
-    <% end %>
+        <div class="form-group">
+          <%= f.label :title, "タイトル" %>
+          <%= f.text_field :title, class: "form-control", id: "schedule_title", required: true %>
+        </div>
+      
+        <div class="form-group">
+          <%= f.label :start_date, "日にち" %>
+          <%= f.select :start_date, options_for_select(@date_range), {}, class: "form-control", id: "schedule_start_date", required: true %>
+        </div>
+      
+        <div class="form-group">
+          <%= f.label :start_time, "開始時間" %>
+          <%= f.time_field :start_time, class: "form-control", id: "schedule_start_time", required: true %>
+        </div>
+      
+        <div class="form-group">
+          <%= f.label :end_time, "終了時間" %>
+          <%= f.time_field :end_time, class: "form-control", id: "schedule_end_time" %>
+        </div>
+  
+        <div class="input-group mb-3 mt-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-tenge-sign"></i></span>
+          </div>
+          <%= text_field_tag :zipcode, nil, class: "form-control", placeholder: "郵便番号" %>
+        </div>
+        <div class="input-group mb-3 mt-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+          </div>
+          <%= f.text_field :address, class: "form-control", placeholder: "住所" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :place, "場所" %>
+          <%= f.text_field :place, class: "form-control", id: "schedule_place" %>
+        </div>
+      
+        <div class="form-group">
+          <%= f.label :budget, "予算" %>
+          <%= f.number_field :budget, class: "form-control", id: "schedule_budget" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :schedule_memo, "メモ" %>
+          <%= f.text_area :schedule_memo, class: "form-control", id: "schedule_memo" %>
+        </div>
+    
+      <%= f.submit "スケジュール作成", class: 'btn btn-outline-secondary' %>
+      <% end %>
+    </div>
   </div>
 </div>
+<%= javascript_pack_tag "jpostal",  'data-turbolinks-track': 'reload' %>

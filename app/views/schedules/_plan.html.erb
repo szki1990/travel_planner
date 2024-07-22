@@ -1,26 +1,22 @@
- <div class="container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
+<div class="container">
+  <nav class="navbar navbar-expand navbar-light bg-light rounded">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item active mx-4">
           <%= link_to book_schedules_path(book_id: @book.id), class: 'nav-link' do %>
             <i class="fa-solid fa-user-clock"></i> スケジュール <span class="sr-only">(current)</span>
           <% end %>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active mx-4">
           <%= link_to book_costs_path, class: 'nav-link' do %>
             <i class="fa-regular fa-credit-card"></i>  お金管理<span class="sr-only">(current)</span>
           <% end %>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active mx-4">
           <%= link_to book_check_lists_path, class: 'nav-link' do %>
             <i class="fa-regular fa-square-check"></i>  チェックリスト<span class="sr-only">(current)</span>
           <% end %>
-          <li class="nav-item active">
+          <li class="nav-item active mx-4">
           <%= link_to book_memos_path, class: 'nav-link' do %>
             <i class="fa-solid fa-file-pen"></i>  メモ<span class="sr-only">(current)</span>
           <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_18_031220) do
+ActiveRecord::Schema.define(version: 2024_07_19_023150) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -69,6 +69,9 @@ ActiveRecord::Schema.define(version: 2024_07_18_031220) do
     t.integer "user_id"
     t.boolean "public_status"
     t.integer "status", default: 0, null: false
+    t.string "address", default: "", null: false
+    t.float "latitude", default: 0.0, null: false
+    t.float "longitude", default: 0.0, null: false
     t.index ["title"], name: "index_books_on_title"
   end
 
@@ -122,6 +125,13 @@ ActiveRecord::Schema.define(version: 2024_07_18_031220) do
     t.index ["category_id"], name: "index_items_on_category_id"
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "book_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "memos", force: :cascade do |t|
     t.string "title"
     t.string "body"
@@ -144,6 +154,9 @@ ActiveRecord::Schema.define(version: 2024_07_18_031220) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "book_id"
+    t.string "address", default: "", null: false
+    t.float "latitude", default: 0.0, null: false
+    t.float "longitude", default: 0.0, null: false
   end
 
   create_table "users", force: :cascade do |t|

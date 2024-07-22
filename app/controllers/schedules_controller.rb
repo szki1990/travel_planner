@@ -11,6 +11,14 @@ class SchedulesController < ApplicationController
   end
 
   def index
+    #respond_to do |format|
+      #format.html do
+        #@schedules = Schedule.page(params[:page])
+      #end 
+      #format.json do
+        #@schedules = Schedule.all
+      #end 
+    #end 
     @user = current_user
     @start_date = params[:start_date].present? ? Date.parse(params[:start_date]) : @book.start_day.to_date
     @end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : @book.end_day.to_date
@@ -38,6 +46,7 @@ class SchedulesController < ApplicationController
 
   def show
     @book = @schedule.book
+    @duration_hours, @duration_minutes = calculate_duration(@schedule.start_time, @schedule.end_time)
   end
   
   def edit
@@ -74,12 +83,23 @@ class SchedulesController < ApplicationController
   end
 
   def schedule_params
-    params.require(:schedule).permit(:title, :budget, :place, :start_date, :end_date, :start_time, :end_time, :schedule_memo)
+    params.require(:schedule).permit(:title, :budget, :place, :start_date, :end_date, :start_time, :end_time, :schedule_memo, :address)
   end
   
   def is_matching_login_user
     unless @book.user_id == current_user.id
       redirect_to book_schedules_path
+    end 
+  end 
+  
+  def calculate_duration(start_time, end_time)
+    if start_time.present? && end_time.present?
+      duration_in_seconds = end_time - start_time
+      hours = (duration_in_seconds / 3600).to_i 
+      minutes = ((duration_in_seconds % 3600) / 60).to_i 
+      [hours, minutes]
+    else 
+      ""
     end 
   end 
   

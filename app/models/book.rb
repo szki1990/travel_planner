@@ -39,6 +39,11 @@ class Book < ApplicationRecord
   
   validate :validate_date_range_order
   
+  #validates :address, presence: true
+  
+  #geocoded_by :address
+  #after_validation :geocode
+  
   private
   
   def validate_date_range_order

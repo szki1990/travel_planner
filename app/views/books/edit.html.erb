@@ -14,7 +14,11 @@
         <% end %>
 
       <div><%= link_to '一覧へ', books_path, class: 'btn btn-outline-secondary' %></div>
-      <h4 class="mb-3">しおり編集</h4>
+      <div class="d-flex justify-content-center border p-3 mb-3 mt-3">
+        <h4 class="mb-0">
+          しおり編集
+        </h4>
+      </div>
         <div class="form-group">
           <label for="book_title">タイトル</label>
           <%= f.text_field :title, class: "form-control", id: "book_title", required: true %>
