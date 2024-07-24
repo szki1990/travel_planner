@@ -5,6 +5,7 @@ class Schedule < ApplicationRecord
   validates :title, presence: true
   validates :start_date, presence: true
   validates :start_time, presence: true
+  validates :address, presence: true
   validate :dates_within_book_range
 
   def dates_within_book_range
@@ -15,7 +16,6 @@ class Schedule < ApplicationRecord
     end
   end
   
-  validates :address, presence: true
   
   geocoded_by :address
   after_validation :geocode

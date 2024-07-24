@@ -12,6 +12,10 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :start_day, presence: true
   validates :end_day, presence: true
+  validates :address, presence: true
+
+  geocoded_by :address
+  after_validation :geocode
   
   scope :publicly_visible, -> { where(public_status: true) }
   scope :privately_visible, -> { where(public_status: false) }
@@ -38,11 +42,6 @@ class Book < ApplicationRecord
   end 
   
   validate :validate_date_range_order
-  
-  #validates :address, presence: true
-  
-  #geocoded_by :address
-  #after_validation :geocode
   
   private
   

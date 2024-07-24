@@ -36,10 +36,29 @@ class BooksController < ApplicationController
   end 
   
   def show
+    #respond_to do |format|
+      #format.html do
+        #@books = Book.page(params[:page])
+      #end 
+      #format.json do
+        #@books = Book.all
+      #end 
+    #end 
     @book_comment = BookComment.new
     @schedules = @book.schedules
     @total_budget = @schedules.sum(:budget)
   end
+  
+  #def json_schedules
+    #@book = Book.find(params[:id])
+    #@schedules = @book.schedules
+
+    #render json: {
+      #data: {
+        #items: @schedules.as_json(only: [:id, :latitude, :longitude, :title])
+      #}
+    #}
+  #end
   
   def edit
   end 
@@ -62,7 +81,7 @@ class BooksController < ApplicationController
   end 
   
   def book_params
-    params.require(:book).permit(:title, :image, :start_day, :end_day, :public_status)
+    params.require(:book).permit(:title, :image, :start_day, :end_day, :public_status, :address, :latitude, :longitude)
   end
   
   def is_matching_login_user

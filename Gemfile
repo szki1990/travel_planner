@@ -73,3 +73,7 @@ gem 'jquery-rails'
 
 
 gem 'geocoder'
+
+gem 'faker'
+
+gem 'kaminari'

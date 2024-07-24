@@ -55,6 +55,12 @@
           <%= label_tag "schedule_budget", "予算" %>
           <%= text_field_tag "schedule_budget", number_to_currency(@total_budget, unit: '￥', format: '%u%n'), class: "form-control", id: "schedule_budget", disabled: true %>
         </div>
+        
+        <!--<div class="card-header">
+          <p class="card-title">
+            <span><i class="fa-solid fa-location-dot"></i><%#= @book.address %></span>
+          </p>
+        </div>-->
           
         <div>
           <hr class="mb-4">
@@ -100,6 +106,8 @@
     </div>
   </div>
 </div>
+
+
 
 <footer class="text-body-secondary py-5 bg-light text-center">
   <div class="container">
