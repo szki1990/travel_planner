@@ -15,7 +15,7 @@ json.data do
         json.name schedule.user.name
         json.image url_for(schedule.user.profile_image)
       end
-      json.image url_for(schedule.image)
+      json.image url_for(schedule.image) if schedule.image.attached?
     end
   end
 end

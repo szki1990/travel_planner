@@ -12,7 +12,7 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :start_day, presence: true
   validates :end_day, presence: true
-  validates :address, presence: true
+  #validates :address, presence: true
 
   geocoded_by :address
   after_validation :geocode

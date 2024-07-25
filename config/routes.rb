@@ -49,5 +49,5 @@ Rails.application.routes.draw do
     resources :books, only: [:show]
   end 
   resources :favorites, only: [:index]
-  resource :maps, only: [:index]
+  resource :maps, only: [:show]
 end
