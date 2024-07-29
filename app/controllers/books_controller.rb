@@ -36,29 +36,17 @@ class BooksController < ApplicationController
   end 
   
   def show
-    #respond_to do |format|
-      #format.html do
-        #@books = Book.page(params[:page])
-      #end 
-      #format.json do
-        #@books = Book.all
-      #end 
-    #end 
     @book_comment = BookComment.new
     @schedules = @book.schedules
     @total_budget = @schedules.sum(:budget)
+    @map_data = @schedules.map do |schedule|
+      {
+        title: schedule.title,
+        lat: schedule.latitude,
+        lng: schedule.longitude,
+      }
+    end 
   end
-  
-  #def json_schedules
-    #@book = Book.find(params[:id])
-    #@schedules = @book.schedules
-
-    #render json: {
-      #data: {
-        #items: @schedules.as_json(only: [:id, :latitude, :longitude, :title])
-      #}
-    #}
-  #end
   
   def edit
   end 

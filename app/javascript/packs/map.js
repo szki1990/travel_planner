@@ -7,10 +7,11 @@ let map;
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
   const {AdvanceMarkerElement} = await google.maps.importLibrary("marker")
+  const { LatLngBounds } = await google.maps.importLibrary("geometry");
   
   map = new Map(document.getElementById("map"), {
-    center: { lat: 35.681236, lng: 139.767125 }, 
-    zoom: 12,
+    center: { lat: 36.2048, lng: 138.2529 }, 
+    zoom: 7,
     mapId: "DEMO_MAP_ID",
     mapTypeControl: false
   });
@@ -40,6 +41,7 @@ async function initMap() {
         map.setCenter(new google.maps.LatLng(latitude, longitude));
       }
     });
+    
   } catch (error) {
     console.error('Error fetching or processing schedules:', error)
   }

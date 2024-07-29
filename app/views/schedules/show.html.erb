@@ -45,14 +45,9 @@
             <% end %>
           </h7>
         </div>
-        <p class="card-title">
-          <%= link_to(book_schedules_path(book_id: @book, id: @schedule.id), class:"text-dark") do %>
-           <strong><i class="fa-solid fa-flag"></i><span> <%= @schedule.title %></span></strong>
-          <% end %>
-        </p>
         <div class="card-header">
           <h7 class="card-title">
-          <p><i class="fa-solid fa-location-dot"></i><%= @schedule.address %></span></p>
+          <p><i class="fa-solid fa-location-dot"></i> <%= @schedule.address %></span></p>
           </h7>
         </div>
         <div class="card-header">

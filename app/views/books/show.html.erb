@@ -108,6 +108,14 @@
 </div>
 
 
+<div id="map" style="height: 400px;"></div>
+
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+<script type="text/javascript">
+  window.mapData = <%= raw @map_data.to_json %>;
+</script>
+
+
 
 <footer class="text-body-secondary py-5 bg-light text-center">
   <div class="container">
