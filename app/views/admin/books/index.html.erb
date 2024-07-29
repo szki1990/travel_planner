@@ -1,0 +1,54 @@
+<%= render 'admin/users/admin' %>
+<div class="jumbotron p-3 p-md-5 text-white rounded bg-info">
+    <div class="col-md-6 mx-auto">
+      <h1 class="display-4 text-center">投稿一覧</h1>
+      <p class="lead my-3 text-center"></p>
+    </div>
+  </div>
+  
+<div class="row">
+      <% @books.each do |book| %>
+        <div class="col-md-6 mb-4">
+          <div class="border rounded p-3 mb-3">
+            <h3 class="mb-0 d-flex justify-content-between align-items-center">
+              <a href="<%= admin_book_path(book.id) %>" class="text-dark text-decoration-none">
+                <span style="color: grey;"><%= book.title %></span>
+              </a>
+              <% if book.publicly_visible? %>
+                <h6 class="text-muted"><i class="fa-regular fa-star"></i>公開中</h6>
+              <% else %>
+                <h6 class="text-muted"><i class="fa-solid fa-lock"></i>非公開</h6>
+              <% end %>
+            </h3>
+            <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+              <%= link_to book_path(book.id) do %>
+                <%= image_tag book.get_image.variant(resize_to_fill: [300, 200]), class: "card-img-right flex-auto d-none d-lg-block", alt: "Card image cap" %>
+              <% end %>
+              <div class="card-body d-flex flex-column align-items-center text-center">
+                <h5 class="mb-0">
+                  <div class="mb-1 text-muted"><%= book.start_day.strftime('%Y-%m-%d') %></div>
+                  <div class="mb-1 text-muted ml-5">〜</div>
+                  <div class="mb-1 text-muted"><%= book.end_day.strftime('%Y-%m-%d') %></div>
+                </h5>
+              </div>
+            </div>
+            <div class="mt-3 d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center">
+                <div id="favorite_buttons_<%= book.id %>">
+                  <%= render "books/favorite_button", book: book %>
+                </div>
+                <%= link_to "#{book.book_comments.count} コメント", admin_book_path(book.id), class: "btn btn-sm btn-outline-secondary" %>
+              </div>
+              <div class="d-flex justify-content-end align-items-center">
+                <%= link_to '詳細', admin_book_path(id: book.id), class: "btn btn-sm btn-outline-secondary" %>
+                <%= link_to 'プラン', admin_book_schedules_path(book.id), class: "btn btn-sm btn-outline-secondary" %>
+                <%= link_to "削除", admin_book_path(id: book.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-outline-secondary" %>
+              </div>
+            </div>
+            <div class="text-end mt-2">
+              <small class="text-body-secondary"><%= time_ago_in_words(book.created_at) %>前</small>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>

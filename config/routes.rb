@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:show, :destroy]
+    resources :books, only: [:index, :show, :edit, :destroy] do
+      resources :book_comments, only: [:destroy]
+      resources :schedules, only: [:index, :show, :edit, :destroy]
+    end
   end
   
   root 'homes#top'

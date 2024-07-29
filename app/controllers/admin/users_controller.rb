@@ -3,6 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy]
   
   def show
+    @books = @user.books
   end 
   
   def destroy

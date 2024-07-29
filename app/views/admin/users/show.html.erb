@@ -1,5 +1,5 @@
 <%= render 'admin/users/admin' %>
-<h1 class="display-4 font-italic text-center">ユーザー詳細</h1>
+<h1 class="display-4 text-center">ユーザー詳細</h1>
 
 <div class="container mt-4">
   <div class="row justify-content-center">
@@ -21,5 +21,38 @@
         </div>
       </div>
     </div>
+  </div>
+  
+  <h2 class="mt-5">投稿しているしおり</h2>
+  <div class="row">
+    <% @books.each do |book| %>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <%= link_to admin_book_path(book.id) do %>
+            <%= image_tag book.get_image.variant(resize: "300x300"), class: "bd-placeholder-img card-img-top", width: "100%", height: "225", preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false %>
+          <% end %>
+          <div class="card-body">
+            <p class="card-text">
+              タイトル：<%= book.title %>
+              <% if book.publicly_visible? %>
+                <h6 class="text-muted"><i class="fa-regular fa-star"></i>公開中</h6>
+              <% else %>
+                <h6 class="text-muted"><i class="fa-solid fa-lock"></i>非公開</h6>
+              <% end %>
+            </p>
+            <p class="card-text">開始日：<%= book.start_day.strftime('%Y年%m月%d日') %></p>
+            <p class="card-text">終了日：<%= book.end_day.strftime('%Y年%m月%d日') %></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <%= link_to '詳細', admin_book_path(id: book.id), class: "btn btn-sm btn-outline-secondary" %>
+                <%= link_to 'プラン', admin_book_schedules_path(book.id), class: "btn btn-sm btn-outline-secondary" %>
+                <%= link_to "削除", admin_book_path(id: book.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-outline-secondary" %>
+              </div>
+              <small class="text-body-secondary"><%= time_ago_in_words(book.created_at) %>前</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

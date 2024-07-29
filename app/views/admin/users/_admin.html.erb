@@ -26,6 +26,11 @@
           </li>
           <% if admin_signed_in? %>
             <li class="nav-item">
+              <%= link_to admin_books_path, class: "nav-link" do %>
+                <i class="fa-solid fa-book-bookmark"></i>投稿一覧 <span class="sr-only">(current)</span>
+              <% end %>
+            </li>
+            <li class="nav-item">
             <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link" do %>
               <i class="fa-solid fa-address-book"></i>ログアウト <span class="sr-only">(current)</span>
             <% end %>

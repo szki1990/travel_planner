@@ -1,3 +1,4 @@
+<%= render 'admin/users/admin' %>
 <div class="container">
   <% if flash[:notice] %>
     <div class="alert alert-info text-center" role="alert">
@@ -6,20 +7,10 @@
   <% end %>
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <div><%= link_to '一覧へ', books_path, class: 'btn btn-outline-secondary' %></div>
+      <div><%= link_to '一覧へ', admin_books_path, class: 'btn btn-outline-secondary' %></div>
     
       
       <%= form_with(model: @book, local: true) do |f| %>
-        <% if @book.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@book.errors.count, "件のエラーが発生しました。") %> しおりを保存できませんでした。</h2>
-            <ul>
-              <% @book.errors.full_messages.each do |message| %>
-                <li><%= message %><%= 'を入力してください' unless message.include?('を入力してください') %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
         <div class="d-flex flex-column align-items-center text-center">
           <div class="position-relative d-inline-block md-2">
             <%= image_tag @book.user.get_profile_image(100,100), class:"bd-placeholder-img rounded-circle", width: 140, height: 140, preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false  %>
@@ -55,7 +46,7 @@
           <%= label_tag "schedule_budget", "予算" %>
           <%= text_field_tag "schedule_budget", number_to_currency(@total_budget, unit: '￥', format: '%u%n'), class: "form-control", id: "schedule_budget", disabled: true %>
         </div>
-
+        
         <div>
           <hr class="mb-4">
           <% if @book.user == current_user %>
@@ -79,11 +70,9 @@
                   </div>
                 </div>
               </div>
-              <% if book_comment.user == current_user %>
-                <div class="col-auto">
-                  <%= link_to "削除", book_book_comment_path(@book, book_comment), method: :delete, class: "btn btn-sm btn-outline-secondary ml-2" %>
-                </div>
-              <% end %>
+              <div class="col-auto">
+                <%= link_to "削除", admin_book_book_comment_path(@book, book_comment), method: :delete, class: "btn btn-sm btn-outline-secondary ml-2" %>
+              </div>
             </div>
             <hr class="my-3">
           <% end %>
@@ -96,20 +85,7 @@
               <%= f.submit "送信", class: "btn btn-sm btn-outline-secondary" %>
             <% end %>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div id="map" style="height: 400px;"></div>
-
-<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
-<script type="text/javascript">
-  window.mapData = <%= raw @map_data.to_json %>;
-</script>
-
-
+      
 
 <footer class="text-body-secondary py-5 bg-light text-center">
   <div class="container">
