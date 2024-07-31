@@ -11,65 +11,7 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Travel Planner</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "Topページ", homes_top_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to books_path, class: "nav-link" do %>
-              <i class="fa-solid fa-book-bookmark"></i>しおり一覧 <span class="sr-only">(current)</span>
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to public_index_books_path, class: "nav-link" do %>
-              <i class="fa-solid fa-address-book"></i>投稿一覧 <span class="sr-only">(current)</span>
-              <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to my_page_path, class: "nav-link" do %>
-              <i class="fa-solid fa-user-secret"></i>マイページ <span class="sr-only">(current)</span>
-            <% end %>
-          </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "Topページ", homes_top_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to new_user_registration_path, class: "nav-link" do %>
-                <i class="fa-solid fa-user-plus"></i>新規登録
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to new_user_session_path, class: "nav-link" do %>
-                <i class="fa-solid fa-user-check"></i>ログイン
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to public_index_books_path, class: "nav-link" do %>
-                <i class="fa-solid fa-users-between-lines"></i>ゲストログイン
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to new_admin_session_path, class: "nav-link" do %>
-                <i class="fa-solid fa-user-lock"></i>管理者用ログイン
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-        
-      </div>
-    </nav>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-  </header>
+ 
   <body>
     <script src="https://cdn.jsdelivr.net/npm/jquery-jpostal-ja@2.14.45/jquery.jpostal.min.js"></script>
   </body>

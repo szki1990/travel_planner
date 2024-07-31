@@ -6,19 +6,33 @@
     <link rel="canonical" href="https://getbootstrap.jp/docs/5.3/examples/product/">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
     <link href="product.css" rel="stylesheet">
+    <style>
+      .background-image-sky {
+        background-image: url('<%= asset_path('sky.jpg') %>');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .text-gradient {
+        background: linear-gradient(to right, white, black);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
   </head>
   <body>
+    <%= render 'layouts/plate' %>
     <div class="container py-4">
       <a id="skippy" class="sr-only sr-only-focusable" href="#content">
         <div class="container">
       <span class="skiplink-text">Skip to main content</span>
         </div>
       </a>
-      <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-info">
+      <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-info background-image-sky">
         <div class="col-md-5 p-lg-5 mx-auto my-5">
-          <h1 class="display-4 font-weight-normal" style="color: #FFF;">たびのしおり</h1>
+          <h1 class="text-gradient">Travel Planner</h1>
           <p class="lead font-weight-normal">旅に行く仲間としおりを共有して<br>思い出に残しましょう</p>
-          <%= link_to '作成する', new_book_path, class: 'btn btn-outline-secondary text-white' %>
+          <%= link_to '作成する', new_book_path, class: 'btn btn-outline-secondary text-black' %>
         </div>
         <div class="product-device shadow-sm d-none d-md-block"></div>
         <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
@@ -47,14 +61,18 @@
             <h2 class="display-5">チェックリスト機能</h2>
             <p class="lead">持ち物や出発前に行うべきことなどをリストに書き込んで確認しましょう。</p>
           </div>
-          <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+          <div class="image-container" style="width: 80%; height: 300px; margin: 0 auto; border-radius: 21px 21px 0 0; overflow: hidden;">
+            <img src="/assets/list.jpg" alt="Image" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
         </div>
         <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
           <div class="my-3 py-3">
             <h2 class="display-5">支出管理</h2>
             <p class="lead">旅先で支払ったお金を管理しましょう。支払者、日付、支払方法別で合計金額を表示することができます。</p>
           </div>
-          <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+          <div class="image-container" style="width: 80%; height: 300px; margin: 0 auto; border-radius: 21px 21px 0 0; overflow: hidden;">
+            <img src="/assets/monney.jpg" alt="Image" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
         </div>
       </div>
       
@@ -64,7 +82,9 @@
             <h2 class="display-5">メモ機能</h2>
             <p class="lead">旅行情報をメモで管理しましょう。</p>
           </div>
-          <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+          <div class="image-container" style="width: 80%; height: 300px; margin: 0 auto; border-radius: 21px 21px 0 0; overflow: hidden;">
+            <img src="/assets/memo.jpg" alt="Image" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
         </div>
         <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
           <div class="my-3 py-3">
@@ -98,3 +118,4 @@
         <script src="/docs/4.3/assets/js/src/ie-emulation-modes-warning.js"></script>
   </body>
 </html>
+

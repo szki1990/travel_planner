@@ -1,3 +1,4 @@
+<%= render 'layouts/plate' %>
 <% if @book.user_id == current_user.id %>
   <%= render 'schedules/plan' %>
 <% end %>
@@ -12,6 +13,13 @@
     [id^="date_"] {
       scroll-margin-top: 100px;
     }
+    
+    .background-image-niji {
+        background-image: url('<%= asset_path('niji.jpg') %>');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
   </style>
 </head>
 <body>
@@ -28,18 +36,18 @@
       </div>
     </div>
   </div>
+  <div class="d-flex justify-content-center">
+    <div class="position-relative d-inline-block md-2 text-center">
+      <%= image_tag @book.user.get_profile_image(100,100), class:"bd-placeholder-img rounded-circle", width: 100, height: 100, preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false  %>
+      <div class="text-center mb-3 mt-3">
+        <%= @book.user.name %>
+      </div>
+    </div>
+  </div>
 
   <main>
     <div class="container py-4">
-      <div class="d-flex justify-content-center">
-        <div class="position-relative d-inline-block md-2">
-          <%= image_tag @book.user.get_profile_image(100,100), class:"bd-placeholder-img rounded-circle", width: 140, height: 140, preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false  %>
-          <div class="text-center mb-3 mt-3">
-            <%= @book.user.name %>
-          </div>
-        </div>
-      </div>
-      <div class="jumbotron p-3 p-md-5 text-white rounded bg-info">
+      <div class="jumbotron p-3 p-md-5 text-white rounded bg-info background-image-niji">
         <div class="col-md-6 mx-auto">
           <h2 class="display-4 font-italic text-center">スケジュール</h1>
           <p class="lead my-3 text-center"></p>

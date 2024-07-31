@@ -100,6 +100,14 @@
       .bd-mode-toggle {
         z-index: 1500;
       }
+    
+      .background-image-kissa {
+        background-image: url('<%= asset_path('kissa.jpg') %>');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
     </style>
 
     
@@ -124,7 +132,7 @@
     
     
 
-
+<%= render 'layouts/plate' %>
     <main>
       
       <div class="container py-4">
@@ -133,12 +141,12 @@
             <%= flash[:notice] %>
           </div>
         <% end %>
-        <div class="jumbotron p-3 p-md-5 text-white rounded bg-info">
+        <div class="jumbotron p-3 p-md-5 text-white rounded bg-info background-image-kissa">
           <div class="col-md-6 mx-auto">
             <h1 class="display-4 text-center">作成した<br>しおり</h1>
             <p class="lead my-3 text-center">過去に作成したしおりや現段階で作成中のしおりの一覧が表示されます。</p>
             <p class="text-center">
-              <%= link_to 'しおり作成', new_book_path, class: 'btn btn-primary my-2' %>
+              <%= link_to 'しおり作成', new_book_path, class: 'btn btn-outline-light text-white' %>
             </li>
             </p>
           </div>
