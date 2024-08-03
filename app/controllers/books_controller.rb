@@ -6,6 +6,8 @@ class BooksController < ApplicationController
   
   def new
     @book = Book.new
+    @followers = current_user.followers
+    #@book.members.build
   end
   
   def create
@@ -36,6 +38,8 @@ class BooksController < ApplicationController
   end 
   
   def show
+    #@members = @book.members.includes(:user)
+    #@member = @book.members.new
     @book_comment = BookComment.new
     @schedules = @book.schedules
     @total_budget = @schedules.sum(:budget)

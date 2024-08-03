@@ -51,7 +51,12 @@ Rails.application.routes.draw do
  
   resources :users, only: [:index, :show, :edit, :update, :destroy] do 
     resources :books, only: [:show]
+    member do
+      get :followings
+      get :followers
+    end
   end 
   resources :favorites, only: [:index]
   resource :maps, only: [:show]
+  resources :relationships, only: [:create, :destroy]
 end

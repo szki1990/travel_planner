@@ -8,11 +8,12 @@ class Book < ApplicationRecord
   has_many :memos, dependent: :destroy
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  #has_many :members
+  #has_many :users, through: :members
 
   validates :title, presence: true
   validates :start_day, presence: true
   validates :end_day, presence: true
-  #validates :address, presence: true
 
   geocoded_by :address
   after_validation :geocode

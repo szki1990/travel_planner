@@ -1,26 +1,46 @@
 <%= render 'layouts/plate' %>
 <div class="container">
   <div class="col-md-6">
-      <div class="text-left pt-3">
-        <%= link_to "ユーザー一覧", users_path, class: "btn btn-sm btn-outline-secondary" %>
-      </div>
+    <div class="text-left pt-3">
+      <%= link_to "ユーザー一覧", users_path, class: "btn btn-sm btn-outline-secondary" %>
     </div>
+  </div>
   <div class="row justify-content-center mt-5">
     <div class="col-lg-4 text-center">
       <div class="position-relative d-inline-block">
-        <%= image_tag @user.get_profile_image(300,300), class:"bd-placeholder-img rounded-circle", width: 140, height: 140, preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false  %>
+        <%= image_tag @user.get_profile_image(300, 300), class: "bd-placeholder-img rounded-circle", width: 140, height: 140, preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false %>
       </div>
       <h2 class="fw-normal mt-3"><%= @user.name %></h2>
-      <% if @user == current_user %>
-      <div>
-        <%= link_to edit_user_path(@user) do %>
-      </div>
-      <i class="fa-solid fa-user-pen"></i>
-        <% end %></p>
-      </div>
+      <% if @user.id == current_user.id %>
+        <div>
+          <%= link_to "プロフィールを編集", edit_user_path(@user), class: "edit" %>
+        </div>
+      <% else %>
+        <% if current_user.following?(@user) %>
+        <%= link_to "フォロー解除", relationship_path(current_user.active_relationships.find_by(following_id: @user.id)), method: :delete, class: "btn btn-outline-dark", data: { confirm: "本当にフォローを解除しますか？" } %>
+      <% else %>
+          <%= link_to "フォロー", relationships_path(user_id: @user.id), method: :post, class: "btn btn-dark" %>
+        <% end %>
       <% end %>
+      <div class="d-flex mt-4">
+        <div class="follow me-3">
+          <p>
+            <span><%= link_to @user.following_users.count, followings_user_path(@user) %></span>
+            Following
+          </p>
+        </div>
+        <div class="follow">
+          <p>
+            <span><%= link_to @user.follower_users.count, followers_user_path(@user) %></span>
+            Followers
+          </p>
+        </div>
+      </div>
     </div>
   </div>
+
+
+
   <div class="container py-4">
     <div class="row">
       <% @public_books.each do |book| %>
@@ -53,6 +73,7 @@
                 <% end %>
               </div>
             </div>
+            
             <div class="text-end mt-2">
               <small class="text-body-secondary"><%= time_ago_in_words(book.created_at) %>前</small>
             </div>

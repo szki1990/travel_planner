@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_user, only: [:show, :edit, :update, :followings, :followers]
   
   def index
     @users = User.all
@@ -8,7 +10,6 @@ class UsersController < ApplicationController
   end 
   
   def show
-    @user = User.find(params[:id])
     if @user == current_user
       @public_books = @user.books
     else 
@@ -17,14 +18,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
    if @user != current_user
      redirect_to my_page_path(current_user.id)
    end
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to my_page_path, notice: 'プロフィールを更新しました'
     else
@@ -41,8 +40,24 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to new_user_registration_path, notice: 'アカウントが削除されました'
   end
+  
+  def followings
+    @title = "Following"
+    @followings = @user.following_users
+    render 'show_follow'
+  end 
+  
+  def followers
+    @title = "Followers"
+    @followers = @user.follower_users
+    render 'show_follow'
+  end 
 
   private
+  
+  def set_user
+    @user = User.find(params[:id])
+  end 
 
   def user_params
     params.require(:user).permit(:name, :profile_image)
