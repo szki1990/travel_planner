@@ -190,10 +190,15 @@
           </div>
         </div>
       </div>
-      <div class="bg-light p-3">
-        <h1 class="text-center text-dark">共有されたしおり</h1>
-        <%= render @shared_books %>
-      </div>
+      <% if @shared_books.present? %>
+        <div class="bg-light p-3">
+          <h1 class="text-center text-dark">共有されたしおり</h1>
+          <div class="row">
+            <%= render @shared_books %>
+          </div>
+        </div>
+      <% else %>
+      <% end %>
       
     <footer class="text-body-secondary py-5 bg-light text-center">
       <div class="container">
