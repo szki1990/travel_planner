@@ -58,7 +58,7 @@
             <%= text_field_tag "schedule_budget", number_to_currency(@total_budget, unit: '￥', format: '%u%n'), class: "form-control", id: "schedule_budget", disabled: true %>
           </div>
           
-          <h7 class="card-title">共有されているユーザー</h7>
+          <h7 class="card-title">共有メンバー</h7>
           <div class="card-body">
             <% if @shared_users.present? %>
               <ul class="list-group">
