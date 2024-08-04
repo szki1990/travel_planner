@@ -51,17 +51,31 @@
             オプションを選択してください。
           </div>
         </div>
-        
-        <%= render 'books/form' %>
-        
-        
-        <!--<div class="form-group">
-          <%#= f.fields_for :members do |member_fields| %>
-            <%#= member_fields.label :user_id, '共有するメンバー' %>
-            <%#= member_fields.collection_select :user_id, User.all, :id, :name, { prompt: 'メンバーを選択してください' }, { class: 'form-control' } %>
-            <%#= member_fields.hidden_field :_destroy %>
-          <%# end %>
-        </div>-->
+        <div class="form-group">
+          <%= f.label :shared_with, "共有するユーザー" %>
+          <% if @followers.present? %>
+            <%= f.collection_check_boxes :shared_user_ids, @followers, :id, :name do |b| %>
+              <div class="form-check">
+                <%= b.check_box %>
+                <%= b.label %>
+              </div>
+            <% end %>
+          <% else %>
+            <p>フォローしているユーザーがいません。</p>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <label>共有されているユーザー</label>
+          <% if @book.shared_users.present? %>
+            <ul>
+              <% @book.shared_users.each do |user| %>
+                <li><%= user.name %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p>共有されているユーザーはいません。</p>
+          <% end %>
+        </div>
         
         <div class="form-group">
           <h4>画像</h4>

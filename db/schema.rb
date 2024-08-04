@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_02_235327) do
+ActiveRecord::Schema.define(version: 2024_08_04_032236) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -73,6 +73,13 @@ ActiveRecord::Schema.define(version: 2024_08_02_235327) do
     t.float "latitude", default: 0.0, null: false
     t.float "longitude", default: 0.0, null: false
     t.index ["title"], name: "index_books_on_title"
+  end
+
+  create_table "books_users", id: false, force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "user_id"
+    t.index ["book_id"], name: "index_books_users_on_book_id"
+    t.index ["user_id"], name: "index_books_users_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|

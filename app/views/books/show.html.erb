@@ -1,107 +1,121 @@
 <%= render 'layouts/plate' %>
-<div class="container">
-  <% if flash[:notice] %>
-    <div class="alert alert-info text-center" role="alert">
-      <%= flash[:notice] %>
-    </div>
-  <% end %>
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div><%= link_to '一覧へ', books_path, class: 'btn btn-outline-secondary' %></div>
-    
+
+  <div class="container">
+    <% if flash[:notice] %>
+      <div class="alert alert-info text-center" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        
       
-      <%= form_with(model: @book, local: true) do |f| %>
-        <% if @book.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@book.errors.count, "件のエラーが発生しました。") %> しおりを保存できませんでした。</h2>
-            <ul>
-              <% @book.errors.full_messages.each do |message| %>
-                <li><%= message %><%= 'を入力してください' unless message.include?('を入力してください') %></li>
+        
+        <%= form_with(model: @book, local: true) do |f| %>
+          <% if @book.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@book.errors.count, "件のエラーが発生しました。") %> しおりを保存できませんでした。</h2>
+              <ul>
+                <% @book.errors.full_messages.each do |message| %>
+                  <li><%= message %><%= 'を入力してください' unless message.include?('を入力してください') %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="d-flex flex-column align-items-center text-center">
+            <div class="position-relative d-inline-block md-2">
+              <%= image_tag @book.user.get_profile_image(100,100), class:"bd-placeholder-img rounded-circle", width: 140, height: 140, preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false  %>
+            </div>
+            <div><%=@book.user.name %></div>
+          </div>
+          <div class="container">
+            <div class="row mb-5">
+              <% if @book.get_image.attached? %>
+                <%= image_tag @book.get_image.variant(resize: "900x800"), class: 'img-fluid' %>
+              <% else %>
+                <p>No image available</p>
               <% end %>
-            </ul>
+            </div>
+          </div>
+          <p>作成日:<%= @book.created_at.strftime('%Y/%m/%d') %></p>
+          <div class="form-group">
+            <label for="book_title">タイトル</label>
+            <%= f.text_field :title, class: "form-control", id: "book_title", disabled: true, required: true %>
+          </div>
+    
+          <div class="form-group">
+            <label for="book_start_day">開始日</label>
+            <%= f.date_field :start_day, class: "form-control", id: "book_start_day", disabled: true, required: true %>
+          </div>
+    
+          <div class="form-group">
+            <label for="book_end_day">終了日</label>
+            <%= f.date_field :end_day, class: "form-control", id: "book_end_day", disabled: true %>
+          </div>
+              
+          <div class="form-group">
+            <%= label_tag "schedule_budget", "予算" %>
+            <%= text_field_tag "schedule_budget", number_to_currency(@total_budget, unit: '￥', format: '%u%n'), class: "form-control", id: "schedule_budget", disabled: true %>
+          </div>
+          
+          <div class="form-group">
+            <label>共有されているユーザー</label>
+            <% if @shared_users.present? %>
+              <ul>
+                <% @shared_users.each do |user| %>
+                  <li><%= user.name %></li>
+                <% end %>
+              </ul>
+            <% else %>
+              <p>共有されているユーザーはいません。</p>
+            <% end %>
+          </div>
+  
+          <div>
+            <hr class="mb-4">
+            <% if @book.user == current_user %>
+              <%= link_to "編集", edit_book_path, class: "btn btn-primary btn-lg btn-block" %>
+              <%= link_to "削除", book_path(@book), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-primary btn-lg btn-block" %>
+            <% end %>
           </div>
         <% end %>
-        <div class="d-flex flex-column align-items-center text-center">
-          <div class="position-relative d-inline-block md-2">
-            <%= image_tag @book.user.get_profile_image(100,100), class:"bd-placeholder-img rounded-circle", width: 140, height: 140, preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false  %>
-          </div>
-          <div><%=@book.user.name %></div>
-        </div>
-        <div class="container">
-          <div class="row mb-5">
-            <% if @book.get_image.attached? %>
-              <%= image_tag @book.get_image.variant(resize: "900x800"), class: 'img-fluid' %>
-            <% else %>
-              <p>No image available</p>
-            <% end %>
-          </div>
-        </div>
-        <p>作成日:<%= @book.created_at.strftime('%Y/%m/%d') %></p>
-        <div class="form-group">
-          <label for="book_title">タイトル</label>
-          <%= f.text_field :title, class: "form-control", id: "book_title", disabled: true, required: true %>
-        </div>
-  
-        <div class="form-group">
-          <label for="book_start_day">開始日</label>
-          <%= f.date_field :start_day, class: "form-control", id: "book_start_day", disabled: true, required: true %>
-        </div>
-  
-        <div class="form-group">
-          <label for="book_end_day">終了日</label>
-          <%= f.date_field :end_day, class: "form-control", id: "book_end_day", disabled: true %>
-        </div>
-            
-        <div class="form-group">
-          <%= label_tag "schedule_budget", "予算" %>
-          <%= text_field_tag "schedule_budget", number_to_currency(@total_budget, unit: '￥', format: '%u%n'), class: "form-control", id: "schedule_budget", disabled: true %>
-        </div>
-        
-
-        <div>
-          <hr class="mb-4">
-          <% if @book.user == current_user %>
-            <%= link_to "編集", edit_book_path, class: "btn btn-primary btn-lg btn-block" %>
-            <%= link_to "削除", book_path(@book), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-primary btn-lg btn-block" %>
-          <% end %>
-        </div>
-      <% end %>
-      <div class="border rounded p-3 mt-3">
-        <div>
-          <p>コメント件数:<%= @book.book_comments.count %></p>
-          <% @book.book_comments.each do |book_comment| %>
-            <div class="row mb-3">
-              <div class="col">
-                <div class="small text-muted"><%= book_comment.created_at.strftime('%Y/%m/%d') %></div>
-                <div class="align-items-center">
-                  <%= image_tag book_comment.user.get_profile_image(50, 50) %>
-                  <%= book_comment.comment %>
-                  <div class="ml-2">
-                    <small><%= book_comment.user.name %></small>
+        <div class="border rounded p-3 mt-3">
+          <div>
+            <p>コメント件数:<%= @book.book_comments.count %></p>
+            <% @book.book_comments.each do |book_comment| %>
+              <div class="row mb-3">
+                <div class="col">
+                  <div class="small text-muted"><%= book_comment.created_at.strftime('%Y/%m/%d') %></div>
+                  <div class="align-items-center">
+                    <%= image_tag book_comment.user.get_profile_image(50, 50) %>
+                    <%= book_comment.comment %>
+                    <div class="ml-2">
+                      <small><%= book_comment.user.name %></small>
+                    </div>
                   </div>
                 </div>
+                <% if book_comment.user == current_user %>
+                  <div class="col-auto">
+                    <%= link_to "削除", book_book_comment_path(@book, book_comment), method: :delete, class: "btn btn-sm btn-outline-secondary ml-2" %>
+                  </div>
+                <% end %>
               </div>
-              <% if book_comment.user == current_user %>
-                <div class="col-auto">
-                  <%= link_to "削除", book_book_comment_path(@book, book_comment), method: :delete, class: "btn btn-sm btn-outline-secondary ml-2" %>
-                </div>
-              <% end %>
-            </div>
-            <hr class="my-3">
-          <% end %>
-          <div>
-            <div id="favorite_buttons_<%= @book.id %>">
-              <%= render "books/favorite_button", book: @book %>
-            </div>
-            <%= form_with model: [@book, @book_comment] do |f| %>
-              <%= f.text_area :comment, rows: '5', placeholder: "コメント記入欄" %>
-              <%= f.submit "送信", class: "btn btn-sm btn-outline-secondary" %>
+              <hr class="my-3">
             <% end %>
+            <div>
+              <div id="favorite_buttons_<%= @book.id %>">
+                <%= render "books/favorite_button", book: @book %>
+              </div>
+              <%= form_with model: [@book, @book_comment] do |f| %>
+                <%= f.text_area :comment, rows: '5', placeholder: "コメント記入欄" %>
+                <%= f.submit "送信", class: "btn btn-sm btn-outline-secondary" %>
+              <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
 
 
 <div id="map" style="height: 400px;"></div>

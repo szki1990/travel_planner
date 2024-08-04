@@ -51,6 +51,22 @@
             オプションを選択してください。
           </div>
         </div>
+        
+        <% if current_user.id == @book.user_id %>
+          <div class="form-group">
+            <%= f.label :shared_user_ids, "共有するユーザー" %>
+            <% if @followers.present? %>
+              <%= f.collection_check_boxes :shared_user_ids, @followers, :id, :name do |b| %>
+                <div class="form-check">
+                  <%= b.check_box %>
+                  <%= b.label %>
+                </div>
+              <% end %>
+            <% else %>
+              <p>フォローしているユーザーがいません。</p>
+            <% end %>
+          </div>
+        <% end %>
 
         <div class="form-group">
           <h4>画像</h4>

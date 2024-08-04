@@ -1,16 +1,16 @@
 class Book < ApplicationRecord
 
-  has_one_attached :image
   belongs_to :user
+  has_and_belongs_to_many :shared_users, class_name: 'User', join_table: 'books_users'
+  attr_accessor :shared_with
+  has_one_attached :image
   has_many :schedules, dependent: :destroy
   has_many :costs, dependent: :destroy
   has_many :check_lists, dependent: :destroy
   has_many :memos, dependent: :destroy
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  #has_many :members
-  #has_many :users, through: :members
-
+  
   validates :title, presence: true
   validates :start_day, presence: true
   validates :end_day, presence: true
@@ -41,6 +41,10 @@ class Book < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end 
+  
+  def accessible_by?(user)
+    user == self.user || shared_users.include?(user)
+  end
   
   validate :validate_date_range_order
   

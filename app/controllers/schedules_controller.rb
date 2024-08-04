@@ -24,6 +24,7 @@ class SchedulesController < ApplicationController
     @end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : @book.end_day.to_date
     @dates = (@start_date..@end_date).to_a
     @schedules = @book.schedules.where(start_date: @book.start_day..@book.end_day).order(start_time: :asc)
+    
   end
 
   def create

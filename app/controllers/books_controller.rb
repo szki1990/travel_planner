@@ -2,31 +2,29 @@ class BooksController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
   skip_before_action :authenticate_user!, only: [:public_index, :show]
   before_action :authenticate_user!, except: [:public_index]
-  before_action :set_book, only: [:show, :destroy]
+  before_action :set_book, only: [:show, :destroy, :update, :edit]
   
   def new
     @book = Book.new
-    @followers = current_user.followers
-    #@book.members.build
+    @followers = current_user.following_users
   end
   
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    
-    respond_to do |format|
-      if @book.save
-        format.html { redirect_to books_path, notice: 'しおりを作成しました' }
-        format.json { render :show, status: :created, location: @book }
-      else 
-        format.html { render :new }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
-      end 
-    end 
-  end 
+
+    if @book.save
+      @book.shared_user_ids = params[:book][:shared_user_ids]
+      redirect_to books_path, notice: 'しおりを作成しました'
+    else
+      @followers = current_user.following_users
+      render :new
+    end
+  end
 
   def index
     @books = current_user.books.order(start_day: :asc)
+    @shared_books = current_user.shared_books.order(start_day: :asc)
   end
   
   def public_index
@@ -38,27 +36,31 @@ class BooksController < ApplicationController
   end 
   
   def show
-    #@members = @book.members.includes(:user)
-    #@member = @book.members.new
-    @book_comment = BookComment.new
-    @schedules = @book.schedules
-    @total_budget = @schedules.sum(:budget)
-    @map_data = @schedules.map do |schedule|
-      {
-        title: schedule.title,
-        lat: schedule.latitude,
-        lng: schedule.longitude,
-      }
+      @book_comment = BookComment.new
+      @schedules = @book.schedules
+      @total_budget = @schedules.sum(:budget)
+      @map_data = @schedules.map do |schedule|
+        {
+          title: schedule.title,
+          lat: schedule.latitude,
+          lng: schedule.longitude,
+        }
     end 
+    @shared_users = @book.shared_users
   end
   
   def edit
-  end 
+    @followers = current_user.following_users
+  end
   
   def update
-    @book = Book.find(params[:id])
-    @book.update(book_params)
-    redirect_to book_path(@book.id), notice: 'しおりを更新しました'
+    if @book.update(book_params)
+      @book.shared_user_ids = params[:book][:shared_user_ids]
+      redirect_to book_path(@book), notice: 'しおりを更新しました'
+    else
+      @followers = current_user.following_users
+      render :edit
+    end
   end
   
   def destroy
@@ -73,12 +75,12 @@ class BooksController < ApplicationController
   end 
   
   def book_params
-    params.require(:book).permit(:title, :image, :start_day, :end_day, :public_status, :address, :latitude, :longitude)
+    params.require(:book).permit(:title, :image, :start_day, :end_day, :public_status, :address, :latitude, :longitude, :shared_user_ids)
   end
   
   def is_matching_login_user
     @book = Book.find(params[:id])
-    unless @book.user_id == current_user.id
+    unless @book.user_id == current_user.id || @book.shared_users.include?(current_user)
       redirect_to public_index_books_path
     end 
   end 

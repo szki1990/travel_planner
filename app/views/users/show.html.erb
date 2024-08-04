@@ -13,7 +13,23 @@
       <h2 class="fw-normal mt-3"><%= @user.name %></h2>
       <% if @user.id == current_user.id %>
         <div>
-          <%= link_to "プロフィールを編集", edit_user_path(@user), class: "edit" %>
+          <%= link_to edit_user_path(@user), class: "btn-sm btn-outline-secondary" do %>
+        </div>
+          編集する<i class="fa-regular fa-pen-to-square"></i>
+          <% end %>
+        <div class="d-flex justify-content-center mt-4">
+          <div class="follow me-3">
+            <p>
+              <span><%= link_to @user.following_users.count, followings_user_path(@user) %></span>
+              Following
+            </p>
+          </div>
+          <div class="follow">
+            <p>
+              <span><%= link_to @user.follower_users.count, followers_user_path(@user) %></span>
+              Followers
+            </p>
+          </div>
         </div>
       <% else %>
         <% if current_user.following?(@user) %>
@@ -22,20 +38,6 @@
           <%= link_to "フォロー", relationships_path(user_id: @user.id), method: :post, class: "btn btn-dark" %>
         <% end %>
       <% end %>
-      <div class="d-flex mt-4">
-        <div class="follow me-3">
-          <p>
-            <span><%= link_to @user.following_users.count, followings_user_path(@user) %></span>
-            Following
-          </p>
-        </div>
-        <div class="follow">
-          <p>
-            <span><%= link_to @user.follower_users.count, followers_user_path(@user) %></span>
-            Followers
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 
