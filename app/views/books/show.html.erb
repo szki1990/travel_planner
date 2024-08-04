@@ -58,19 +58,19 @@
             <%= text_field_tag "schedule_budget", number_to_currency(@total_budget, unit: '￥', format: '%u%n'), class: "form-control", id: "schedule_budget", disabled: true %>
           </div>
           
-          <div class="form-group">
-            <label>共有されているユーザー</label>
+          <h7 class="card-title">共有されているユーザー</h7>
+          <div class="card-body">
             <% if @shared_users.present? %>
-              <ul>
+              <ul class="list-group">
                 <% @shared_users.each do |user| %>
-                  <li><%= user.name %></li>
+                  <li class="list-group-item"><%= user.name %></li>
                 <% end %>
               </ul>
             <% else %>
-              <p>共有されているユーザーはいません。</p>
+              <p class="text-muted">共有されているユーザーはいません。</p>
             <% end %>
           </div>
-  
+
           <div>
             <hr class="mb-4">
             <% if @book.user == current_user %>

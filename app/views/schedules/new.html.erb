@@ -1,5 +1,7 @@
 <%= render 'layouts/plate' %>
-<%= render 'schedules/plan' %>
+<% if @book.user_id == current_user.id || @book.shared_users.include?(current_user) %>
+  <%= render 'schedules/plan' %>
+<% end %>
 
 <div class="container">
   <div class="row justify-content-center">

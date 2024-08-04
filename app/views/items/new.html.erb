@@ -1,5 +1,5 @@
 <%= render 'layouts/plate' %>
-<% if @book.user_id == current_user.id %>
+<% if @book.user_id == current_user.id || @book.shared_users.include?(current_user) %>
   <%= render 'schedules/plan' %>
 <% end %>
 

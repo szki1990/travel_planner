@@ -78,8 +78,8 @@ class CostsController < ApplicationController
   end 
   
   def is_matching_login_user
-    unless @book.user_id == current_user.id
-      redirect_to public_index_books_path
+    unless @book.user_id == current_user.id || @book.shared_users.include?(current_user)
+      redirect_to public_index_books_path(@book), alert: 'アクセス権限がありません。'
     end 
   end 
   

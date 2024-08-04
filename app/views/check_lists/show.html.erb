@@ -1,4 +1,7 @@
 <%= render 'layouts/plate' %>
+<% if @book.user_id == current_user.id || @book.shared_users.include?(current_user) %>
+  <%= render 'schedules/plan' %>
+<% end %>
 <h1><%= @check_list.title %></h1>
 
 <%= link_to 'カテゴリ追加', new_book_category_path(check_list_id: @check_list.id) %>
