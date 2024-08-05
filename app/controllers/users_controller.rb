@@ -42,13 +42,13 @@ class UsersController < ApplicationController
   end
   
   def followings
-    @title = "Followings"
+    @title = "フォローしている友達"
     @users = @user.following_users
     render 'show_follow'
   end 
   
   def followers
-    @title = "Followers"
+    @title = "フォロワー"
     @users = @user.follower_users
     render 'show_follow'
   end 

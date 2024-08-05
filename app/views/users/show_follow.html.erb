@@ -1,10 +1,32 @@
-<h1><%= @title %></h1>
-<ul>
+<%= render 'layouts/plate' %>
+<div class="container py-4">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-center"><%= @title %></h1>
+    </div>
+  </div>
+
   <% if @users && @users.any? %>
-    <% @users.each do |user| %>
-      <li><%= link_to user.name, user_path(user) %></li>
-    <% end %>
+    <div class="row">
+      <% @users.each do |user| %>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body text-center">
+              <div class="position-relative d-inline-block">
+                <%= image_tag @user.get_profile_image(300, 300), class: "bd-placeholder-img rounded-circle", width: 140, height: 140, preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false %>
+              </div>
+              <h5 class="card-title"><%= user.name %></h5>
+              <%= link_to 'しおりを見る', user_path(user), class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% else %>
-    <li>フォロワーはいません。</li>
+    <div class="row">
+      <div class="col-12">
+        <p class="text-center text-muted">友達はいません。</p>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
