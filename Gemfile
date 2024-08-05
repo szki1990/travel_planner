@@ -77,3 +77,4 @@ gem 'geocoder'
 gem 'faker'
 
 gem 'kaminari'
+gem 'sassc-rails'
