@@ -1,5 +1,5 @@
 current directory: /home/ec2-user/travel_planner/vendor/bundle/ruby/3.1.0/gems/sassc-2.4.0/ext
-/home/ec2-user/.rbenv/versions/3.1.2/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20240620-9561-dcjy9s.rb extconf.rb
+/home/ec2-user/.rbenv/versions/3.1.2/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20240805-27545-j5mni2.rb extconf.rb
 creating Makefile
 
 current directory: /home/ec2-user/travel_planner/vendor/bundle/ruby/3.1.0/gems/sassc-2.4.0/ext
@@ -77,4 +77,4 @@ linking shared-object sassc/libsass.so
 
 current directory: /home/ec2-user/travel_planner/vendor/bundle/ruby/3.1.0/gems/sassc-2.4.0/ext
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 libsass.so ./.gem.20240620-9561-hwff7h/sassc
+/usr/bin/install -c -m 0755 libsass.so ./.gem.20240805-27545-nhedj8/sassc
