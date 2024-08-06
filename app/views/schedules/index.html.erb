@@ -52,7 +52,7 @@
           <h2 class="display-4 font-italic text-center">スケジュール</h1>
           <p class="lead my-3 text-center"></p>
           <p class="text-center">
-            <% if @book.user_id == current_user.id %>
+            <% if @book.user_id == current_user.id || @book.shared_users.include?(current_user) %>
               <%= link_to 'スケジュール作成', new_book_schedule_path(@book), data: {turbolinks: "false"}, class: 'btn btn-primary my-2' %>
             <% end %>
           </p>
@@ -79,7 +79,7 @@
                               <p class="card-text"><%= schedule.start_time.strftime('%H:%M') %> -
                             <% end %>
                           <% else %>
-                            <!-- 時間未設定の場合は何も表示しないため空欄 -->
+                            
                           <% end %>
                           <h5 class="card-title"><%= schedule.title %></h5>
                         </div>

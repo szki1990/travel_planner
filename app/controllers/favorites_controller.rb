@@ -16,4 +16,5 @@ class FavoritesController < ApplicationController
   def index
     @favorites = current_user.favorites.includes(:book)
   end 
+  
 end
