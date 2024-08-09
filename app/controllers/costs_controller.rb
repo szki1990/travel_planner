@@ -1,5 +1,5 @@
 class CostsController < ApplicationController
-  before_action :set_book, only: [:new, :create, :index, :paid_totals, :edit, :show, :update, :destroy]
+  before_action :set_book, only: [:new, :create, :index, :paid_totals, :payment_method_index, :edit, :show, :update, :destroy]
   before_action :set_cost, only: [:show, :edit, :destroy, :update]
   before_action :is_matching_login_user, only: [:new, :index, :show, :edit, :update, :dastroy]
   
@@ -40,6 +40,12 @@ class CostsController < ApplicationController
     @total_price = @book.costs.sum(:price)
     @grouped_costs = @costs.group_by { |cost| cost.consumer }
   end
+  
+  def payment_method_index
+    @costs = @book.costs
+    @total_price = @book.costs.sum(:price)
+    @grouped_costs = @costs.group_by { |cost| cost.consumer }
+  end 
 
   def edit
     @start_day = @book.start_day.to_date

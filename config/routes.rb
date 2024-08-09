@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :costs, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
       collection do
         get 'paid_totals', to: 'costs#paid_totals'
+        get 'payment_method_index', to: 'costs#payment_method_index'
       end
     end
     resources :check_lists, only: [:new, :create, :index, :show, :edit, :update, :destroy] do

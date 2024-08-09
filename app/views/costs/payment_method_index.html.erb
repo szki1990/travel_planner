@@ -16,10 +16,11 @@
     <%= link_to '支払方法別合計', payment_method_index_book_costs_path(@book), class: 'btn btn-outline-secondary' %>
   </div>
   <h1>合計金額: <%= number_to_currency(@total_price, unit: '￥', format: '%u%n') %></h1>
-  <% @costs.group_by { |cost| cost.consumer }.each do |consumer, costs| %>
+  <% @costs.group_by { |cost| cost.payment_method }.each do |payment_method, costs| %>
     <div class="card mb-3">
       <div class="card-header">
-        <h3 class="card-title"><%= consumer %></h3>
+        <% cost = costs.first %>
+        <h3 class="card-title"><%= Cost::PAYMENT_METHODS[cost.payment_method.to_i] %></h3>
       </div>
       <div class="card-body">
         <% costs.each do |cost| %>
@@ -35,7 +36,7 @@
                       <%= number_to_currency(cost.price, unit: '￥', format: '%u%n') %>
                     </span>
                   </p>
-                  <p class="mb-1">支払い方法 : <span><%= Cost::PAYMENT_METHODS[cost.payment_method.to_i] %></span></p>
+                  <p class="mb-1">支払い者 : <span><%= cost.consumer %></span></p>
                 </div>
                 <div>
                   <%= link_to book_cost_path(book_id: @book, id: cost.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "nav-link text-muted" do %>
