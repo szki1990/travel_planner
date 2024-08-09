@@ -10,12 +10,19 @@
     </div>
   <% end %>
 
+
   <div class="my-4">
     <%= link_to 'リスト作成', new_book_check_list_path(@book), class: "btn btn-sm btn-outline-secondary" %>
   </div>
+  <div class="mb-3">
+    <% @check_lists.each_with_index do |check_list, index| %>
+      <%= link_to check_list.title, "#checklist-#{index}", class: 'btn btn-sm btn-outline-success border-success' %>
+    <% end %>
+  </div>
+  
 
-  <% @check_lists.each do |check_list| %>
-    <div class="card mb-4">
+  <% @check_lists.each_with_index do |check_list, index| %>
+    <div id="checklist-<%= index %>" class="card mb-4">
       <div class="card-header d-flex justify-content-between align-items-center">
         <h3 class="card-title">
           <span>
