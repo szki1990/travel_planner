@@ -53,7 +53,7 @@
           <p class="lead my-3 text-center"></p>
           <p class="text-center">
             <% if @book.user_id == current_user.id || @book.shared_users.include?(current_user) %>
-              <%= link_to 'スケジュール作成', new_book_schedule_path(@book), data: {turbolinks: "false"}, class: 'btn btn-primary my-2' %>
+              <%= link_to 'スケジュール作成', new_book_schedule_path(@book), data: {turbolinks: "false"}, class: 'btn btn-secondary text-black' %>
             <% end %>
           </p>
         </div>
