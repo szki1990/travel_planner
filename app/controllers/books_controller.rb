@@ -24,11 +24,11 @@ class BooksController < ApplicationController
 
   def index
     @books = current_user.books.order(start_day: :asc)
-    @shared_books = current_user.shared_books.order(start_day: :asc)
+    @shared_books = current_user.shared_books
   end
   
   def public_index
-    @public_books = Book.publicly_visible
+    @public_books = Book.publicly_visible.order(created_at: :desc)
     @books = Book.all
     if params[:title].present?
       @public_books = Book.publicly_visible.where('title LIKE ?', "%#{params[:title]}%")

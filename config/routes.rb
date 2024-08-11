@@ -25,9 +25,6 @@ Rails.application.routes.draw do
 
   
   resources :books do
-    #member do
-      #get 'json_schedules', to: 'books#json_schedules', defaults: {format: :json }
-    #end
     
     collection do
       get 'public_index', to: 'books#public_index'
