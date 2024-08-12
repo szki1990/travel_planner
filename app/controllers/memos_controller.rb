@@ -55,7 +55,7 @@ class MemosController < ApplicationController
   
    def is_matching_login_user
     unless @book.user_id == current_user.id || @book.shared_users.include?(current_user)
-      redirect_to book_schedules_path(@book), alert: 'アクセス権限がありません。'
+      redirect_to book_schedules_path(@book)
     end 
   end 
   

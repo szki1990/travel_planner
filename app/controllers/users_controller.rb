@@ -11,9 +11,9 @@ class UsersController < ApplicationController
   
   def show
     if @user == current_user
-      @public_books = @user.books
+      @public_books = @user.books.order(created_at: :desc)
     else 
-      @public_books = @user.books.publicly_visible
+      @public_books = @user.books.publicly_visible.order(created_at: :desc)
     end 
   end
 

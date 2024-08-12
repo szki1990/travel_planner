@@ -1,5 +1,6 @@
 <%= render 'layouts/plate' %>
 
+
   <div class="container">
     <% if flash[:notice] %>
       <div class="alert alert-info text-center" role="alert">
@@ -9,7 +10,11 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         
-      
+      <% if @book.user == current_user %>
+        <%= link_to 'スケジュールを作成', book_schedules_path(@book), class: "btn btn-sm btn-outline-secondary" %>
+      <% else %>
+        <%= link_to 'スケジュールを見る', book_schedules_path(@book), class: "btn btn-sm btn-outline-secondary" %>
+      <% end %>
         
         <%= form_with(model: @book, local: true) do |f| %>
           <% if @book.errors.any? %>

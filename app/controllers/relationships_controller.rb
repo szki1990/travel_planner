@@ -8,7 +8,6 @@ class RelationshipsController < ApplicationController
     end 
     
     def destroy
-        #puts "Params: #{params.inspect}"
         @relationship = current_user.active_relationships.find(params[:id])
         @user = @relationship.following
         if @relationship
