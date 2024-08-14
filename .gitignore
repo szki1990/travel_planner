@@ -39,4 +39,8 @@
 yarn-debug.log*
 .yarn-integrity
 
+/tmp
+/log
+private_key
+
 /.env
