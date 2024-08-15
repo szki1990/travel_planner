@@ -83,7 +83,10 @@
                           <% else %>
                             
                           <% end %>
-                          <h5 class="card-title"><%= schedule.title %></h5>
+                          <h5 class="card-title">
+                            <i class="fa-solid <%= schedule.icon %>"></i>
+                            <%= schedule.title %>
+                          </h5>
                         </div>
                       <% end %>
                     </div>

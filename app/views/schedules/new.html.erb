@@ -41,7 +41,15 @@
           <%= f.label :end_time, "終了時間" %>
           <%= f.time_field :end_time, class: "form-control", id: "schedule_end_time" %>
         </div>
-  
+        
+        <div class="form-group">
+          <%= f.label :icon, "アイコン", for: "icon-select" %>
+          <%= f.select :icon, options_for_select([['歩く', 'fa-person-walking'], ['車', 'fa-car'], ['自転車', 'fa-bicycle'], ['バイク', 'fa-motorcycle'], ['電車', 'fa-train-subway'], ['バス', 'fa-bus'], ['飛行機', 'fa-plane'], ['船', 'fa-ship'], ['食事', 'fa-utensils'], ['買い物', 'fa-cart-shopping'], ['ホテル', 'fa-hotel'], ['就寝', 'fa-bed'], ['スター', 'fa-star'], ['ハート', 'fa-heart']]), {}, { id: "icon-select", class: "form-control" } %>
+        </div>
+        <%= render 'schedules/icon' %>
+        <div>
+          <i id="icon-display" class=""></i>
+        </div>
         <div class="input-group mb-3 mt-4">
           <div class="input-group-prepend">
             <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
@@ -57,7 +65,7 @@
         </div>
         
         <div class="form-group">
-          <%= f.label :schedule_memo, "メモ" %>
+          <%= f.label :schedule_memo, "メモ", for: "schedule_memo" %>
           <%= f.text_area :schedule_memo, class: "form-control", id: "schedule_memo" %>
         </div>
     

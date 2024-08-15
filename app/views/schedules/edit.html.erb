@@ -28,6 +28,28 @@
             </h5>
           </div>
           <div class="card-header">
+            <h5 class="card-title">
+              <%= f.label :icon, "アイコン", for: "icon-select" %>
+              <%= f.select :icon, options_for_select([['歩く', 'fa-person-walking'], ['車', 'fa-car'], ['自転車', 'fa-bicycle'], ['バイク', 'fa-motorcycle'], ['電車', 'fa-train-subway'], ['バス', 'fa-bus'], ['飛行機', 'fa-plane'], ['船', 'fa-ship'], ['食事', 'fa-utensils'], ['買い物', 'fa-cart-shopping'], ['ホテル', 'fa-hotel'], ['就寝', 'fa-bed'], ['スター', 'fa-star'], ['ハート', 'fa-heart']]), {}, { id: "icon-select", class: "form-control" } %>
+            </h5>
+            <div class="icon-selection">
+              <i class="fa-solid fa-person-walking" data-icon="fa-person-walking"></i>
+              <i class="fa-solid fa-car" data-icon="fa-car"></i>
+              <i class="fa-solid fa-bicycle" data-icon="fa-bicycle"></i>
+              <i class="fa-solid fa-motorcycle" data-icon="fa-motorcycle"></i>
+              <i class="fa-solid fa-train-subway" data-icon="fa-train-subway"></i>
+              <i class="fa-solid fa-bus" data-icon="fa-bus"></i>
+              <i class="fa-solid fa-plane" data-icon="fa-plane"></i>
+              <i class="fa-solid fa-ship" data-icon="fa-ship"></i>
+              <i class="fa-solid fa-utensils" data-icon="fa-utensils"></i>
+              <i class="fa-solid fa-cart-shopping" data-icon="fa-cart-shopping"></i>
+              <i class="fa-solid fa-hotel" data-icon="fa-hotel"></i>
+              <i class="fa-solid fa-bed" data-icon="fa-bed"></i>
+              <i class="fa-solid fa-star" data-icon="fa-star"></i>
+              <i class="fa-solid fa-heart" data-icon="fa-heart"></i>
+            </div>
+          </div>
+          <div class="card-header">
              <h5 class="card-title">
               <%= f.label :start_time, "開始時間" %>
               <%= f.time_field :start_time, class: "form-control", id: "schedule_start_time", required: true %>
@@ -53,7 +75,7 @@
           </div>
           <div class="card-header">
             <h5 class="card-title">
-              <%= f.label :schedule_memo, "メモ" %>
+              <%= f.label :schedule_memo, "メモ", for: "schedule_memo" %>
               <%= f.text_area :schedule_memo, class: "form-control", id: "schedule_memo" %>
             </h5>
           </div>
