@@ -4,14 +4,12 @@
 <% else %>
   <%= render 'schedules/public' %>
 <% end %>
-  <div class="container">
-    <% if flash[:notice] %>
-      <div class="alert alert-info text-center" role="alert">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
+<% if flash[:notice] %>
+  <div class="alert alert-info text-center" role="alert">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
     <div class="row justify-content-center">
-      
       <div class="col-md-8">
         <%= form_with(model: @book, local: true) do |f| %>
           <% if @book.errors.any? %>
@@ -138,19 +136,3 @@
     </p>
   </div>
 </footer>
-
-
-<style>
-  .container {
-    margin-top: 50px;
-  }
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .img-fluid {
-    max-width: 100%;
-    height: auto;
-  }
-</style>
-  
