@@ -19,26 +19,26 @@
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :purchase_item, '購入品' %><br>
-              <%= f.text_field :purchase_item, required: true %>
+              <%= f.text_field :purchase_item, class: "form-control", required: true %>
             </h5>
           </div>
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :price, '価格' %><br>
-              <%= f.text_field :price, required: true%>
+              <%= f.text_field :price, class: "form-control", required: true%>
             </h5>
           </div>
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :date, '日にち' %><br>
-              <%= f.select :date, options_for_select(@date_range, selected: @cost.date.strftime('%m-%d')), class: "form-control" %>
+              <%= f.select :date, options_for_select(@date_range, selected: @cost.date.strftime('%m-%d')), {}, class: "form-control" %>
             </h5>
           </div>
 
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :consumer, '購入者' %><br>
-              <%= f.text_field :consumer, required: true %>
+              <%= f.text_field :consumer, class: "form-control", required: true %>
             </h5>
           </div>
           <div class="card-header">
@@ -50,7 +50,7 @@
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :remarks, 'メモ' %><br>
-              <%= f.text_area :remarks %>
+              <%= f.text_area :remarks, class: "form-control" %>
             </h5>
           </div>
           <div class="card-footer d-flex justify-content-end">
