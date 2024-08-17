@@ -15,21 +15,9 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 
+import "./icon_selector";
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-document.addEventListener('DOMContentLoaded', () => {
- 
-  const iconElements = document.querySelectorAll('.icon-selection i');
-  const iconSelect = document.getElementById('icon-select');
-  
-  iconElements.forEach(icon => {
-    icon.addEventListener('click', () => {
-      const selectedIconClass = icon.getAttribute('data-icon');
-      iconSelect.value = selectedIconClass;
-      iconElements.forEach(el => el.classList.remove('selected'));
-      icon.classList.add('selected');
-    });
-  });
-});
