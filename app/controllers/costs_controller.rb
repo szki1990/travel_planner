@@ -55,7 +55,7 @@ class CostsController < ApplicationController
   
   def update
     if @cost.update(cost_params)
-      redirect_to book_costs_path(@book), notice: 'メモが更新されました'
+      redirect_to book_costs_path(@book), notice: '更新されました'
     else
       @start_day = @book.start_day.to_date
       @end_day = @book.end_day.to_date

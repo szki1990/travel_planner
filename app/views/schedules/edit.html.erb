@@ -2,90 +2,77 @@
 <% if @book.user_id == current_user.id || @book.shared_users.include?(current_user) %>
   <%= render 'schedules/plan' %>
 <% end %>
-<div class="container mt-5">
-  <% if @schedule.errors.any? %>
-    <%= @schedule.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @schedule.errors.full_messages.each do |message| %>
-        <li><%= message %>を入力してください</li>
-      <% end %>
-    </ul>   
-  <% end %>
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <%= form_with model: [@book, @schedule] do |f| %>
-        <div class="card">
-          <div class="card-header">
-            <h5 class="card-title">
-              <%= f.label :title, "タイトル" %>
-              <%= f.text_field :title, class: "form-control", id: "schedule_title", required: true %>
-            </h5>
-          </div>
-          <div class="card-header">
-            <h5 class="card-title">
-              <%= f.label :start_date, "日にち" %>
-              <%= f.select :start_date, options_for_select(@date_range), {}, class: "form-control", id: "schedule_start_date", required: true %>
-            </h5>
-          </div>
-          <div class="card-header">
-            <h5 class="card-title">
-              <%= f.label :icon, "アイコン", for: "icon-select" %>
-              <%= f.select :icon, options_for_select([['歩く', 'fa-person-walking'], ['車', 'fa-car'], ['自転車', 'fa-bicycle'], ['バイク', 'fa-motorcycle'], ['電車', 'fa-train-subway'], ['バス', 'fa-bus'], ['飛行機', 'fa-plane'], ['船', 'fa-ship'], ['食事', 'fa-utensils'], ['買い物', 'fa-cart-shopping'], ['ホテル', 'fa-hotel'], ['就寝', 'fa-bed'], ['スター', 'fa-star'], ['ハート', 'fa-heart']]), {}, { id: "icon-select", class: "form-control" } %>
-            </h5>
-            <div class="icon-selection">
-              <i class="fa-solid fa-person-walking" data-icon="fa-person-walking"></i>
-              <i class="fa-solid fa-car" data-icon="fa-car"></i>
-              <i class="fa-solid fa-bicycle" data-icon="fa-bicycle"></i>
-              <i class="fa-solid fa-motorcycle" data-icon="fa-motorcycle"></i>
-              <i class="fa-solid fa-train-subway" data-icon="fa-train-subway"></i>
-              <i class="fa-solid fa-bus" data-icon="fa-bus"></i>
-              <i class="fa-solid fa-plane" data-icon="fa-plane"></i>
-              <i class="fa-solid fa-ship" data-icon="fa-ship"></i>
-              <i class="fa-solid fa-utensils" data-icon="fa-utensils"></i>
-              <i class="fa-solid fa-cart-shopping" data-icon="fa-cart-shopping"></i>
-              <i class="fa-solid fa-hotel" data-icon="fa-hotel"></i>
-              <i class="fa-solid fa-bed" data-icon="fa-bed"></i>
-              <i class="fa-solid fa-star" data-icon="fa-star"></i>
-              <i class="fa-solid fa-heart" data-icon="fa-heart"></i>
+<body>
+  <div class="container mt-5">
+    <% if @schedule.errors.any? %>
+      <%= @schedule.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @schedule.errors.full_messages.each do |message| %>
+          <li><%= message %>を入力してください</li>
+        <% end %>
+      </ul>   
+    <% end %>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <%= form_with model: [@book, @schedule] do |f| %>
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">
+                <%= f.label :title, "タイトル" %>
+                <%= f.text_field :title, class: "form-control", id: "schedule_title", required: true %>
+              </h5>
+            </div>
+            <div class="card-header">
+              <h5 class="card-title">
+                <%= f.label :start_date, "日にち" %>
+                <%= f.select :start_date, options_for_select(@date_range, selected: @schedule.start_date.strftime('%Y-%m-%d')), {}, class: "form-control", id: "schedule_start_date", required: true %>
+              </h5>
+            </div>
+            <div class="card-header">
+              <h5 class="card-title">
+                <%= f.label :icon, "アイコン", for: "icon-select" %>
+                <%= f.select :icon, options_for_select([['歩く', 'fa-person-walking'], ['車', 'fa-car'], ['自転車', 'fa-bicycle'], ['バイク', 'fa-motorcycle'], ['電車', 'fa-train-subway'], ['バス', 'fa-bus'], ['飛行機', 'fa-plane'], ['船', 'fa-ship'], ['食事', 'fa-utensils'], ['買い物', 'fa-cart-shopping'], ['ホテル', 'fa-hotel'], ['就寝', 'fa-bed'], ['筋肉', 'fa-dumbbell'], ['スター', 'fa-star'], ['ハート', 'fa-heart']]), {}, { id: "icon-select", class: "form-control" } %>
+              </h5>
+              <%= render 'schedules/icon' %>
+            </div>
+            <div class="card-header">
+               <h5 class="card-title">
+                <%= f.label :start_time, "開始時間" %>
+                <%= f.time_field :start_time, class: "form-control", id: "schedule_start_time", required: true %>
+              </h5>
+            </div>
+            <div class="card-header">
+              <h5 class="card-title">
+                <%= f.label :end_time, "終了時間" %>
+                <%= f.time_field :end_time, class: "form-control", id: "schedule_end_time" %>
+              </h5>
+            </div>
+            <div class="card-header">
+              <h5 class="card-title">
+                <%= f.label :address, "住所" %>
+                <%= f.text_field :address, class: "form-control", id: "schedule_address" %>
+              </h5>
+            </div>
+            <div class="card-header">
+              <h5 class="card-title">
+                <%= f.label :budget, "予算" %>
+                <%= f.number_field :budget, class: "form-control", id: "schedule_budget" %>
+              </h5>
+            </div>
+            <div class="card-header">
+              <h5 class="card-title">
+                <%= f.label :schedule_memo, "メモ", for: "schedule_memo" %>
+                <%= f.text_area :schedule_memo, class: "form-control", id: "schedule_memo" %>
+              </h5>
+            </div>
+            <div class="card-footer d-flex justify-content-end">
+              <div class="btn-group">
+                <%= f.submit '保存' %>
+              </div>
             </div>
           </div>
-          <div class="card-header">
-             <h5 class="card-title">
-              <%= f.label :start_time, "開始時間" %>
-              <%= f.time_field :start_time, class: "form-control", id: "schedule_start_time", required: true %>
-            </h5>
-          </div>
-          <div class="card-header">
-            <h5 class="card-title">
-              <%= f.label :end_time, "終了時間" %>
-              <%= f.time_field :end_time, class: "form-control", id: "schedule_end_time" %>
-            </h5>
-          </div>
-          <div class="card-header">
-            <h5 class="card-title">
-              <%= f.label :address, "住所" %>
-              <%= f.text_field :address, class: "form-control", id: "schedule_address" %>
-            </h5>
-          </div>
-          <div class="card-header">
-            <h5 class="card-title">
-              <%= f.label :budget, "予算" %>
-              <%= f.number_field :budget, class: "form-control", id: "schedule_budget" %>
-            </h5>
-          </div>
-          <div class="card-header">
-            <h5 class="card-title">
-              <%= f.label :schedule_memo, "メモ", for: "schedule_memo" %>
-              <%= f.text_area :schedule_memo, class: "form-control", id: "schedule_memo" %>
-            </h5>
-          </div>
-          <div class="card-footer d-flex justify-content-end">
-            <div class="btn-group">
-              <%= f.submit '保存' %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+</body>

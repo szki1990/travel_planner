@@ -1,3 +1,4 @@
+<%= render 'layouts/plate' %>
 <% if @book.user_id == current_user.id || @book.shared_users.include?(current_user) %>
   <%= render 'schedules/plan' %>
 <% end %>
@@ -17,37 +18,37 @@
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :purchase_item, '購入品' %><br>
-              <%= f.text_field :purchase_item, required: true %>
+              <%= f.text_field :purchase_item, class: "form-control", required: true %>
             </h5>
           </div>
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :price, '価格' %><br>
-              <%= f.text_field :price, required: true %>
+              <%= f.text_field :price, class: "form-control", required: true %>
             </h5>
           </div>
           <div class="card-header">
              <h5 class="card-title">
               <%= f.label :date, '日にち' %><br>
-              <%= f.select :date, options_for_select(@date_range, selected: @cost.date.strftime('%Y-%m-%d')), class: "form-control" %>
+              <%= f.select :date, options_for_select(@date_range, selected: @cost.date.strftime('%Y-%m-%d')), {}, class: "form-control" %>
             </h5>
           </div>
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :consumer, '購入者' %><br>
-              <%= f.text_field :consumer, required: true %>
+              <%= f.text_field :consumer, class: "form-control", required: true %>
             </h5>
           </div>
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :payment_method, '支払い方法' %><br>
-              <%= f.select :payment_method, options_for_select(Cost::PAYMENT_METHODS.map.with_index { |method, index| [method, index] }), {}, class: "form-control" %>
+              <%= f.select :payment_method, options_for_select(Cost::PAYMENT_METHODS.map.with_index { |method, index| [method, index] }, selected: @cost.payment_method), {}, class: "form-control" %>
             </h5>
           </div>
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :remarks, 'メモ' %><br>
-              <%= f.text_area :remarks %>
+              <%= f.text_area :remarks, class: "form-control" %>
             </h5>
           </div>
           <div class="card-footer d-flex justify-content-end">

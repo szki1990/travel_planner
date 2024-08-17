@@ -14,12 +14,12 @@
           </div>
         <% end %>
 
-      <div><%= link_to '一覧へ', books_path, class: 'btn btn-outline-secondary' %></div>
-      <div class="d-flex justify-content-center border p-3 mb-3 mt-3">
-        <h4 class="mb-0">
-          しおり編集
-        </h4>
-      </div>
+        <div class="pt-3"><%= link_to '一覧へ', books_path, class: 'btn btn-outline-secondary' %></div>
+        <div class="d-flex justify-content-center border p-3 mb-3 mt-3">
+          <h4 class="mb-0">
+            しおり編集ページ
+          </h4>
+        </div>
         <div class="form-group">
           <label for="book_title">タイトル</label>
           <%= f.text_field :title, class: "form-control", id: "book_title", required: true %>
@@ -72,7 +72,7 @@
           <h4>画像</h4>
           <%= f.file_field :image, accept: "image/*", class: "form-control-file" %>
         </div>
-
+        <%= link_to "画像を削除する" , destroy_image_book_path(@book), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-outline-danger ml-2"  %>
         <hr class="mb-4">
         <button class="btn btn-primary btn-lg btn-block" type="submit">更新</button>
       <% end %>

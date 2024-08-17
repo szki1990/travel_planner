@@ -46,6 +46,10 @@ class Book < ApplicationRecord
     user == self.user || shared_users.include?(user)
   end
   
+  def remove_image
+    self.image.purge
+  end
+  
   validate :validate_date_range_order
   
   private

@@ -1,3 +1,4 @@
+<main class="mt-6">
 <div class="container">
   <nav class="navbar navbar-expand navbar-light bg-light rounded">
     <div class="collapse navbar-collapse">
@@ -29,7 +30,13 @@
       </ul>
     </div>
   </nav>
+  <% if flash[:notice] %>
+  <div class="alert alert-info text-center" role="alert">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 </div>
+</main>
 <style>
   .navbar-nav .nav-item .nav-link {
     display: flex;

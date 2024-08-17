@@ -30,6 +30,10 @@ Rails.application.routes.draw do
       get 'public_index', to: 'books#public_index'
     end
     
+    member do
+      delete :destroy_image
+    end 
+    
     resources :schedules, only: [:new, :create, :index, :edit, :destroy, :update, :show]
     resources :costs, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
       collection do

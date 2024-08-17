@@ -3,12 +3,6 @@
   <%= render 'schedules/plan' %>
 <% end %>
 <div class="container">
-  <% if flash[:notice] %>
-    <div class="alert alert-info text-center" role="alert">
-      <%= flash[:notice] %>
-    </div>
-  <% end %>
-  
   <div class="m-4">
     <%= link_to '作成', new_book_cost_path(@book), class: 'btn btn-outline-secondary' %>
     <%= link_to '日にち別合計', book_costs_path(@book), class: 'btn btn-outline-secondary' %>

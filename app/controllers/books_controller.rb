@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
   skip_before_action :authenticate_user!, only: [:public_index, :show]
   before_action :authenticate_user!, except: [:public_index]
-  before_action :set_book, only: [:show, :destroy, :update, :edit]
+  before_action :set_book, only: [:show, :destroy, :update, :edit, :destroy_image]
   
   def new
     @book = Book.new
@@ -66,6 +66,11 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     redirect_to books_path, notice: 'しおりを削除しました'
+  end 
+  
+  def destroy_image
+    @book.image.purge
+    redirect_to edit_book_path(@book), notice: '画像が削除されました。'
   end 
   
   private
