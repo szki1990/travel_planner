@@ -14,7 +14,6 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
-import "../stylesheets/style.css"
 
 import "./icon_selector";
 

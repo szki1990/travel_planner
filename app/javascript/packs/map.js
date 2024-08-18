@@ -17,7 +17,7 @@ async function initMap() {
   });
   
   try {
-    // jsonでエラーが出る場合このURLが正しく動作しているか要確認
+
     const response = await fetch(`${location.href}.json`);
     if (!response.ok) throw new Error('Network response was not ok');
     
@@ -36,7 +36,7 @@ async function initMap() {
         title: title,
       });
       
-      // 要素が1つだけの時センタリングする
+
       if (items.length === 1) {
         map.setCenter(new google.maps.LatLng(latitude, longitude));
       }
