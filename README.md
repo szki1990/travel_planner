@@ -37,4 +37,4 @@
     - [DesignEvo Free Logo Maker] https://www.freepik.com/search?format=search&last_filter=query&last_value=&query=&type=vector
 4. **地図表示**:
     - [Google Maps JavaScript API] https://developers.google.com/maps/documentation/javascript/overview
-    - [Geocoding API] https://developers.google.com/maps/documentation/geocoding/overview
+    - [Geocoding API] https://developers.google.com/maps/documentation/geocoding/overview# buckup-repo
