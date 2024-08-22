@@ -31,7 +31,10 @@
             <div class="card-header">
               <h5 class="card-title">
                 <%= f.label :icon, "アイコン", for: "icon-select" %>
-                <%= f.select :icon, options_for_select([['歩く', 'fa-person-walking'], ['車', 'fa-car'], ['自転車', 'fa-bicycle'], ['バイク', 'fa-motorcycle'], ['電車', 'fa-train-subway'], ['バス', 'fa-bus'], ['飛行機', 'fa-plane'], ['船', 'fa-ship'], ['食事', 'fa-utensils'], ['買い物', 'fa-cart-shopping'], ['ホテル', 'fa-hotel'], ['就寝', 'fa-bed'], ['筋肉', 'fa-dumbbell'], ['スター', 'fa-star'], ['ハート', 'fa-heart']], selected: @schedule.icon), {}, { id: "icon-select", class: "form-control" } %>
+                <%= f.select :icon, options_for_select([['徒歩', 'fa-person-walking'], ['車', 'fa-car'], ['自転車', 'fa-bicycle'], ['バイク', 'fa-motorcycle'], 
+                ['電車', 'fa-train-subway'], ['バス', 'fa-bus'], ['飛行機', 'fa-plane'], ['船', 'fa-ship'], ['食事', 'fa-utensils'], ['買い物', 'fa-cart-shopping'], ['読書', 'fa-book-open'], 
+                ['ホテル', 'fa-hotel'], ['就寝', 'fa-bed'], ['運動', 'fa-dumbbell'], ['海', 'fa-umbrella-beach'], ['山', 'fa-mountain'], ['プレゼント', 'fa-gift'], ['音楽', 'fa-music'], ['カメラ', 'camera-retro'], ['なし', 'none']], selected: @schedule.icon), {}, 
+                { id: "icon-select", class: "form-control" } %>
               </h5>
               <%= render 'schedules/icon' %>
             </div>
