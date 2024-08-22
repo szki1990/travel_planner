@@ -68,10 +68,11 @@
           <%= f.label :schedule_memo, "メモ", for: "schedule_memo" %>
           <%= f.text_area :schedule_memo, class: "form-control", id: "schedule_memo" %>
         </div>
-    
-      <%= f.submit "スケジュール作成", class: 'btn btn-outline-secondary' %>
-      <% end %>
+        <div class="pb-5">
+          <%= f.submit "スケジュール作成", class: 'btn btn-outline-secondary btn-lg btn-block' %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-<%= javascript_pack_tag "jpostal", 'data-turbolinks-track': 'reload' %>

@@ -20,12 +20,12 @@
           <div class="card-header">
             <h5 class="card-title">
               <%= f.label :title, 'タイトル' %><br>
-              <%= f.text_field :title, required: true %>
+              <%= f.text_field :title, class: 'form-control', required: true %>
             </h5>
           </div>
         </div>
-        <div class="actions">
-          <%= f.submit '作成', class: "btn btn-sm btn-outline-secondary" %>
+        <div class="card-footer">
+          <%= f.submit '作成', class: 'btn btn-outline-secondary btn-lg btn-block' %>
         </div>
       <% end %>
     </div>

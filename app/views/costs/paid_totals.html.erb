@@ -15,7 +15,7 @@
     <%= link_to '支払者別合計', paid_totals_book_costs_path(@book), class: 'btn btn-outline-secondary' %>
     <%= link_to '支払方法別合計', payment_method_index_book_costs_path(@book), class: 'btn btn-outline-secondary' %>
   </div>
-  <h1>合計金額: <%= number_to_currency(@total_price, unit: '￥', format: '%u%n') %></h1>
+  <h1 class="d-flex justify-content-end">合計金額: <%= number_to_currency(@total_price, unit: '￥', format: '%u%n') %></h1>
   <% @costs.group_by { |cost| cost.consumer }.each do |consumer, costs| %>
     <div class="card mb-3">
       <div class="card-header">
