@@ -11,6 +11,7 @@ gem 'sqlite3', '~> 1.4'
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
+gem 'sassc', '~> 2.1'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -65,10 +66,6 @@ group :production do
   gem 'mysql2'
 end
 
-gem "net-smtp"
-gem "net-pop"
-gem "net-imap"
-
 gem 'jquery-rails'
 
 
@@ -77,3 +74,7 @@ gem 'geocoder'
 gem 'faker'
 
 gem 'kaminari'
+
+gem "net-smtp"
+gem "net-pop"
+gem "net-imap"
