@@ -1,4 +1,4 @@
-name: Rails CI/CD
+name: Rails CI
 
 on:
   push:
