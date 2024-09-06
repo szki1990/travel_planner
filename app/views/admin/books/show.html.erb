@@ -18,9 +18,9 @@
           <div><%=@book.user.name %></div>
         </div>
         <div class="container">
-          <div class="row mb-5">
+          <div class="row mb-5 justify-content-center">
             <% if @book.get_image.attached? %>
-              <%= image_tag @book.get_image.variant(resize: "900x800"), class: 'img-fluid' %>
+              <%= image_tag @book.get_image.variant(resize: "400x300"), class: 'img-fluid' %>
             <% else %>
               <p>No image available</p>
             <% end %>
