@@ -8,7 +8,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div><%= link_to '一覧へ', admin_books_path, class: 'btn btn-outline-secondary' %></div>
-    
+      <div><%= link_to 'プランへ', admin_book_schedules_path(@book.id), class: 'btn btn-outline-secondary' %></div>
       
       <%= form_with(model: @book, local: true) do |f| %>
         <div class="d-flex flex-column align-items-center text-center">
