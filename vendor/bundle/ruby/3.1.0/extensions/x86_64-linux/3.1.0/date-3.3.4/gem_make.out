@@ -1,14 +1,14 @@
-current directory: /home/ec2-user/travel_planner/vendor/bundle/ruby/3.1.0/gems/date-3.3.4/ext/date
-/home/ec2-user/.rbenv/versions/3.1.2/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20240620-9561-ljcxa6.rb extconf.rb
+current directory: /home/ec2-user/environment/travel_planner/vendor/bundle/ruby/3.1.0/gems/date-3.3.4/ext/date
+/home/ec2-user/.rvm/rubies/ruby-3.1.2/bin/ruby -I /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0 -r ./siteconf20240910-2895-i3z5qt.rb extconf.rb
 checking for rb_category_warn()... yes
 checking for timezone in time.h with  -Werror... yes
 checking for altzone in time.h with  -Werror... no
 creating Makefile
 
-current directory: /home/ec2-user/travel_planner/vendor/bundle/ruby/3.1.0/gems/date-3.3.4/ext/date
+current directory: /home/ec2-user/environment/travel_planner/vendor/bundle/ruby/3.1.0/gems/date-3.3.4/ext/date
 make DESTDIR\= clean
 
-current directory: /home/ec2-user/travel_planner/vendor/bundle/ruby/3.1.0/gems/date-3.3.4/ext/date
+current directory: /home/ec2-user/environment/travel_planner/vendor/bundle/ruby/3.1.0/gems/date-3.3.4/ext/date
 make DESTDIR\=
 compiling date_core.c
 compiling date_parse.c
@@ -16,6 +16,6 @@ compiling date_strftime.c
 compiling date_strptime.c
 linking shared-object date_core.so
 
-current directory: /home/ec2-user/travel_planner/vendor/bundle/ruby/3.1.0/gems/date-3.3.4/ext/date
+current directory: /home/ec2-user/environment/travel_planner/vendor/bundle/ruby/3.1.0/gems/date-3.3.4/ext/date
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 date_core.so ./.gem.20240620-9561-u4ndd5
+/usr/bin/install -c -m 0755 date_core.so ./.gem.20240910-2895-wpqw23

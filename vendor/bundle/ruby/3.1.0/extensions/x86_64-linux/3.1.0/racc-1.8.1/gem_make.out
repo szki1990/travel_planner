@@ -1,5 +1,5 @@
 current directory: /home/ec2-user/environment/travel_planner/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
-/home/ec2-user/.rvm/rubies/ruby-3.1.2/bin/ruby -I /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0 -r ./siteconf20240910-18510-usxo2s.rb extconf.rb
+/home/ec2-user/.rvm/rubies/ruby-3.1.2/bin/ruby -I /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0 -r ./siteconf20240910-2895-jld8jq.rb extconf.rb
 creating Makefile
 
 current directory: /home/ec2-user/environment/travel_planner/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
@@ -12,4 +12,4 @@ linking shared-object racc/cparse.so
 
 current directory: /home/ec2-user/environment/travel_planner/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 cparse.so ./.gem.20240910-18510-rya66h/racc
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20240910-2895-kbl3tr/racc
