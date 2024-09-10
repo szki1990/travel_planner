@@ -36,17 +36,23 @@ class BooksController < ApplicationController
   end 
   
   def show
-      @book_comment = BookComment.new
-      @schedules = @book.schedules
-      @total_budget = @schedules.sum(:budget)
-      @map_data = @schedules.map do |schedule|
-        {
-          title: schedule.title,
-          lat: schedule.latitude,
-          lng: schedule.longitude,
-        }
+    @book_comment = BookComment.new
+    @schedules = @book.schedules
+    @total_budget = @schedules.sum(:budget)
+    @map_data = @schedules.map do |schedule|
+      {
+        title: schedule.title,
+        lat: schedule.latitude,
+        lng: schedule.longitude,
+      }
     end 
     @shared_users = @book.shared_users
+    @image = @book.image if @book.image.attached?
+    @image_url = if @image.present?
+                  "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{@book.image.key}-thumbnail.#{@book.image.blob.content_type.split('/').pop}"
+                else 
+                  asset_path('default-image.jpg')
+                end 
   end
   
   def edit
@@ -55,6 +61,7 @@ class BooksController < ApplicationController
   
   def update
     if @book.update(book_params)
+      sleep(3)
       @book.shared_user_ids = params[:book][:shared_user_ids]
       redirect_to book_path(@book), notice: 'しおりを更新しました'
     else

@@ -25,7 +25,6 @@ class Book < ApplicationRecord
     (start_day.to_date..end_day.to_date).to_a
   end 
 
-
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')
