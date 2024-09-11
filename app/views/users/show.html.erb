@@ -10,13 +10,14 @@
       <div class="position-relative d-inline-block">
         <%= image_tag @user.get_profile_image(300, 300), class: "bd-placeholder-img rounded-circle", width: 140, height: 140, preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false %>
       </div>
+      <div>
+        
+      </div>
       <h2 class="fw-normal mt-3"><%= @user.name %></h2>
       <% if @user.id == current_user.id %>
-        <div>
-          <%= link_to edit_user_path(@user), class: "btn-sm btn-outline-secondary" do %>
-        </div>
+        <%= link_to edit_user_path(@user), class: "btn-sm btn-outline-secondary" do %>
           編集する<i class="fa-regular fa-pen-to-square"></i>
-          <% end %>
+        <% end %>
         <div class="d-flex justify-content-center mt-4">
           <div class="follow me-3">
             <p>

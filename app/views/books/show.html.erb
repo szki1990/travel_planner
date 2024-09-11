@@ -29,7 +29,11 @@
         <div class="container">
           <div class="row mb-5 justify-content-center">
             <div>
-              <%= image_tag @image_url, class: 'img-fluid', width: "500", height: "400" %>
+              <% if @image_url.present? %>
+                <%= image_tag @image_url, class: 'img-fluid', width: "500", height: "400" %>
+              <% else %>
+                <%= image_tag asset_path('default-image2.jpg'), class: 'img-fluid', width: "140", height: "140" %>
+              <% end %>
             </div>
           </div>
         </div>

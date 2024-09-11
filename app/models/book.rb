@@ -10,6 +10,7 @@ class Book < ApplicationRecord
   has_many :memos, dependent: :destroy
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :members, dependent: :destroy
   
   validates :title, presence: true
   validates :start_day, presence: true

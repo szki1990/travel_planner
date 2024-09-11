@@ -13,14 +13,16 @@ class User < ApplicationRecord
   has_many :following_users, through: :active_relationships, source: :following
   has_many :passive_relationships, class_name: "Relationship", foreign_key: :following_id, dependent: :destroy
   has_many :follower_users, through: :passive_relationships, source: :follower
+  has_many :members, dependent: :destroy
+  has_many :memberships, dependent: :destroy
 
   validates :email, presence: { message: "が入力されていません" }
   validates :name, presence: { message: "が入力されていません" }
 
   def get_profile_image(width, height)
     unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/25145460.jpg')
-      profile_image.attach(io: File.open(file_path), filename: '25145460.jpg', content_type: 'image/jpeg')
+      file_path = Rails.root.join('app/assets/images/default-image2.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image2.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end 

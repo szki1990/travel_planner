@@ -1,15 +1,17 @@
 <%= render 'layouts/plate' %>
-<div class="container pb-3">
+<div class="container py-3">
   <div class="row justify-content-center mt-5">
     <div class="col-lg-4 text-center">
       <div class="position-relative d-inline-block">
-        <%= image_tag @user.get_profile_image(300,300), class:"bd-placeholder-img rounded-circle", width: 140, height: 140, preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false  %>
+        <% if @image_url.present? %>
+          <%= image_tag @image_url, class: 'img-fluid', width: "140", height: "140" %>
+        <% else %>
+          <%= image_tag asset_path('default-image2.jpg'), class: 'img-fluid', width: "140", height: "140" %>
+        <% end %>
       </div>
       <% if @user == current_user %>
       <h2 class="fw-normal mt-3"><%= @user.name %></h2>
-      <div>
         <%= link_to edit_user_path(@user), class: "btn-sm btn-outline-secondary" do %>
-      </div>
         編集する<i class="fa-solid fa-user-pen"></i>
         <% end %>
       </div>

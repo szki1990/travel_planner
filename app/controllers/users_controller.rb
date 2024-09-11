@@ -15,6 +15,9 @@ class UsersController < ApplicationController
     else 
       @public_books = @user.books.publicly_visible.order(created_at: :desc)
     end 
+    @image_url = if @image.present?
+                  "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{@book.image.key}-thumbnail.#{@book.image.blob.content_type.split('/').pop}"
+                end 
   end
 
   def edit
@@ -33,6 +36,9 @@ class UsersController < ApplicationController
 
   def my_page
     @user = current_user
+    @image_url = if @image.present?
+                  "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{@book.image.key}-thumbnail.#{@book.image.blob.content_type.split('/').pop}"
+                end 
   end
 
   def destroy
