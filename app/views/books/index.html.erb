@@ -110,7 +110,13 @@
                   <div class="col-md-4">
                     <div class="card shadow-sm">
                       <%= link_to book_path(book.id) do %>
-                        <%= image_tag book.get_image.variant(resize: "300x300"), class: "bd-placeholder-img card-img-top", width: "100%", height: "225", preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false %>
+                        <div>
+                          <% if @image_url.present? %>
+                            <%= image_tag @image_url, class: 'img-fluid', width: "500", height: "400" %>
+                          <% else %>
+                            <%= image_tag asset_path('default-image2.jpg'), class: 'img-fluid', width: "140", height: "140" %>
+                          <% end %>
+                        </div>
                       <% end %>
                       <div class="card-body">
                         <p class="card-text">
