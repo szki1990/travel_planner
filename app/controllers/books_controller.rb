@@ -25,9 +25,6 @@ class BooksController < ApplicationController
   def index
     @books = current_user.books.order(start_day: :asc)
     @shared_books = current_user.shared_books
-    @image_url = if @image.present?
-                  "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{@book.image.key}-thumbnail.#{@book.image.blob.content_type.split('/').pop}"
-                end 
   end
   
   def public_index
