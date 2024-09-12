@@ -112,7 +112,7 @@
                       <%= link_to book_path(book.id) do %>
                         <div>
                           <% if @image_url.present? %>
-                            <%= image_tag @image_url, class: 'img-fluid', width: "500", height: "400" %>
+                            <%= image_tag @image_url, class: 'img-fluid', width: "100", height: "100" %>
                           <% else %>
                             <%= image_tag asset_path('default-image2.jpg'), class: 'img-fluid', width: "140", height: "140" %>
                           <% end %>
