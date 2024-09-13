@@ -112,9 +112,9 @@
                       <div class="text-center py-3">
                         <%= link_to book_path(book.id) do %>
                           <% if book.image.attached? %>
-                            <%= image_tag "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{book.image.key}-thumbnail.#{book.image.blob.content_type.split('/').pop}", class: 'img-fluid', width: "200", height: "200" %>
+                            <%= image_tag "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{book.image.key}-thumbnail.#{book.image.blob.content_type.split('/').pop}", class: 'img-fluid', width: "auto", height: "auto" %>
                           <% else %>
-                            <%= image_tag asset_path('default-image2.jpg'), class: 'img-fluid', width: "200", height: "200" %>
+                            <%= image_tag asset_path('default-image.jpg'), class: 'img-fluid', width: "300", height: "200" %>
                           <% end %>
                         <% end %>
                       </div>

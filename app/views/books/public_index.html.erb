@@ -52,9 +52,15 @@
               </a>
             </h3>
             <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-              <%= link_to book_path(book.id) do %>
-                <%= image_tag book.get_image.variant(resize_to_fill: [300, 200]), class: "card-img-right flex-auto d-none d-lg-block", alt: "Card image cap" %>
-              <% end %>
+              <div class="text-center p-3">
+                <%= link_to book_path(book.id) do %>
+                  <% if book.image.attached? %>
+                    <%= image_tag "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{book.image.key}-thumbnail.#{book.image.blob.content_type.split('/').pop}", class: 'img-fluid', width: "auto", height: "auto" %>
+                  <% else %>
+                    <%= image_tag asset_path('default-image2.jpg'), class: 'img-fluid', width: "auto", height: "auto" %>
+                  <% end %>
+                <% end %>
+              </div>
               <div class="card-body d-flex flex-column align-items-center text-center">
                 <h5 class="mb-0">
                   <div class="mb-1 text-muted"><%= book.start_day.strftime('%Y-%m-%d') %></div>
