@@ -8,7 +8,13 @@
   <div class="row justify-content-center mt-5">
     <div class="col-lg-4 text-center">
       <div class="position-relative d-inline-block">
-        <%= image_tag @user.get_profile_image(300, 300), class: "bd-placeholder-img rounded-circle", width: 140, height: 140, preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false %>
+        <%= link_to user_path(@user) do %>
+          <% if @user.profile_image.attached? %>
+            <%= image_tag "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{@user.profile_image.key}-thumbnail.#{@user.profile_image.blob.content_type.split('/').pop}", class: 'img-fluid', width: "auto", height: "auto" %>
+          <% else %>
+            <%= image_tag asset_path('default-image2.jpg'), class: 'img-fluid', width: "auto", height: "auto" %>
+          <% end %>
+        <% end %>
       </div>
       <h2 class="fw-normal mt-3"><%= @user.name %></h2>
       <% if @user.id == current_user.id %>

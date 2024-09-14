@@ -24,9 +24,15 @@
               </div>
             </h3>
             <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-              <%= link_to book_path(favorite.book) do %>
-                <%= image_tag favorite.book.get_image.variant(resize_to_fill: [300, 200]), class: "card-img-right flex-auto d-none d-lg-block", alt: "Card image cap" %>
-              <% end %>
+                <div class="p-3">
+                  <%= link_to book_path(favorite.book) do %>
+                    <% if favorite.book.image.attached? %>
+                      <%= image_tag "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{favorite.book.image.key}-thumbnail.#{favorite.book.image.blob.content_type.split('/').pop}", class: 'img-fluid', width: "auto", height: "auto" %>
+                    <% else %>
+                      <%= image_tag asset_path('default-image.jpg'), class: 'img-fluid', width: "auto", height: "auto" %>
+                    <% end %>
+                  <% end %>
+                  </div>
               <div class="card-body d-flex flex-column align-items-start">
                 <div class="mb-1 text-muted"><%= favorite.book.start_day.strftime('%Y-%m-%d') %></div>
                 <div class="mb-1 text-muted ml-5">〜</div>

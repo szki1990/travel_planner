@@ -16,7 +16,11 @@
         <div class="py-3"><%= link_to 'マイページへ', my_page_path, class: "btn btn-sm btn-outline-secondary" %></div>
         <div class="d-flex flex-column align-items-center text-center">
           <div class="position-relative d-inline-block md-2 py-3">
-            <%= image_tag @user.get_profile_image(300,300), class:"bd-placeholder-img rounded-circle", width: 140, height: 140, preserve_aspect_ratio: "xMidYMid slice", role: "img", "aria-label": "Placeholder", focusable: false  %>
+            <% if @user.profile_image.attached? %>
+              <%= image_tag "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{@user.profile_image.key}-thumbnail.#{@user.profile_image.blob.content_type.split('/').pop}", class: 'img-fluid', width: "auto", height: "auto" %>
+            <% else %>
+              <%= image_tag asset_path('default-image2.jpg'), class: 'img-fluid', width: "auto", height: "auto" %>
+            <% end %>
           </div>
         </div>
         <div class="form-group">
