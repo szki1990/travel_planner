@@ -39,7 +39,7 @@
         <div class="card-header">
           <h7 class="card-title">
             メモ
-            <p><%= @cost.remarks %></p>
+            <p><%= simple_format(@cost.remarks, sanitize: true) %></p>
           </h7>
         </div>
         <div class="btn-group">
