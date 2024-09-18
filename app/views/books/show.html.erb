@@ -79,7 +79,7 @@
 
         <div>
           <hr class="mb-4">
-          <% if @book.user == current_user || @book.shared_users.include?(current_user) %>
+          <% if @book.user == current_user %>
             <%= link_to "編集", edit_book_path, class: "btn btn-outline-primary btn-lg btn-block" %>
             <%= link_to "削除", book_path(@book), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-lg btn-block" %>
           <% end %>
