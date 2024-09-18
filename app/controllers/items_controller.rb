@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_check_list, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_book, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:edit, :update, :destroy]
+   before_action :is_matching_login_user, only: [:new, :index, :show, :edit, :update, :dastroy]
   
   def new
     @item = @category.items.build
@@ -66,6 +67,12 @@ class ItemsController < ApplicationController
   
   def item_params
     params.require(:item).permit(:content)
+  end 
+  
+  def is_matching_login_user
+    unless @book.user_id == current_user.id || @book.shared_users.include?(current_user)
+      redirect_to book_schedules_path(@book)
+    end 
   end 
   
 end

@@ -1,7 +1,7 @@
 class CostsController < ApplicationController
   before_action :set_book, only: [:new, :create, :index, :paid_totals, :payment_method_index, :edit, :show, :update, :destroy]
   before_action :set_cost, only: [:show, :edit, :destroy, :update]
-  before_action :is_matching_login_user, only: [:new, :index, :show, :edit, :update, :dastroy]
+  before_action :is_matching_login_user, only: [:new, :index, :show, :edit, :update, :dastroy, :payment_method_index, :paid_totals]
   
   def new
     @cost = @book.costs.build(date: Date.today)
