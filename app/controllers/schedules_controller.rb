@@ -1,7 +1,9 @@
 class SchedulesController < ApplicationController
   before_action :set_book, only: [:new, :create, :index, :edit, :show, :update, :destroy]
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
-  before_action :is_matching_login_user, only: [:new, :show, :edit, :update, :dastroy]
+  before_action :is_matching_login_user, only: [:index]
+  before_action :is_matching_login_user_edit, only: [:edit, :update, :destroy]
+  before_action :is_matching_login_user_show, only: [:show]
 
   def new
     @schedule = @book.schedules.build
@@ -28,7 +30,6 @@ class SchedulesController < ApplicationController
   end
 
   def create
-    @book = Book.find(params[:book_id])
     schedule_params[:start_date] = Date.parse(schedule_params[:start_date])
     schedule_params[:start_time] = Time.zone.parse("#{schedule_params[:start_date]} #{schedule_params[:start_time]}")
     
@@ -93,10 +94,22 @@ class SchedulesController < ApplicationController
   end
   
   def is_matching_login_user
-    unless @book.user_id == current_user.id || @book.shared_users.include?(current_user)
-      redirect_to book_schedules_path(@book)
+    unless @book.publicly_visible? || @book.user_id == current_user.id || @book.shared_users.include?(current_user)
+      redirect_to public_index_books_path, alert: 'アクセスできません。'
     end 
   end 
+  
+  def is_matching_login_user_edit
+    if @book.user_id != current_user.id && !@book.shared_users.include?(current_user)
+      redirect_to public_index_books_path, alert: 'アクセスできません。'
+    end
+  end
+  
+  def is_matching_login_user_show
+    if @book.user_id != current_user.id && !@book.shared_users.include?(current_user)
+      redirect_to book_schedules_path(book_id: @book.id), alert: 'アクセスできません。'
+    end
+  end
   
   def calculate_duration(start_time, end_time)
     if start_time.present? && end_time.present?

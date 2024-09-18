@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
-  before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :is_matching_login_user, only: [:show]
+  before_action :is_matching_login_user_edit, only: [:edit, :update]
   skip_before_action :authenticate_user!, only: [:public_index, :show]
   before_action :authenticate_user!, except: [:public_index]
   before_action :set_book, only: [:show, :destroy, :update, :edit, :destroy_image]
@@ -90,10 +91,16 @@ class BooksController < ApplicationController
   
   def is_matching_login_user
     @book = Book.find(params[:id])
-    
-    if @book.public_status == false && @book.user_id != current_user.id && !@book.shared_users.include?(current_user)
+    unless @book.publicly_visible? ||  @book.user_id == current_user.id || @book.shared_users.include?(current_user)
       redirect_to public_index_books_path, alert: 'アクセスできません。'
     end 
   end 
+  
+  def is_matching_login_user_edit
+    @book = Book.find(params[:id])
+    unless @book.user_id == current_user.id
+      redirect_to books_path, alert: 'アクセスできません。'
+    end 
+  end
   
 end
