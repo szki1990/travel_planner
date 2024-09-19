@@ -4,6 +4,6 @@ json.data do
       json.title schedule.title
       json.latitude schedule.latitude
       json.longitude schedule.longitude
-    end  
+    end
   end
 end

@@ -4,7 +4,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :profile_image
-  has_and_belongs_to_many :shared_books, class_name: 'Book', join_table: 'books_users'
+  has_and_belongs_to_many :shared_books, class_name: "Book", join_table: "books_users"
   has_many :books, dependent: :destroy
   has_many :schedules, dependent: :destroy
   has_many :book_comments, dependent: :destroy
@@ -21,11 +21,11 @@ class User < ApplicationRecord
 
   def get_profile_image(width, height)
     unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/default-image2.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image2.jpg', content_type: 'image/jpeg')
+      file_path = Rails.root.join("app/assets/images/default-image2.jpg")
+      profile_image.attach(io: File.open(file_path), filename: "default-image2.jpg", content_type: "image/jpeg")
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
-  end 
+  end
 
   def follow(other_user)
     active_relationships.create(following_id: other_user.id)

@@ -1,11 +1,11 @@
 class HomesController < ApplicationController
   def top
   end
-  
+
   def about
-  end 
-  
+  end
+
   def index
-    @welcome_message = I18n.t('hello')
+    @welcome_message = I18n.t("hello")
   end
 end

@@ -19,4 +19,3 @@ json.data do
     end
   end
 end
-

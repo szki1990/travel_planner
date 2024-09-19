@@ -3,6 +3,6 @@ class CreateBooksUsersJoinTable < ActiveRecord::Migration[6.1]
     create_table :books_users, id: false do |t|
       t.belongs_to :book
       t.belongs_to :user
-    end 
+    end
   end
 end

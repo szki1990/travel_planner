@@ -108,6 +108,17 @@
             </div>
             <hr class="my-3">
           <% end %>
+          <% if notice %>
+            <div class="alert alert-success">
+              <%= notice %>
+            </div>
+          <% end %>
+
+          <% if alert %>
+            <div class="alert alert-danger">
+              <%= alert %>
+            </div>
+          <% end %>
           <div>
             <div id="favorite_buttons_<%= @book.id %>">
               <%= render "books/favorite_button", book: @book %>

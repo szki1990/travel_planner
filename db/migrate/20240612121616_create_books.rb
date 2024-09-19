@@ -6,7 +6,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.datetime :end_day
       t.timestamps
     end
-    
+
     add_index :books, :title
   end
 end
