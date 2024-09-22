@@ -91,14 +91,14 @@ class BooksController < ApplicationController
     def is_matching_login_user
       @book = Book.find(params[:id])
       unless @book.publicly_visible? || @book.user_id == current_user.id || @book.shared_users.include?(current_user)
-        redirect_to public_index_books_path, alert: "アクセスできません。"
+        redirect_to public_index_books_path, alert: "しおりにアクセスできません。"
       end
     end
 
     def is_matching_login_user_edit
       @book = Book.find(params[:id])
       unless @book.user_id == current_user.id
-        redirect_to books_path, alert: "アクセスできません。"
+        redirect_to public_index_books_path, alert: "しおりにアクセスできません。"
       end
     end
 end
