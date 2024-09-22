@@ -26,17 +26,17 @@ class CostsController < ApplicationController
     @grouped_costs = @costs.group_by { |cost| cost.date.strftime("%Y-%m-%d") }
   end
 
-  def payment_method_index
-    @costs = @book.costs.order(:date)
-    @total_price = @book.costs.sum(:price)
-    @grouped_costs = @costs.group_by { |cost| cost.datepayment_method.strftime("%Y-%m-%d") }
-  end
-
   def show
   end
 
   def paid_totals
     @costs = @book.costs
+    @total_price = @book.costs.sum(:price)
+    @grouped_costs = @costs.group_by { |cost| cost.consumer }
+  end
+
+  def payment_method_index
+    @costs = @book.costs.order(:date)
     @total_price = @book.costs.sum(:price)
     @grouped_costs = @costs.group_by { |cost| cost.consumer }
   end
