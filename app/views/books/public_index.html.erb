@@ -6,6 +6,12 @@
     background-position: center;
     background-repeat: no-repeat;
   }
+  .text-center {
+    text-align: center;
+  }
+  .pagination {
+    display: inline-block;
+  }
 </style>
 <div class="container py-4">
   <% if alert %>
@@ -97,6 +103,9 @@
       <% end %>
     </div>
   </div>
+</div>
+<div class="text-center">
+  <%= paginate @books, class: 'pagination' %>
 </div>
 <footer class="text-body-secondary py-5 bg-light text-center">
   <div class="container">

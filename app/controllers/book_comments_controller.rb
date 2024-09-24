@@ -5,9 +5,9 @@ class BookCommentsController < ApplicationController
     comment.book_id = book.id
     if comment.save
       redirect_to book_path(book), notice: "コメントが追加されました。"
-    else 
+    else
       redirect_to book_path(book), alert: "送信できません。コメントを入力してください。"
-    end 
+    end
   end
 
   def destroy

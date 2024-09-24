@@ -29,10 +29,10 @@ class BooksController < ApplicationController
   end
 
   def public_index
-    @public_books = Book.publicly_visible.order(created_at: :desc)
-    @books = Book.all
+    @public_books = Book.publicly_visible.order(created_at: :desc).page(params[:page])
+    @books = Book.all.page(params[:page])
     if params[:title].present?
-      @public_books = Book.publicly_visible.where("title LIKE ?", "%#{params[:title]}%")
+      @public_books = Book.publicly_visible.where("title LIKE ?", "%#{params[:title]}%").page(params[:page])
     end
   end
 

@@ -112,6 +112,11 @@ GEM
       dotenv (= 3.1.2)
       railties (>= 6.1)
     erubi (1.13.0)
+    factory_bot (6.5.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
     faker (3.4.2)
       i18n (>= 1.8.11, < 2)
     ffi (1.17.0)
@@ -240,7 +245,6 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.3.7)
     rspec-core (3.13.1)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.3)
@@ -291,7 +295,6 @@ GEM
     ruby-vips (2.2.2)
       ffi (~> 1.12)
       logger
-    rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -302,10 +305,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.10.0)
-      rexml (~> 3.2, >= 3.2.5)
-      rubyzip (>= 1.2.2, < 3.0)
-      websocket (~> 1.0)
     semantic_range (3.0.0)
     spring (4.2.1)
     sprockets (4.2.1)
@@ -332,16 +331,11 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webdrivers (5.3.1)
-      nokogiri (~> 1.6)
-      rubyzip (>= 1.3.0)
-      selenium-webdriver (~> 4.0, < 4.11)
     webpacker (5.4.4)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
-    websocket (1.2.11)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -356,15 +350,16 @@ DEPENDENCIES
   aws-sdk-s3
   bootsnap (>= 1.4.4)
   byebug
-  capybara (>= 3.26)
+  capybara
   devise
   dotenv-rails
+  factory_bot_rails
   faker
   geocoder
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-rails
-  kaminari
+  kaminari (~> 1.2.1)
   listen (~> 3.3)
   mysql2
   net-imap
@@ -384,13 +379,11 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   sass-rails (>= 6)
-  selenium-webdriver (>= 4.0.0.rc1)
   spring
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
-  webdrivers
   webpacker (~> 5.0)
 
 RUBY VERSION

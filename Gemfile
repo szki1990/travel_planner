@@ -54,12 +54,10 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem "capybara", ">= 3.26"
-  gem "selenium-webdriver", ">= 4.0.0.rc1"
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem "webdrivers"
-  gem 'rspec-rails'
+  gem "capybara"
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -79,11 +77,10 @@ gem "jquery-rails"
 
 gem "geocoder"
 
-gem "faker"
+gem "kaminari", '~> 1.2.1'
 
-gem "kaminari"
-
-gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 gem "aws-sdk-s3", require: false
+
+gem "net-smtp"
