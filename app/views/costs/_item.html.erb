@@ -1,0 +1,7 @@
+<p class="mb-1">
+  購入品 :
+  <span>
+    <%= link_to cost.purchase_item, book_cost_path(book_id: @book, id: cost.id), class: "btn btn-sm btn-outline-secondary" %> 
+    <%= number_to_currency(cost.price, unit: '￥', format: '%u%n') %>
+  </span>
+</p>

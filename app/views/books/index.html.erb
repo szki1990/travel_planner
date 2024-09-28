@@ -1,168 +1,86 @@
 <head>
   <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
+    .background-image-kissa {
+      background-image: url('<%= asset_path('kissa.jpg') %>');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
-  
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-         font-size: 3.5rem;
-      }
-    }
-  
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-  
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-  
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-  
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-  
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-  
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-  
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
-      .bd-mode-toggle {
-        z-index: 1500;
-      }
-    
-      .background-image-kissa {
-        background-image: url('<%= asset_path('kissa.jpg') %>');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-  
   </style>
 </head>
-<body>
-  <%= render 'layouts/plate' %>
-    <main>
-      <div class="container py-4">
-        <% if flash[:notice] %>
-          <div class="alert alert-info text-center" role="alert">
-            <%= flash[:notice] %>
-          </div>
-        <% end %>
-        <div class="jumbotron p-3 p-md-5 text-white rounded bg-info background-image-kissa">
-          <div class="col-md-6 mx-auto">
-            <h1 class="display-4 text-center">作成した<br>しおり</h1>
-            <p class="lead my-3 text-center">過去に作成したしおりや現段階で作成中のしおりの一覧が表示されます。</p>
-            <p class="text-center">
-              <%= link_to 'しおり作成', new_book_path, class: 'btn btn-outline-light text-white' %>
-            </li>
-            </p>
-          </div>
-        </div>
+
+<%= render 'layouts/plate' %>
+<main>
+  <div class="container py-4">
+    <% if flash[:notice] %>
+      <div class="alert alert-info text-center" role="alert">
+        <%= flash[:notice] %>
       </div>
-      
-      <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-            <div class="row">
-              <% @books.each do |book| %>
-                <% if book.user == current_user %>
-                  <div class="col-md-4">
-                    <div class="card shadow-sm">
-                      <div class="text-center py-3">
-                        <%= link_to book_path(book.id) do %>
-                          <% if book.image.attached? %>
-                            <%= image_tag "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{book.image.key}-thumbnail.#{book.image.blob.content_type.split('/').pop}", class: 'img-fluid', width: "auto", height: "auto" %>
-                          <% else %>
-                            <%= image_tag asset_path('default-image.jpg'), class: 'img-fluid', width: "100", height: "80" %>
-                          <% end %>
-                        <% end %>
-                      </div>
-                      <div class="card-body">
-                        <p class="card-text">
-                          タイトル：<%= book.title %>
-                          <% if book.publicly_visible? %>
-                            <h6 class="text-muted"><i class="fa-regular fa-star"></i>公開中</h6>
-                          <% else %>
-                            <h6 class="text-muted"><i class="fa-solid fa-lock"></i>非公開</h6>
-                          <% end %>
-                        </p>
-                        <p class="card-text">開始日：<%= book.start_day.strftime('%Y年%m月%d日') %></p>
-                        <p class="card-text">終了日：<%= book.end_day.strftime('%Y年%m月%d日') %></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <%= link_to '詳細', book_path(book.id), class: "btn btn-sm btn-outline-secondary" %>
-                            <%= link_to '編集', edit_book_path(book.id), class: "btn btn-sm btn-outline-secondary" %>
-                            <%= link_to 'プラン', book_schedules_path(book.id), class: "btn btn-sm btn-outline-secondary" %>
-                          </div>
-                          <small class="text-body-secondary"><%= time_ago_in_words(book.created_at) %>前</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <% if @shared_books.present? %>
-        <div class="bg-light p-3">
-          <h1 class="text-center text-dark">共有されたしおり</h1>
-          <div class="row">
-            <%= render @shared_books %>
-          </div>
-        </div>
-      <% else %>
-      <% end %>
-      
-      
-    <footer class="text-body-secondary py-5 bg-light text-center">
-      <div class="container">
-        <p class="mb-1">
-          <a href="#" class="text-dark">Back to top</a>
+    <% end %>
+    <div class="jumbotron p-3 p-md-5 text-white rounded bg-info background-image-kissa">
+      <div class="col-md-6 mx-auto">
+        <h1 class="display-4 text-center">作成した<br>しおり</h1>
+        <p class="lead my-3 text-center">過去に作成したしおりや現段階で作成中のしおりの一覧が表示されます。</p>
+        <p class="text-center">
+          <%= link_to 'しおり作成', new_book_path, class: 'btn btn-outline-light text-white' %>
+        </li>
         </p>
       </div>
-    </footer>
-  </body>
-</html>
+    </div>
+  </div>
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="row">
+        <% @books.each do |book| %>
+          <% if book.user == current_user %>
+            <div class="col-md-4">
+              <div class="card shadow-sm">
+                <div class="text-center py-3">
+                  <%= link_to book_path(book.id) do %>
+                    <% if book.image.attached? %>
+                      <%= image_tag "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{book.image.key}-thumbnail.#{book.image.blob.content_type.split('/').pop}", class: 'img-fluid', width: "auto", height: "auto" %>
+                    <% else %>
+                      <%= image_tag asset_path('default-image.jpg'), class: 'img-fluid', width: "100", height: "80" %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">
+                    タイトル：<%= book.title %>
+                    <% if book.publicly_visible? %>
+                      <h6 class="text-muted"><i class="fa-regular fa-star"></i>公開中</h6>
+                    <% else %>
+                      <h6 class="text-muted"><i class="fa-solid fa-lock"></i>非公開</h6>
+                    <% end %>
+                  </p>
+                  <p class="card-text">開始日：<%= book.start_day.strftime('%Y年%m月%d日') %></p>
+                  <p class="card-text">終了日：<%= book.end_day.strftime('%Y年%m月%d日') %></p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <%= link_to '詳細', book_path(book.id), class: "btn btn-sm btn-outline-secondary" %>
+                      <%= link_to '編集', edit_book_path(book.id), class: "btn btn-sm btn-outline-secondary" %>
+                      <%= link_to 'プラン', book_schedules_path(book.id), class: "btn btn-sm btn-outline-secondary" %>
+                    </div>
+                    <small class="text-body-secondary"><%= time_ago_in_words(book.created_at) %>前</small>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if @shared_books.present? %>
+    <div class="bg-light p-3">
+      <h1 class="text-center text-dark">共有されたしおり</h1>
+      <div class="row">
+        <%= render @shared_books %>
+      </div>
+    </div>
+  <% else %>
+  <% end %>
+      
+  <%= render 'books/footer' %>
+</main>
