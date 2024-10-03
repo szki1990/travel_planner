@@ -42,12 +42,4 @@ class User < ApplicationRecord
   def follower?(other_user)
     follower_users.include?(other_user)
   end
-  
-  def profile_image
-    if profile_image.attached?
-      "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{user.profile_image.key}-thumbnail.#{user.profile_image.blob.content_type.split('/').pop}"
-    else
-      ActionController::Base.helpers.asset_path('default-image2.jpg')
-    end 
-  end 
 end
