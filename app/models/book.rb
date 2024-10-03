@@ -48,6 +48,14 @@ class Book < ApplicationRecord
   def remove_image
     self.image.purge
   end
+  
+  def profile_image_url
+    if profile_image.attached?
+      "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{@user.profile_image.key}-thumbnail.#{@user.profile_image.blob.content_type.split('/').pop}"
+    else 
+      ActionController::Base.helpers.asset_path('default-image2.jpg')
+    end 
+  end
 
   validate :validate_date_range_order
 
