@@ -43,7 +43,7 @@ class User < ApplicationRecord
     follower_users.include?(other_user)
   end
   
-  def profile_imge
+  def profile_image
     if profile_image.attached?
       "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{user.profile_image.key}-thumbnail.#{user.profile_image.blob.content_type.split('/').pop}"
     else
