@@ -105,7 +105,7 @@ class SchedulesController < ApplicationController
 
     def is_matching_login_user_show
       if @book.user_id != current_user.id && !@book.shared_users.include?(current_user)
-        redirect_to book_schedules_path(book_id: @book.id), alert: "アクセスできません。"
+        redirect_to book_schedules_path(book_id: @book.id), flash: { accses_alert: "アクセスできません。" }
       end
     end
 
