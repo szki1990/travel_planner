@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: "homes#top"
+  root to: "homes#about"
 
   devise_for :users
 
