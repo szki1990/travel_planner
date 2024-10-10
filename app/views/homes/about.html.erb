@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>Product example for Bootstrap</title>
+    <%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'app' %>
+  </head>
+  <body>
+    <div class="container py-4">
+        <h1 id="heading">TravelPlanner</h1>
+    </div>
+    <div class="grid">
+        <%= image_tag 'kissa.jpg', class: 'img-item' %>
+        <%= image_tag 'kyouyu.jpg', class: 'img-item' %>
+        <%= image_tag 'list.jpg', class: 'img-item' %>
+        <%= image_tag 'memo.jpg', class: 'img-item' %>
+        <%= image_tag 'niji.jpg', class: 'img-item' %>
+        <%= image_tag 'monney.jpg', class: 'img-item' %>
+    </div>
+    <div><%= link_to 'topページへ', homes_top_path, class: 'btn btn-outline-secondary' %></div>
+  </body>
+</html>

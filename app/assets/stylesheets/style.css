@@ -1,28 +1,18 @@
-/* ダークモード用のスタイル */
-.dark-mode {
-  background-color: #121212;
-  color: #ffffff;
+body {
+  text-align: center;
 }
 
-.dark-mode .bg-light {
-  background-color: #444444 !important;
+.grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  max-width: 1020px;
+  margin: auto;
+  padding: 30px;
 }
-
-.dark-mode .bg-dark {
-  background-color: #000000 !important;
+.img-item {
+  opacity: 0;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
 }
-
-.dark-mode .text-white {
-  color: #ffffff !important;
-}
-
-.dark-mode .text-black {
-  color: #ffffff !important;
-}
-
-.dark-mode .btn-outline-secondary {
-  border-color: #ffffff;
-  color: #ffffff;
-}
-
-/* 必要に応じて他のクラスの色を調整 */
