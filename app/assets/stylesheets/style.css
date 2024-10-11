@@ -1,17 +1,17 @@
 body {
+  background-image: url('assets/images/back.jpg');
   text-align: center;
 }
 
 h1 {
-  background: linear-gradient(to right, deepskyblue, aquamarine);
+  background: linear-gradient(to right, snow, darkblue, snow);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 48px;
 }
 
-
 h2 {
-  color: darkgray;
+  color: darkslategray;
   font-size: 48px;
 }
 

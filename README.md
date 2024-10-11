@@ -18,9 +18,6 @@
 - 旅行の計画を立てたいとき
 - 過去の旅行プランを見たいとき
 
-## 設計書
-
-​
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
@@ -38,3 +35,5 @@
 4. **地図表示**:
     - [Google Maps JavaScript API] https://developers.google.com/maps/documentation/javascript/overview
     - [Geocoding API] https://developers.google.com/maps/documentation/geocoding/overview# buckup-repo
+5. **画像**:
+    -[PAKUTASO] https://www.pakutaso.com/
