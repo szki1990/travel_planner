@@ -40,8 +40,8 @@ document.addEventListener("turbolinks:load", () => {
         opacity: [0, 1],
       };
       const options = {
-        duration: 600,
-        delay: i * 300,
+        duration: 2000,
+        delay: i * 1000,
         fill: 'forwards',
       };
       items[i].animate(keyframes, options);
