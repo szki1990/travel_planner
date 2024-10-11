@@ -56,6 +56,9 @@
               <a href="<%= book_path(book.id) %>" class="text-dark text-decoration-none">
                 <span style="color: grey;"><%= book.title %></span>
               </a>
+              <p>
+                <%= book.user.name %>
+              </p>
             </h3>
             <div class="card flex-md-row mb-4 shadow-sm h-md-250">
               <div class="text-center p-3">
