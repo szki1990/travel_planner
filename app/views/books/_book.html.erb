@@ -17,6 +17,9 @@
         <% else %>
           <h6 class="text-muted"><i class="fa-solid fa-lock"></i>非公開</h6>
         <% end %>
+        <p>
+          作成者：<%= book.user.name %>
+        </p>
       </p>
       <p class="card-text">開始日：<%= book.start_day.strftime('%Y年%m月%d日') %></p>
       <p class="card-text">終了日：<%= book.end_day.strftime('%Y年%m月%d日') %></p>
