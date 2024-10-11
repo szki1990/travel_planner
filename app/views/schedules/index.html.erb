@@ -67,7 +67,7 @@
         </div>
       </div>
 
-      <div class="album py-5 bg-body-tertiary">
+      <div class="album bg-body-tertiary">
         <div class="container">
           <% if @schedules.present? %>
             <% @schedules.sort_by { |schedule| schedule.start_date || Date.new(9999, 12, 31) }.group_by { |schedule| schedule.start_date }.each do |date, schedules| %>
@@ -75,23 +75,29 @@
                 <h3 class="text-center"><%= date.present? ? date.strftime('%Y年%m月%d日') : '日付未設定' %></h3>
                 <div class="row">
                   <% schedules.sort_by { |schedule| schedule.start_time || Time.new(0) }.each do |schedule| %>
+                    <% if schedule.start_time.present? %>
+                      <% if schedule.end_time.present? %>
+                        <p class="card-text"><%= schedule.start_time.strftime('%H:%M') %> - <%= schedule.end_time.strftime('%H:%M') %></p>
+                      <% else %>
+                        <p class="card-text"><%= schedule.start_time.strftime('%H:%M') %> -
+                      <% end %>
+                      <% else %>
+                              
+                      <% end %>
                     <div class="col-12 mb-3">
                       <div class="card h-100">
                         <%= link_to book_schedule_path(book_id: @book.id, id: schedule.id), class: 'text-decoration-none text-dark' do %>
                           <div class="card-body">
-                            <% if schedule.start_time.present? %>
-                              <% if schedule.end_time.present? %>
-                                <p class="card-text"><%= schedule.start_time.strftime('%H:%M') %> - <%= schedule.end_time.strftime('%H:%M') %></p>
-                              <% else %>
-                                <p class="card-text"><%= schedule.start_time.strftime('%H:%M') %> -
-                              <% end %>
-                            <% else %>
-                            
-                            <% end %>
-                            <h5 class="card-title">
-                              <i class="fa-solid <%= schedule.icon %>"></i>
-                              <%= schedule.title %>
-                            </h5>
+                            <div class="container">
+                              <div class="d-flex align-items-center justify-content-between">
+                                <h4 class="card-title mb-0">
+                                  <i class="fa-solid <%= schedule.icon %>"></i>
+                                </h4>
+                                <div class="text-center flex-grow-1">
+                                  <%= schedule.title %>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         <% end %>
                       </div>
