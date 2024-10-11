@@ -7,15 +7,16 @@
   </head>
   <body>
     <div class="container py-4">
-        <h1 id="heading">TravelPlanner</h1>
+        <h2 id="heading">旅のしおり</h2>
+        <h1 id="heading-text">TravelPlanner</h1>
     </div>
     <div class="grid">
+        <%= image_tag '0003.jpg', class: 'img-item' %>
+        <%= image_tag '0005.jpg', class: 'img-item' %>
         <%= image_tag 'kissa.jpg', class: 'img-item' %>
-        <%= image_tag 'kyouyu.jpg', class: 'img-item' %>
-        <%= image_tag 'list.jpg', class: 'img-item' %>
-        <%= image_tag 'memo.jpg', class: 'img-item' %>
-        <%= image_tag 'niji.jpg', class: 'img-item' %>
-        <%= image_tag 'monney.jpg', class: 'img-item' %>
+        <%= image_tag '0004.jpg', class: 'img-item' %>
+        <%= image_tag '0001.jpg', class: 'img-item' %>
+        <%= image_tag '0002.jpg', class: 'img-item' %>
     </div>
     <div><%= link_to 'topページへ', homes_top_path, class: 'btn btn-outline-secondary' %></div>
   </body>

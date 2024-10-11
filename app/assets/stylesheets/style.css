@@ -2,6 +2,19 @@ body {
   text-align: center;
 }
 
+h1 {
+  background: linear-gradient(to right, deepskyblue, aquamarine);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 48px;
+}
+
+
+h2 {
+  color: darkgray;
+  font-size: 48px;
+}
+
 .grid {
   display: grid;
   gap: 30px;
