@@ -1,6 +1,7 @@
 document.addEventListener("turbolinks:load", () => {
   const heading = document.querySelector('#heading');
   const headingText = document.querySelector('#heading-text');
+  const items = document.querySelectorAll('.img-item');
   
   if (headingText) {
     headingText.style.opacity = 0;
@@ -34,11 +35,7 @@ document.addEventListener("turbolinks:load", () => {
       }
     };
   }
-
-  if (window.location.pathname === '/about') {
-    const items = document.querySelectorAll('.img-item');
-
-    for (let i = 0; i < items.length; i++) {
+  for (let i = 0; i < items.length; i++) {
       const keyframes = {
         opacity: [0, 1],
       };
@@ -49,5 +46,4 @@ document.addEventListener("turbolinks:load", () => {
       };
       items[i].animate(keyframes, options);
     }
-  }
 });
