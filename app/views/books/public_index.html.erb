@@ -23,7 +23,7 @@
     <div class="col-md-6">
       <div class="text-right mb-1">
         <%= form_with url: public_index_books_path, method: :get, local: true do |f| %>
-          <%= f.text_field :title, placeholder: '投稿を検索' %>
+          <%= f.text_field :title, placeholder: 'しおり検索' %>
           <%= f.submit '検索' %>
         <% end %>
       </div>

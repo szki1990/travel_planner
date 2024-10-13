@@ -13,15 +13,6 @@ class SchedulesController < ApplicationController
   end
 
   def index
-    respond_to do |format|
-      format.html do
-        @schedules = Schedule.page(params[:page])
-      end
-      format.json do
-        @schedules = Schedule.all
-      end
-    end
-    @user = current_user
     @start_date = params[:start_date].present? ? Date.parse(params[:start_date]) : @book.start_day.to_date
     @end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : @book.end_day.to_date
     @dates = (@start_date..@end_date).to_a
