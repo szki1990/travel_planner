@@ -18,7 +18,7 @@ ja:
       user:
         name: '名前'
         email: 'メールアドレス'
-        password: 'パスワード'
+        password: '新しいパスワード'
         password_confirmation: 'パスワード確認用'
       book: 
         title: 'タイトル'
