@@ -48,7 +48,7 @@
         <div class="py-3">
           <%= link_to user_path(@book.user) do %>
             <% if @book.user.profile_image.attached? %>
-              <%= image_tag "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{@book.user.profile_image.key}-thumbnail.#{@book.user.profile_image.blob.content_type.split('/').pop}", class: 'img-fluid', width: "auto", height: "auto" %>
+              <%= image_tag "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{@book.user.profile_image.key}-thumbnail.#{@book.user.profile_image.blob.content_type.split('/').pop}", style: 'width: 100; height: 100; border-radius: 5px;', alt: 'Profile Image' %>
             <% else %>
               <%= image_tag asset_path('default-image2.jpg'), class: 'img-fluid', width: "auto", height: "auto" %>
             <% end %>
