@@ -52,13 +52,19 @@
       <% @public_books.each do |book| %>
         <div class="col-md-6 mb-4">
           <div class="border rounded p-3 mb-3">
-            <h3 class="mb-0 d-flex justify-content-between align-items-center">
+            <h3 class="mb-0 pb-3 d-flex justify-content-between align-items-center">
               <a href="<%= book_path(book.id) %>" class="text-dark text-decoration-none">
                 <span style="color: grey;"><%= book.title %></span>
               </a>
-              <p>
-                <%= book.user.name %>
-              </p>
+              <div>
+                <%= link_to user_path(book.user) do %>
+                  <% if book.user.profile_image.attached? %>
+                    <%= image_tag "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{book.user.profile_image.key}-thumbnail.#{book.user.profile_image.blob.content_type.split('/').pop}", class: 'img-fluid', style: 'width: 50px; height: 50px; border-radius: 50px;', alt: 'Profile Image' %>
+                  <% else %>
+                    <%= image_tag asset_path('default-image2.jpg'), class: 'img-fluid', width: "50px", height: "50px" %>
+                  <% end %>
+                <% end %>
+              </div>
             </h3>
             <div class="card flex-md-row mb-4 shadow-sm h-md-250">
               <div class="text-center p-3">
