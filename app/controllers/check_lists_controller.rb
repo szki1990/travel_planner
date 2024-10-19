@@ -18,7 +18,6 @@ class CheckListsController < ApplicationController
 
   def index
     @check_lists = @book.check_lists
-    @fixed_check_list = CheckList.find_by(title: "固定リスト名")
   end
 
   def show

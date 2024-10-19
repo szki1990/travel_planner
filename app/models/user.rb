@@ -2,7 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+  
+  has_one_attached :background_image
   has_one_attached :profile_image
   has_and_belongs_to_many :shared_books, class_name: "Book", join_table: "books_users"
   has_many :books, dependent: :destroy
