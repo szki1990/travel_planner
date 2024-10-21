@@ -94,7 +94,22 @@
                       <% end %>
                     <div class="col-12 mb-3">
                       <div class="card h-100">
-                        <%= link_to book_schedule_path(book_id: @book.id, id: schedule.id), class: 'text-decoration-none text-dark' do %>
+                        <% if schedule.user == current_user %>
+                          <%= link_to book_schedule_path(book_id: @book.id, id: schedule.id), class: 'text-decoration-none text-dark' do %>
+                            <div class="card-body">
+                              <div class="container">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <h4 class="card-title mb-0">
+                                    <i class="fa-solid <%= schedule.icon %>"></i>
+                                  </h4>
+                                  <div class="text-center flex-grow-1">
+                                    <%= schedule.title %>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          <% end %>
+                        <% else %>
                           <div class="card-body">
                             <div class="container">
                               <div class="d-flex align-items-center justify-content-between">
