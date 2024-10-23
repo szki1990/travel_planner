@@ -33,16 +33,18 @@
                   名前を入力してください。
                 </div>
               </div>
-              
-              <div class="field">
-                <%= f.label :profile_image, "プロフィール画像" %><br />
-                <%= f.file_field :profile_image, placeholder: "プロフィール画像を選択", accept: "image/*" %>
+              <div class="d-flex justify-content-center border p-3 mb-3 mt-3">
+                <div class="field">
+                  <%= f.label :profile_image, "プロフィール画像" %><br />
+                  <%= f.file_field :profile_image, placeholder: "プロフィール画像を選択", accept: "image/*" %>
+                </div>
               </div>
-              <div class="field">
-                <%= f.label :background_image, "背景画像を選択" %><br />
-                <%= f.file_field :background_image, placeholder: "背景画像を選択", accept: "image/*" %>
+              <div class="d-flex justify-content-center border p-3 mb-3 mt-3">
+                <div class="field">
+                  <%= f.label :background_image, "背景画像を選択" %><br />
+                  <%= f.file_field :background_image, placeholder: "背景画像を選択", accept: "image/*" %>
+                </div>
               </div>
-              <hr class="mb-4">
               <button class="btn btn-primary btn-lg btn-block" type="submit">変更</button>
             <% end %>
           </div>
