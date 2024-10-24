@@ -90,8 +90,7 @@
           <p>コメント件数:<%= @book.book_comments.count %></p>
           <% @book.book_comments.each do |book_comment| %>
             <div class="row mb-3">
-              <div class="col">
-                <div class="small text-muted"><%= book_comment.created_at.strftime('%Y/%m/%d') %></div>
+              <div class="col-2">
                 <div class="align-items-center">
                   <%= link_to user_path(@book.user) do %>
                     <% if book_comment.user.profile_image.attached? %>
@@ -100,11 +99,14 @@
                       <%= image_tag asset_path('default-image2.jpg'), class: 'img-fluid', style: 'width: 50px; height: 50px; border-radius: 50px;' %>
                     <% end %>
                   <% end %>
-                  <%= book_comment.comment %>
                   <div class="ml-2">
                     <small><%= book_comment.user.name %></small>
                   </div>
+                  <div class="small text-muted"><%= book_comment.created_at.strftime('%Y/%m/%d') %></div>
                 </div>
+              </div>
+              <div class="col-8">
+                <%= book_comment.comment %>
               </div>
               <% if book_comment.user == current_user %>
                 <div class="col-auto">
@@ -131,7 +133,7 @@
               <%= render "books/favorite_button", book: @book %>
             </div>
             <%= form_with model: [@book, @book_comment] do |f| %>
-              <%= f.text_area :comment, rows: '5', placeholder: "コメント記入欄" %>
+              <%= f.text_area :comment, rows: '5', placeholder: "コメント記入欄", class: 'form-control' %>
               <%= f.submit "送信", class: "btn btn-sm btn-outline-secondary" %>
             <% end %>
           </div>
