@@ -91,7 +91,7 @@
           <% @book.book_comments.each do |book_comment| %>
             <div class="row mb-3">
               <div class="col-2">
-                <div class="align-items-center">
+                <div class="d-flex flex-column align-items-center">
                   <%= link_to user_path(@book.user) do %>
                     <% if book_comment.user.profile_image.attached? %>
                       <%= image_tag "https://pf-travelp-resized-bucket.s3-ap-northeast-1.amazonaws.com/#{book_comment.user.profile_image.key}-thumbnail.#{book_comment.user.profile_image.blob.content_type.split('/').pop}", class: 'img-fluid', style: 'width: 50px; height: 50px; border-radius: 50px;', alt: 'Profile Image' %>
@@ -99,7 +99,7 @@
                       <%= image_tag asset_path('default-image2.jpg'), class: 'img-fluid', style: 'width: 50px; height: 50px; border-radius: 50px;' %>
                     <% end %>
                   <% end %>
-                  <div class="ml-2">
+                  <div class="mt-2">
                     <small><%= book_comment.user.name %></small>
                   </div>
                   <div class="small text-muted"><%= book_comment.created_at.strftime('%Y/%m/%d') %></div>
