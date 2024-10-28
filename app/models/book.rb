@@ -23,9 +23,11 @@ class Book < ApplicationRecord
   scope :privately_visible, -> { where(public_status: false) }
   
   after_create do
-    user.follower_users.each do |follower|
-      notifications.create(user_id: follower.id)
-    end 
+    if public_status
+      user.follower_users.each do |follower|
+        notifications.create(user_id: follower.id)
+      end 
+    end
   end
 
   def date_range
