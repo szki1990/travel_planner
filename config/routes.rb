@@ -59,4 +59,5 @@ Rails.application.routes.draw do
   resources :favorites, only: [:index]
   resource :maps, only: [:show]
   resources :relationships, only: [:create, :destroy]
+  resources :notifications, only: [:update]
 end

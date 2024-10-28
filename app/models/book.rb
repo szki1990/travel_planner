@@ -9,6 +9,7 @@ class Book < ApplicationRecord
   has_many :memos, dependent: :destroy
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :notifications, as: :notifiable, dependent: :destroy
   has_many :members, dependent: :destroy
 
   validates :title, presence: true
@@ -20,6 +21,12 @@ class Book < ApplicationRecord
 
   scope :publicly_visible, -> { where(public_status: true) }
   scope :privately_visible, -> { where(public_status: false) }
+  
+  after_create do
+    user.follower_users.each do |follower|
+      notifications.create(user_id: follower.id)
+    end 
+  end
 
   def date_range
     (start_day.to_date..end_day.to_date).to_a

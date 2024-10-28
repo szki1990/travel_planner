@@ -4,6 +4,26 @@
     <% if controller_name == 'homes' && action_name == 'about' %>
       <button id="dark-mode-toggle">ダークモード</button>
     <% end %>
+    <li class="dropdown">
+      <% if current_user %>
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          通知
+          <span class="badge badge-danger"><%= current_user.notifications.where(read: false).count %></span>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <% if current_user.notifications.where(read: false).any? %>
+            <small class="dropdown-item disabled">直近5件の未読の通知を表示しています</small>
+            <% current_user.notifications.where(read: false).limit(5).order(created_at: :desc).each do |notification| %>
+              <%= link_to notification_message(notification), notification_path(notification), method: :patch, class: "dropdown-item" %>
+            <% end %>
+          <% else %>
+            <span class="dropdown-item disabled">未読の通知はありません</span>
+          <% end %>
+        </div>
+      <% else %>
+        
+      <% end %>
+    </li>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
