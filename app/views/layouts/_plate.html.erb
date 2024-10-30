@@ -4,7 +4,7 @@
     <% if controller_name == 'homes' && action_name == 'about' %>
       <button id="dark-mode-toggle">ダークモード</button>
     <% end %>
-    <li class="dropdown">
+    <div class="dropdown">
       <% if current_user %>
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           通知
@@ -23,7 +23,7 @@
       <% else %>
         
       <% end %>
-    </li>
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
